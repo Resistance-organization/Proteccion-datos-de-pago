@@ -1,5 +1,5 @@
 // URL del curso en Moodle — se usa en el botón "Volver al curso"
-export const MOODLE_COURSE_URL = 'https://elearning.resistance.com.co/course/view.php?id=9'
+export const MOODLE_COURSE_URL = 'https://elearning.resistance.com.co/course/view.php?id=12'
 
 export const CERTIFICATE_CONFIG = {
   courseFullName: 'Curso de Concientización en Protección de Datos de Pago',

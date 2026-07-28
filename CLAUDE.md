@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Proyecto
 
-Curso e-learning de **Ciberseguridad y Protección de la Información**. Es una SPA en React empaquetada como **SCORM 1.2** para publicarse en Moodle. El puntaje mínimo de aprobación es 80%.
+Curso e-learning de **Concientización en Protección de Datos de Pago**, alineado con **PCI DSS 4.0.1**. Es una SPA en React empaquetada como **SCORM 1.2** para publicarse en Moodle. El puntaje mínimo de aprobación es 80%.
 
 ## Comandos
 
@@ -15,7 +15,7 @@ npm run preview          # Previsualizar el build
 npm run package:scorm    # build + genera imsmanifest.xml + ZIP listo para Moodle
 ```
 
-El ZIP de salida es `resistance-ciberseguridad-scorm.zip` en la raíz.
+El ZIP de salida es `resistance-ciberseguridad-scorm.zip` en la raíz (el nombre quedó heredado del curso anterior; renombrarlo implica editar `OUTPUT_FILE` en `scripts/package-scorm.js`).
 
 ## Arquitectura
 
@@ -29,12 +29,14 @@ Todo el contenido del curso vive en **`src/data/modules.js`**. Este es el único
 
 ### Sistema de bloques (`src/data/modules.js`)
 
-Cada módulo contiene un array de `blocks`. Tipos disponibles:
+Cada módulo contiene un array de `blocks`. Tipos disponibles (ver también el comentario de cabecera en `modules.js`):
 
 | Tipo | Componente | Uso |
 |---|---|---|
 | `hero` | `HeroBlock` | Portada del módulo |
 | `text` | `TextBlock` | HTML enriquecido (`content` es HTML raw) |
+| `box` | `InfoBox` | Caja destacada — `variant`: `accent`\|`info`\|`warning`\|`success`\|`purple`; soporta `title`, `text` (HTML), `iconItems[]`, `items[]`, `footer` |
+| `datatable` | `DataTable` | Selector de chips + panel de detalle (`columns[]`, `rows[]` con `{icon, highlight, cells[]}`) |
 | `reading` | `Reading` | Lectura larga con tabla de contenido |
 | `flipcard` | `FlipCard` | Tarjetas interactivas frente/reverso |
 | `carousel` | `Carousel` | Carrusel de ítems |
@@ -44,11 +46,22 @@ Cada módulo contiene un array de `blocks`. Tipos disponibles:
 | `infographic` | `Infographic` | Imagen estática (`image:`) o HTML embebido en iframe (`src:`) |
 | `iframepresentation` | `IframePresentation` | PPT standalone en HTML cargada en iframe (`src:`) |
 | `video` | `VideoPlayer` | Video HTML5 o YouTube |
-| `quiz` | `Quiz` | Quiz con retroalimentación — único bloque que afecta el progreso |
-| `flyer` | `Flyer` | Tarjeta visual destacada |
+| `quiz` | `Quiz` | Quiz calificado con retroalimentación por pregunta — afecta el desbloqueo de módulos (`passingScore` opcional, default 80) |
+| `scenario` | `ScenarioQuiz` | Simulación ramificada con mockups (`sms`\|`email`\|`wifi`\|`whatsapp`\|`instagram`), retroalimentación por opción — diagnóstico, **no bloquea** el avance |
+| `scenariobuilder` | `ScenarioBuilder` | Actividad de ordenar (`mode: 'order'`) o seleccionar (`mode: 'select'`) opciones, con distractores — **no bloquea** el avance |
+| `selfcheck` | `SelfCheck` | Preguntas de opción única sin calificación, cierre con `resultTitle`/`resultText` fijo |
+| `checklist` | `ChecklistCheck` | Checklist de autoevaluación sin calificación, con bandas de resultado (`results.band1/2/3`) |
+| `reflection` | `Reflection` | Campo de texto libre (`promptPrefix`) que se guarda en `storageKey` y se puede recuperar más adelante (modo `recall`) |
+| `pyramid` | `ValuePyramid` | Pirámide interactiva de niveles con hover |
+| `flyer` | `Flyer` | Tarjeta visual destacada (`badge`, `body`, `color`, `icon`) |
+| `downloadcard` | `DownloadCard` | Tarjeta con botón que genera un PDF client-side. `variant` mapea a un generador en `src/utils/`: `kit` → `generateEmergencyKit`, `plan` → `generatePersonalPlan`, `incidentCard` → `generateIncidentCard` |
+| `closing` | `ModuleClosing` | Cierre de módulo (`moduleLabel`, `summary`, `takeaways[]`, `nextHint`) |
+| `connectionnote` | `ConnectionNote` | Nota de transición entre secciones |
 | `versus` | `Versus` | Comparativa de dos columnas |
 | `riskmatrix` | `RiskMatrix` | Matriz probabilidad × impacto (componente interactivo hardcodeado) |
 | `colombiamap` | `ColombiaMap` | Mapa SVG interactivo de Colombia (datos en `public/world-50m.json`) |
+
+Para agregar un generador de PDF nuevo (como `generateIncidentCard.js`), crear el archivo en `src/utils/`, agregarlo al mapa `GENERATORS` en `src/components/activities/DownloadCard.jsx`, y referenciarlo por `variant` desde `modules.js`.
 
 ### Integración SCORM (`src/utils/scorm.js`)
 
@@ -58,44 +71,38 @@ Detecta el API SCORM 1.2 (`window.API`) escalando frames de padres. Si no lo enc
 
 Un módulo se considera **completado** cuando:
 1. El usuario ha hecho scroll hasta el 90% del contenido (`moduleScrollDone`).
-2. Todos los bloques `quiz` del módulo tienen score ≥ 80% (`moduleQuizzesDone`).
+2. Todos los bloques `quiz` del módulo tienen score ≥ su `passingScore` (default 80) (`moduleQuizzesDone`).
 
-Los módulos se desbloquean secuencialmente: el módulo N requiere que N-1 esté completado.
+Los módulos se desbloquean secuencialmente: el módulo N requiere que N-1 esté completado. Los bloques `scenario`, `scenariobuilder`, `selfcheck`, `checklist` y `reflection` **no** afectan este desbloqueo — son diagnósticos o de autoevaluación. El certificado se dispara igual que cualquier módulo (scroll + quizzes del último módulo), no hay gating adicional propio del formulario de cierre.
 
 ### Assets estáticos (`public/`)
 
-Las rutas en los bloques son relativas al build (ej. `./PPT-Ataques/index.html`):
+Las rutas en los bloques son relativas al build (ej. `./Infografías/M1-DatosQueProtegemos.html`):
 
 | Carpeta | Contenido |
 |---|---|
-| `public/PPT-*/index.html` | Presentaciones HTML standalone — cada carpeta es una PPT independiente |
-| `public/Infografías/*.html` | Infografías interactivas en HTML (embebidas en iframe) |
-| `public/Infografías/*.png` | Imágenes de infografías estáticas |
-| `public/Presentaciones/*/` | PPTs exportadas como imágenes PNG (usadas con `imageslides`) |
-| `public/Piezas graficas/` | Imágenes ilustrativas para bloques `infographic` |
+| `public/Infografías/*.html` | Infografías interactivas en HTML (embebidas en iframe), una por recurso "INFOGRAFÍA" o "PIEZA GRÁFICA" del contenido fuente. Siguen un template común: frame de 1080px de ancho, fuentes Plus Jakarta Sans/Inter vía Google Fonts, script de auto-resize por `postMessage`. Logo en `../Logo.png`. |
+| `public/Logo*.png` | Logos usados dentro de las infografías y el certificado |
 
 ### Módulos del curso
 
-| # | Título | Tiempo | Recursos destacados |
-|---|---|---|---|
-| 1 | Fundamentos | 25 min | Tríada CIA (flip cards), 2 PPTs imagen (Tríada, Cifrado), infografía Control de Acceso |
-| 2 | Protección de la información | 30 min | PPT-Ataques (HTML), infografía DoS, componente Versus |
-| 3 | Detección y respuesta | 20 min | PPT-Phishing (HTML), infografías ReporteCorreos / ReporteIncidentes |
-| 4 | Activos y clasificación | 25 min | PPT-Contenedores (HTML), infografías UsoActivos / UsoActivosDetalle |
-| 5 | Gestión de riesgos | 30 min | RiskMatrix (interactivo), infografía TratamientoRiesgos |
-| 6 | Continuidad del negocio | 20 min | PPT-Continuidad (HTML), infografía RTO-RPO |
-| 7 | Inteligencia artificial | 25 min | PPT-IA (HTML), infografías IA-BuenUso-MalUso / IA-UsoSeguro |
-| 8 | Normativas | 25 min | PPT-Normativas, PPT-Delitos-informaticos, PPT-Propiedad-Intelectual, infografía PrincipiosDatos |
-| 9 | Contexto en Colombia | 25 min | PPT-Ciberataques-Colombia, ColombiaMap (interactivo), infografía Estadisticas Ciberataques |
-| 10 | Buenas prácticas | 20 min | PPT-TipsEntorno, infografía 5ReglasDeOro, Glossary con 5 reglas |
+| # | Título | Tiempo | Actividad de validación | Criterio de avance |
+|---|---|---|---|---|
+| 0 | Bienvenida | — | — | Placeholder, contenido pendiente |
+| 1 | ¿Qué estamos protegiendo y por qué importa? | 12–15 min | Clasificación de datos protegidos (`quiz`) | 5/6 correctas |
+| 2 | ¿Cómo empiezan los incidentes? | 12–14 min | Simulación de phishing (`scenario`) | Diagnóstico, no bloquea |
+| 3 | ¿Cómo evitamos ser parte del problema? | 15–18 min | Pares correcto/incorrecto (`quiz`) | 5/6 correctas |
+| 4 | ¿Qué hacemos cuando ocurre un incidente? | 12–15 min | Ordenamiento de acciones (`scenariobuilder`) | Orden correcto D→B→E (no bloquea técnicamente) |
+| 5 | ¿Cómo lo aplico en mi trabajo? | 10–12 min | 3 situaciones integradoras (`quiz`, passingScore 100) | Las 3 correctas |
 
 ### Certificado (`src/components/CertificateScreen.jsx`)
 
-Se muestra al finalizar el módulo 10. Antes de generarlo, aparece un modal para seleccionar la sede (Bogotá, Caldas, Cali, Ibagué, Tuluá, Villavicencio). El certificado se genera client-side con `jspdf`. La configuración del certificado está en `src/config.js`.
+Se muestra al finalizar el módulo 5. Antes de generarlo, aparece un modal para seleccionar la sede (Bogotá, Caldas, Cali, Ibagué, Tuluá, Villavicencio). El certificado se genera client-side con `jspdf`. La configuración del certificado (nombre del curso, alineación PCI DSS, año) está en `src/config.js` (`CERTIFICATE_CONFIG`). La URL de "volver al curso" en Moodle también está en `src/config.js` (`MOODLE_COURSE_URL`).
 
 ## Notas de desarrollo
 
 - En modo dev (`npm run dev`) el SCORM no conecta a ningún LMS; el progreso se guarda en `localStorage`.
-- Los bloques `infographic` con `src:` renderizan el HTML en un `<iframe>` con `aspectRatio` configurable (formato `'ancho / alto'`).
-- Los módulos 9 y 10 tienen quizzes comentados en `modules.js` (marcados con `// ► Agrega las preguntas cuando estén listas`).
+- Los bloques `infographic` con `src:` renderizan el HTML en un `<iframe>` con `aspectRatio` configurable (formato `'ancho / alto'`); la altura real se ajusta sola vía `postMessage` desde el HTML.
 - El `imsmanifest.xml` se genera dinámicamente en `scripts/package-scorm.js`; no editar manualmente.
+- Este curso reemplazó al curso anterior de ciberseguridad general ("Ciberseguridad Cotidiana"/"Ciberseguridad y Protección de la Información"). El repositorio se reinició sin historial de Git al iniciar este curso.
+- El contenido se recibe del negocio como PDFs por módulo (`PCI_Curso_M{n}_Contenido_v{n}.pdf`), con bloques clasificados como TEXTO DE PANTALLA, INFOGRAFÍA, ACTIVIDAD o PIEZA GRÁFICA. Al recibir una nueva versión de un módulo ya cargado, hay que diffear contra `modules.js` sección por sección antes de aplicar cambios.
