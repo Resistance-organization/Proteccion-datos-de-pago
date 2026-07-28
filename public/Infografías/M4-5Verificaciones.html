@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>5 verificaciones antes de comprar en línea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; background:transparent; }
+  body { font-family:'Inter',sans-serif; }
+  .frame { width:1600px; position:relative; overflow:hidden; background:#F4F7FC; box-sizing:border-box; transform-origin:top left; }
+  .logo-badge { position:absolute; top:52px; right:60px; height:60px; z-index:4; }
+  .pad { position:relative; padding:138px 56px 52px; box-sizing:border-box; }
+  .kicker { display:flex; align-items:center; gap:10px; margin-bottom:30px; }
+  .kicker .bar { width:34px; height:4px; border-radius:2px; background:#3178BD; }
+  .kicker span { font-size:20px; font-weight:700; letter-spacing:.10em; color:#3178BD; text-transform:uppercase; }
+  h1 { margin:0 0 46px; font-family:'Plus Jakarta Sans',sans-serif; font-size:44px; font-weight:800; line-height:1.2; color:#0E1F42; max-width:1300px; }
+  .list { display:flex; flex-direction:column; gap:18px; }
+  .row { display:flex; border-radius:18px; overflow:hidden; box-shadow:0 4px 14px rgba(31,56,100,.09); }
+  .row .num { width:120px; flex-shrink:0; background:#1F3864; padding:30px 16px; display:flex; align-items:center; justify-content:center; }
+  .row .num .circle { width:68px; height:68px; border-radius:50%; background:rgba(255,255,255,.14); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .row .num span { font-family:'Plus Jakarta Sans',sans-serif; font-size:28px; font-weight:800; color:#fff; }
+  .row .body { flex:1; background:#fff; padding:30px 36px; display:flex; flex-direction:column; gap:10px; justify-content:center; box-sizing:border-box; }
+  .row .ttl { font-family:'Plus Jakarta Sans',sans-serif; font-size:29px; font-weight:800; color:#152A52; line-height:1.3; }
+  .row p { margin:0; font-size:22px; color:#3B4A66; line-height:1.55; max-width:1150px; }
+  .tags { display:flex; gap:14px; flex-wrap:wrap; margin-top:2px; }
+  .tag { font-size:20px; font-weight:700; border-radius:8px; padding:6px 14px; }
+  .tag.ok { color:#1F8F5B; background:rgba(31,143,91,.12); border:1px solid rgba(31,143,91,.35); }
+  .tag.bad { color:#C22A22; background:rgba(232,67,47,.1); border:1px solid rgba(232,67,47,.35); }
+  .foot { padding-top:26px; }
+  .foot span { font-size:20px; color:#6B7A96; line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <img class="logo-badge" src="../Logo.png" alt="Logo" />
+  <div class="pad">
+    <div class="kicker"><span class="bar"></span><span>Antes de comprar en línea</span></div>
+    <h1>5 verificaciones antes de comprar en línea</h1>
+
+    <div class="list">
+      <div class="row">
+        <div class="num"><div class="circle"><span>01</span></div></div>
+        <div class="body">
+          <span class="ttl">HTTPS en la URL</span>
+          <p>Indica que la conexión está cifrada. Necesario pero no suficiente: un sitio fraudulento también puede tener HTTPS. Verifica siempre el dominio además del candado.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="num"><div class="circle"><span>02</span></div></div>
+        <div class="body">
+          <span class="ttl">El dominio es el correcto y oficial</span>
+          <p>Lee la URL completa. El dominio real es la parte entre "//" y la primera "/". Debe coincidir exactamente con el sitio que esperas.</p>
+          <div class="tags">
+            <span class="tag ok">✓ exito.com.co</span>
+            <span class="tag bad">✕ exito-ofertas.net</span>
+            <span class="tag bad">✕ exitocolombia.shop</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="num"><div class="circle"><span>03</span></div></div>
+        <div class="body">
+          <span class="ttl">Reseñas verificables en fuentes externas</span>
+          <p>Busca el nombre del sitio en Google seguido de "estafa" o "reseñas". Las reseñas del propio sitio pueden ser falsas — busca en Google Maps, Trustpilot o foros.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="num"><div class="circle"><span>04</span></div></div>
+        <div class="body">
+          <span class="ttl">Métodos de pago con protección al comprador</span>
+          <p>PSE, tarjeta de crédito vía PayU o Wompi ofrecen posibilidad de disputa si el producto no llega. Transferencias directas o pagos por Nequi a desconocidos no tienen protección.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="num"><div class="circle"><span>05</span></div></div>
+        <div class="body">
+          <span class="ttl">Política de devolución y datos de contacto reales</span>
+          <p>Un sitio legítimo tiene página de términos y condiciones, política de devolución y datos de contacto verificables. Si no los encuentras, no compres.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot"><span>Fuente: MinTIC Colombia 2023 · CISA Secure Our World 2024 · Superintendencia de Industria y Comercio de Colombia</span></div>
+  </div>
+</div>
+<script>
+  (function () {
+    var frame = document.querySelector('.frame'), W = 1600;
+    function fit() {
+      var s = window.innerWidth / W;
+      frame.style.transform = 'scale(' + s + ')';
+      var realH = Math.round(frame.offsetHeight * s);
+      document.body.style.height = realH + 'px';
+      if (window.parent) { window.parent.postMessage({ type: 'infographic-height', height: realH }, '*'); }
+    }
+    window.addEventListener('resize', fit); fit();
+  })();
+</script>
+</body>
+</html>

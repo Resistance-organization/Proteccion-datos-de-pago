@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx vite *)",
+      "Bash(npm run *)",
+      "Bash(timeout 30 bash -c 'until curl -sf http://localhost:5183 >/dev/null; do sleep 1; done')",
+      "Bash(node _v.cjs)",
+      "Bash(node \"C:\\\\Users\\\\PAULAV~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-PaulaVillamarin-resistance-com-co-Marketing---Documentos-Moodle-Resistance-Ciberseguridad-cotidiana\\\\66aae940-578a-4c3b-bdb2-db06a690f341\\\\scratchpad\\\\fix.js\" \"public/Infografías\")",
+      "Bash(node -e ' *)",
+      "Bash(node --check src/data/modules.js)"
+    ]
+  }
+}

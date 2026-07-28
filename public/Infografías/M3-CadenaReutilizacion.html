@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Por qué una contraseña reutilizada es una llave maestra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html { margin:0; background:transparent; }
+  body { margin:0; background:transparent; font-family:"Inter",system-ui,sans-serif; }
+  .frame { width:1600px; position:relative; overflow:hidden; background:#1F3864; transform-origin:top left; box-sizing:border-box; }
+  .bg { position:absolute; inset:0; z-index:0; }
+  .pad { padding:130px 56px 40px; box-sizing:border-box; display:flex; flex-direction:column; z-index:3; }
+  .header { display:flex; align-items:center; justify-content:space-between; }
+  .kicker { display:flex; align-items:center; gap:10px;  margin-bottom:30px; }
+  .kicker .bar { width:34px; height:4px; border-radius:2px; background:#F0762A; }
+  .kicker span { font-size:20px; font-weight:700; letter-spacing:.10em; color:#BFDBFF; text-transform:uppercase; }
+  .title { margin-top:22px; }
+  .title h1 { margin:0; font-family:"Plus Jakarta Sans",sans-serif; font-weight:800; font-size:40px; line-height:1.2; color:#fff; max-width:1300px; }
+  .title h1 em { font-style:normal; background:rgba(232,67,47,.32); padding:2px 14px; border-radius:10px; }
+  .title p { margin:14px 0 0; font-size:22px; color:#AEC3E8; line-height:1.5; max-width:1300px; }
+  .chain { display:flex; align-items:flex-start; margin-top:26px; flex:1; }
+  .card { width:23.2%; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.13); border-radius:20px; padding:24px; box-sizing:border-box; box-shadow:0 14px 30px rgba(0,0,0,.28); display:flex; flex-direction:column; gap:10px; height:400px; }
+  .card .ic { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  .card .step { font-size:20px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .card .ttl { font-family:"Plus Jakarta Sans",sans-serif; font-size:21px; font-weight:800; color:#fff; line-height:1.3; }
+  .card p { margin:0; font-size:20px; color:#dbe6ff; line-height:1.5; }
+  .card .note { margin-top:auto; font-size:20px; font-style:italic; line-height:1.4; }
+  .arrow { width:4%; display:flex; align-items:center; justify-content:center; padding-top:200px; }
+  .central { margin-top:22px; background:#22284A; border-radius:16px; display:flex; align-items:center; gap:20px; padding:18px 26px; box-sizing:border-box; }
+  .central .ic { width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#1F8F5B,#166845); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .central span { font-family:"Plus Jakarta Sans",sans-serif; font-size:22px; font-weight:700; color:#fff; line-height:1.4; }
+  .logo-badge { position:absolute; top:44px; right:56px; height:60px; filter:brightness(0) invert(1); opacity:.9; z-index:4; }
+  .foot { margin-top:18px; border-top:1px solid rgba(255,255,255,.12); padding-top:14px; }
+  .foot span { font-size:20px; color:#8FA3CC; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <img class="logo-badge" src="../Logo.png" alt="Logo" />
+  <svg class="bg" width="1600" height="1020" viewBox="0 0 1600 1020" preserveAspectRatio="none">
+    <defs>
+      <pattern id="dgc2" width="34" height="34" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.6" fill="#7FA8E0" opacity="0.35"/></pattern>
+      <filter id="bgc2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="80"/></filter>
+    </defs>
+    <rect x="0" y="0" width="1600" height="1020" fill="url(#dgc2)" opacity="0.4"/>
+    <circle cx="1540" cy="50" r="280" fill="#E8432F" opacity="0.12" filter="url(#bgc2)"/>
+    <circle cx="30" cy="970" r="280" fill="#3A3B74" opacity="0.22" filter="url(#bgc2)"/>
+  </svg>
+  <div class="pad">
+    <div class="header"><div class="kicker"><span class="bar"></span><span>Infografía · Contraseñas</span></div></div>
+    <div class="title">
+      <h1>Por qué una contraseña reutilizada es una <em>llave maestra</em></h1>
+      <p>Así una filtración en un servicio sin importancia puede abrir tus cuentas más críticas.</p>
+    </div>
+
+    <div class="chain">
+      <div class="card" style="border-top:6px solid #E8432F;">
+        <div class="ic" style="background:#E8432F;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="7" ry="2.6" stroke="white" stroke-width="1.6" fill="none"/><path d="M5 6v12c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V6" stroke="white" stroke-width="1.6" fill="none"/><line x1="12" y1="8.6" x2="12" y2="18.6" stroke="white" stroke-width="1.4"/></svg></div>
+        <span class="step" style="color:#f5a399;">Paso 1</span>
+        <span class="ttl">Ocurre una filtración</span>
+        <p>Una plataforma donde tienes cuenta sufre una filtración de datos.</p>
+        <span class="note" style="color:#f5a399;">Una app de domicilios, una tienda online, un foro.</span>
+      </div>
+      <div class="arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 6l6 6-6 6" stroke="#F0762A" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="card" style="border-top:6px solid #F0762A;">
+        <div class="ic" style="background:#F0762A;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="white" stroke-width="1.7" fill="none"/><line x1="7.5" y1="8" x2="16.5" y2="8" stroke="white" stroke-width="1.5"/><line x1="7.5" y1="11.5" x2="16.5" y2="11.5" stroke="white" stroke-width="1.5"/></svg></div>
+        <span class="step" style="color:#f8c199;">Paso 2</span>
+        <span class="ttl">Circula en listas</span>
+        <p>Tu correo y contraseña quedan en una lista que circula entre atacantes.</p>
+        <span class="note" style="color:#f8c199;">Esas listas se venden y comparten en foros clandestinos en pocas horas.</span>
+      </div>
+      <div class="arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 6l6 6-6 6" stroke="#D9822B" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="card" style="border-top:6px solid #D9822B;">
+        <div class="ic" style="background:#D9822B;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="6" y="8" width="12" height="10" rx="2.5" stroke="white" stroke-width="1.7" fill="none"/><line x1="12" y1="8" x2="12" y2="4.5" stroke="white" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="3.2" r="1.3" fill="white"/></svg></div>
+        <span class="step" style="color:#fbdca0;">Paso 3</span>
+        <span class="ttl">Prueba automatizada</span>
+        <p>Un programa automatizado prueba tu correo y contraseña en cientos de servicios.</p>
+        <span class="note" style="color:#fbdca0;">Bancolombia. Nequi. Gmail. Instagram. LinkedIn. Todo en minutos.</span>
+      </div>
+      <div class="arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 6l6 6-6 6" stroke="#F3B23A" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="card" style="border-top:6px solid #F3B23A;">
+        <div class="ic" style="background:#F3B23A;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="white" stroke-width="1.7" fill="none"/><path d="M8 11V7.5a4 4 0 0 1 7.4-2.1" stroke="white" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="12" cy="15" r="1.4" fill="white"/></svg></div>
+        <span class="step" style="color:#fbe3b4;">Paso 4</span>
+        <span class="ttl">Entran sin hackear</span>
+        <p>Si la contraseña coincide, el atacante entra. Sin necesidad de hackear nada.</p>
+        <span class="note" style="color:#fbe3b4;">Una sola filtración puede comprometer todas tus cuentas si usas la misma clave.</span>
+      </div>
+    </div>
+
+    <div class="central">
+      <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="white" stroke-width="1.8" fill="none"/><path d="M7.5 12.5l2.8 2.8L16.8 8.8" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span>Una contraseña única por servicio = si una cae, las demás siguen protegidas.</span>
+    </div>
+
+    <div class="foot">
+      <span>Fuente: Verizon DBIR 2024 · CISA Secure Our World 2024 · Have I Been Pwned (hibp.com)</span>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var frame = document.querySelector('.frame'), W = 1600, H = 1020;
+    function fit() { var s = window.innerWidth / W; frame.style.transform = 'scale(' + s + ')'; var realH = Math.round(frame.offsetHeight * s); document.body.style.height = realH + 'px'; if (window.parent) { window.parent.postMessage({ type: 'infographic-height', height: realH }, '*'); } }
+    window.addEventListener('resize', fit); fit();
+  })();
+</script>
+</body>
+</html>

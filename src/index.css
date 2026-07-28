@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+  }
+}
+
+@layer components {
+  /* Flip Card */
+  .flip-card {
+    perspective: 1000px;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 12px;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Swiper custom styles */
+  .swiper-pagination-bullet-active {
+    background-color: #3A3B74 !important;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #3A3B74 !important;
+  }
+
+  /* Prose styles for reading blocks */
+  .prose-olivos p {
+    margin-bottom: 1rem;
+    line-height: 1.75;
+    color: #374151;
+  }
+
+  .prose-olivos strong {
+    color: #3A3B74;
+    font-weight: 600;
+  }
+
+  .prose-olivos ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  .prose-olivos ul li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+    color: #374151;
+  }
+
+  .prose-olivos ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #3178BD;
+  }
+
+  .prose-olivos ol {
+    counter-reset: list-counter;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  .prose-olivos ol li {
+    counter-increment: list-counter;
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+    color: #374151;
+  }
+
+  .prose-olivos ol li::before {
+    content: counter(list-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background-color: #3A3B74;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #B0C4E8;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3A3B74;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, #3A3B74 0%, #212252 100%);
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, #3178BD 0%, #E73780 100%);
+  }
+}

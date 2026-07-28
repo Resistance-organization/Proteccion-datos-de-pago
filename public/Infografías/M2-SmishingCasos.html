@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>3 casos colombianos de smishing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  html { margin:0; background:transparent; }
+  body { margin:0; background:transparent; font-family:"Inter",system-ui,sans-serif; }
+  .frame { width:1200px; position:relative; overflow:hidden; background:#20242C; transform-origin:top left; box-sizing:border-box; }
+  .bg { position:absolute; inset:0; z-index:0; }
+  .pad { padding:138px 60px 40px; box-sizing:border-box; display:flex; flex-direction:column; z-index:3; }
+  .kicker { display:flex; align-items:center; gap:10px; margin-bottom:30px; }
+  .kicker .bar { width:34px; height:4px; border-radius:2px; background:#C22A22; }
+  .kicker span { font-size:20px; font-weight:700; letter-spacing:.10em; color:#9FD8FF; text-transform:uppercase; }
+  h1 { margin:0 0 10px; font-family:"Plus Jakarta Sans",sans-serif; font-weight:800; font-size:40px; line-height:1.25; color:#fff; max-width:900px; }
+  .sub { font-size:22px; color:#AEB8D6; line-height:1.5; max-width:840px; margin:0 0 36px; }
+  .cases { display:flex; gap:30px; margin-bottom:40px; }
+  .case { display:flex; flex-direction:column; gap:18px; width:340px; }
+  .phone { background:#0C0D10; border-radius:34px; padding:12px; box-shadow:0 12px 30px rgba(0,0,0,.45); position:relative; }
+  .phone::before { content:""; position:absolute; top:16px; left:50%; transform:translateX(-50%); width:96px; height:8px; border-radius:99px; background:#2A2C34; z-index:2; }
+  .screen { background:#ECEFF3; border-radius:24px; padding:34px 16px 18px; box-sizing:border-box; height:360px; display:flex; flex-direction:column; gap:10px; }
+  .bubble { align-self:flex-start; max-width:90%; background:#fff; border-radius:16px; border-top-left-radius:4px; padding:14px 16px; box-shadow:0 2px 6px rgba(0,0,0,.08); }
+  .bubble .sender { font-family:"Roboto",sans-serif; font-weight:700; font-size:20px; color:#22284A; margin-bottom:8px; letter-spacing:.03em; }
+  .bubble .msg { font-family:"Roboto",sans-serif; font-size:21px; color:#2E3760; line-height:1.5; }
+  .bubble .msg .mark { background:rgba(194,42,34,.16); border-bottom:2px solid #C22A22; }
+  .time { font-family:"Roboto",sans-serif; font-size:20px; color:#8891A8; margin-left:6px; }
+  .alert { background:#fff; border-left:4px solid #C22A22; border-radius:10px; padding:16px 18px; }
+  .alert span { font-size:20px; color:#2E3760; line-height:1.5; }
+  .alert b { color:#C22A22; }
+  .pattern { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:18px; padding:26px 30px; }
+  .pattern .lbl { font-size:20px; font-weight:700; letter-spacing:.10em; color:#9FD8FF; text-transform:uppercase; margin-bottom:18px; }
+  .chips { display:flex; gap:16px; flex-wrap:wrap; }
+  .chip { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:999px; padding:12px 20px; }
+  .chip span { font-size:20px; color:#fff; }
+  .logo-badge { position:absolute; top:52px; right:60px; height:60px; filter:brightness(0) invert(1); opacity:.9; z-index:4; }
+  .foot { margin-top:auto; border-top:1px solid rgba(255,255,255,.12); padding-top:16px; }
+  .foot span { font-size:20px; color:#7C88AC; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <img class="logo-badge" src="../Logo.png" alt="Logo" />
+  <svg class="bg" width="1200" height="1240" viewBox="0 0 1200 1240" preserveAspectRatio="none">
+    <defs><filter id="sm" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="80"/></filter></defs>
+    <circle cx="1140" cy="10" r="240" fill="#3178BD" opacity="0.16" filter="url(#sm)"/>
+    <circle cx="10" cy="900" r="220" fill="#C22A22" opacity="0.09" filter="url(#sm)"/>
+  </svg>
+  <div class="pad">
+    <div class="kicker"><span class="bar"></span><span>Smishing · SMS fraudulentos</span></div>
+    <h1>3 casos reales de phishing por SMS en Colombia</h1>
+    <p class="sub">Así se ven en la pantalla del celular. Mira qué los delata.</p>
+    <div class="cases">
+      <div class="case">
+        <div class="phone"><div class="screen">
+          <div class="bubble">
+            <div class="sender">BANCOLOMBIA</div>
+            <div class="msg">Estimado cliente, detectamos un intento de acceso no autorizado. Su cuenta ha sido <span class="mark">suspendida preventivamente</span>. Reactiva aquí: <span class="mark">bit.ly/reactivar-bc</span></div>
+          </div>
+          <span class="time">Hoy 07:43</span>
+        </div></div>
+        <div class="alert"><span><b>Alerta:</b> Bancolombia no envía enlaces acortados por SMS. Ante cualquier duda, llama al *700 desde tu celular.</span></div>
+      </div>
+      <div class="case">
+        <div class="phone"><div class="screen">
+          <div class="bubble">
+            <div class="sender">SERVIENTREGA</div>
+            <div class="msg">Tu paquete no pudo ser entregado. Paga $4.500 de gastos de reenvío <span class="mark">antes de las 6pm</span> o será devuelto: <span class="mark">bit.ly/pago-envio</span></div>
+          </div>
+          <span class="time">Hoy 11:22</span>
+        </div></div>
+        <div class="alert"><span><b>Alerta:</b> Las empresas de mensajería reales no cobran por reenvío a través de un enlace SMS. Verifica en el sitio oficial.</span></div>
+      </div>
+      <div class="case">
+        <div class="phone"><div class="screen">
+          <div class="bubble">
+            <div class="sender">DIAN COLOMBIA</div>
+            <div class="msg">Tiene una devolución de impuestos pendiente por $320.000. Reclame <span class="mark">antes del viernes</span>: <span class="mark">dian-reembolsos.net</span></div>
+          </div>
+          <span class="time">Hoy 14:05</span>
+        </div></div>
+        <div class="alert"><span><b>Alerta:</b> La DIAN se comunica a través de su portal oficial (dian.gov.co) y correo institucional. No envía SMS con enlaces para reclamar dinero.</span></div>
+      </div>
+    </div>
+    <div class="pattern">
+      <div class="lbl">Patrón común en los tres casos</div>
+      <div class="chips">
+        <div class="chip"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="8" stroke="#F3B23A" stroke-width="1.8"/><path d="M12 9v4l3 2" stroke="#F3B23A" stroke-width="1.8" stroke-linecap="round"/></svg><span>Urgencia: plazos de horas o días</span></div>
+        <div class="chip"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 15l6-6M10 6l1.5-1.5a3.5 3.5 0 0 1 5 5L15 11M14 18l-1.5 1.5a3.5 3.5 0 0 1-5-5L9 13" stroke="#F0762A" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg><span>Enlace acortado o dominio sospechoso</span></div>
+        <div class="chip"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3.5 L22 20.5 H2 Z" stroke="#E8432F" stroke-width="1.7" stroke-linejoin="round" fill="none"/><rect x="11.1" y="9.5" width="1.8" height="5.5" rx="0.9" fill="#E8432F"/><circle cx="12" cy="17" r="1.1" fill="#E8432F"/></svg><span>Acción inmediata: pagar, reactivar, reclamar</span></div>
+      </div>
+    </div>
+    <div class="foot">
+      <span>Fuente: CSIRT Colombia 2024 · Policía Nacional CAI Virtual</span>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var frame = document.querySelector('.frame'), W = 1200, H = 1240;
+    function fit() { var s = window.innerWidth / W; frame.style.transform = 'scale(' + s + ')'; var realH = Math.round(frame.offsetHeight * s); document.body.style.height = realH + 'px'; if (window.parent) { window.parent.postMessage({ type: 'infographic-height', height: realH }, '*'); } }
+    window.addEventListener('resize', fit); fit();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Semáforo de urgencia — ¿cuándo actuar?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; background:transparent; }
+  body { font-family:'Inter',sans-serif; }
+  .frame { width:1600px; position:relative; overflow:hidden; background:#EEF1F9; box-sizing:border-box; transform-origin:top left; }
+  .bg { position:absolute; inset:0; z-index:0; }
+  .logo-badge { position:absolute; top:52px; right:56px; height:60px; z-index:4; }
+  .pad { position:relative; z-index:2; padding:138px 56px 60px; box-sizing:border-box; }
+  .kicker { display:flex; align-items:center; gap:10px; margin-bottom:38px; }
+  .kicker .bar { width:34px; height:4px; border-radius:2px; background:#3178BD; }
+  .kicker span { font-size:20px; font-weight:700; letter-spacing:.10em; color:#3178BD; text-transform:uppercase; }
+  h1 { margin:0 0 14px; font-family:'Plus Jakarta Sans',sans-serif; font-size:44px; font-weight:800; line-height:1.22; color:#22284A; max-width:1300px; }
+  .sub { margin:0 0 44px; font-size:22px; color:#5B6B94; line-height:1.5; max-width:1300px; }
+  .cols { display:flex; gap:24px; margin-bottom:36px; align-items:stretch; }
+  .col { flex:1; background:#fff; border-radius:20px; padding:30px 28px; box-shadow:0 14px 30px rgba(31,56,100,.07); display:flex; flex-direction:column; gap:16px; box-sizing:border-box; }
+  .col .head { display:flex; align-items:center; gap:14px; }
+  .col .icwrap { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .col .head .ttl { font-family:'Plus Jakarta Sans',sans-serif; font-size:24px; font-weight:800; color:#22284A; display:block; }
+  .col .head .time { font-size:19px; font-weight:700; display:block; }
+  .col .note { font-size:19px; font-style:italic; line-height:1.4; }
+  .col .items { display:flex; flex-direction:column; gap:10px; }
+  .col .item { display:flex; gap:10px; align-items:flex-start; }
+  .col .dot { width:6px; height:6px; border-radius:50%; margin-top:9px; flex-shrink:0; }
+  .col .item span.txt { font-size:21px; color:#2E3760; line-height:1.45; }
+  .col .action { margin-top:auto; border-left:3px solid; border-radius:8px; padding:14px 16px; }
+  .col .action span { font-size:19px; line-height:1.45; }
+  .note-final { background:#22284A; border-radius:18px; padding:26px 30px; margin-bottom:26px; box-sizing:border-box; }
+  .note-final span { font-family:'Plus Jakarta Sans',sans-serif; font-size:22px; font-weight:700; color:#fff; line-height:1.5; }
+  .foot { border-top:1px solid rgba(43,43,100,.14); padding-top:20px; }
+  .foot span { font-size:20px; color:#7C88AC; line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <svg class="bg" width="1600" height="1650" viewBox="0 0 1600 1650" preserveAspectRatio="none">
+    <defs><filter id="semBlur2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="90"/></filter></defs>
+    <circle cx="1540" cy="50" r="260" fill="#3178BD" opacity="0.08" filter="url(#semBlur2)"/>
+    <circle cx="30" cy="1600" r="260" fill="#3A3B74" opacity="0.06" filter="url(#semBlur2)"/>
+  </svg>
+  <img class="logo-badge" src="../Logo.png" alt="Logo" />
+  <div class="pad">
+    <div class="kicker"><span class="bar"></span><span>Infografía · Respuesta a incidentes</span></div>
+    <h1>Semáforo de urgencia — ¿cuándo actuar?</h1>
+    <p class="sub">Identifica qué tan rápido necesitas reaccionar frente a un incidente.</p>
+
+    <div class="cols">
+      <div class="col" style="border-top:8px solid #C22A22;">
+        <div class="head">
+          <div class="icwrap" style="background:#C22A22;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="8" y="2" width="8" height="20" rx="4" stroke="white" stroke-width="1.6" fill="none"/><circle cx="12" cy="6.5" r="1.8" fill="white"/><circle cx="12" cy="12" r="1.4" stroke="white" stroke-width="1.2" fill="none"/><circle cx="12" cy="17.5" r="1.4" stroke="white" stroke-width="1.2" fill="none"/></svg></div>
+          <div><span class="ttl">Alta urgencia</span><span class="time" style="color:#C22A22;">Actúa en 15 minutos</span></div>
+        </div>
+        <span class="note" style="color:#8a2b25;">Inmediato — cada minuto cuenta.</span>
+        <div class="items">
+          <div class="item"><div class="dot" style="background:#C22A22;"></div><span class="txt">Detectaste una transacción bancaria que no realizaste</span></div>
+          <div class="item"><div class="dot" style="background:#C22A22;"></div><span class="txt">Perdiste el acceso a tu cuenta bancaria o correo</span></div>
+          <div class="item"><div class="dot" style="background:#C22A22;"></div><span class="txt">Compartiste una contraseña o código MFA con alguien</span></div>
+          <div class="item"><div class="dot" style="background:#C22A22;"></div><span class="txt">Alguien robó tu cuenta de WhatsApp</span></div>
+          <div class="item"><div class="dot" style="background:#C22A22;"></div><span class="txt">Hay transacciones activas en tu tarjeta que no reconoces</span></div>
+        </div>
+        <div class="action" style="background:rgba(194,42,34,.08); border-color:#C22A22;"><span style="color:#8a2b25;"><b>Acción:</b> Contiene de inmediato. Bloquea, cambia contraseñas, llama al banco. No esperes.</span></div>
+      </div>
+
+      <div class="col" style="border-top:8px solid #F3B23A;">
+        <div class="head">
+          <div class="icwrap" style="background:#E0982A;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="8" y="2" width="8" height="20" rx="4" stroke="white" stroke-width="1.6" fill="none"/><circle cx="12" cy="6.5" r="1.4" stroke="white" stroke-width="1.2" fill="none"/><circle cx="12" cy="12" r="1.8" fill="white"/><circle cx="12" cy="17.5" r="1.4" stroke="white" stroke-width="1.2" fill="none"/></svg></div>
+          <div><span class="ttl">Media urgencia</span><span class="time" style="color:#B8790C;">Actúa en 2 horas</span></div>
+        </div>
+        <span class="note" style="color:#7a5410;">Hoy, sin demora, pero con margen para actuar con calma.</span>
+        <div class="items">
+          <div class="item"><div class="dot" style="background:#E0982A;"></div><span class="txt">Hiciste clic en un enlace sospechoso pero no ingresaste datos</span></div>
+          <div class="item"><div class="dot" style="background:#E0982A;"></div><span class="txt">Descargaste un archivo adjunto de un correo dudoso</span></div>
+          <div class="item"><div class="dot" style="background:#E0982A;"></div><span class="txt">Perdiste el celular (sin bloqueo remoto activado)</span></div>
+          <div class="item"><div class="dot" style="background:#E0982A;"></div><span class="txt">Alguien accedió a tu red WiFi sin autorización</span></div>
+          <div class="item"><div class="dot" style="background:#E0982A;"></div><span class="txt">Recibiste un mensaje en tu nombre que no enviaste tú</span></div>
+        </div>
+        <div class="action" style="background:rgba(224,152,42,.1); border-color:#E0982A;"><span style="color:#7a5410;"><b>Acción:</b> Evalúa el daño, cambia contraseñas críticas, ejecuta antivirus, bloquea el celular remotamente si aplica.</span></div>
+      </div>
+
+      <div class="col" style="border-top:8px solid #1F8F5B;">
+        <div class="head">
+          <div class="icwrap" style="background:#1F8F5B;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="8" y="2" width="8" height="20" rx="4" stroke="white" stroke-width="1.6" fill="none"/><circle cx="12" cy="6.5" r="1.4" stroke="white" stroke-width="1.2" fill="none"/><circle cx="12" cy="12" r="1.4" stroke="white" stroke-width="1.2" fill="none"/><circle cx="12" cy="17.5" r="1.8" fill="white"/></svg></div>
+          <div><span class="ttl">Baja urgencia</span><span class="time" style="color:#166845;">Actúa en 24 horas</span></div>
+        </div>
+        <span class="note" style="color:#166845;">No es urgente, pero no lo ignores.</span>
+        <div class="items">
+          <div class="item"><div class="dot" style="background:#1F8F5B;"></div><span class="txt">Recibiste phishing pero no hiciste clic en nada</span></div>
+          <div class="item"><div class="dot" style="background:#1F8F5B;"></div><span class="txt">Un servicio que usas anunció una filtración de datos</span></div>
+          <div class="item"><div class="dot" style="background:#1F8F5B;"></div><span class="txt">Un contacto avisó que recibió un mensaje extraño desde tu cuenta</span></div>
+          <div class="item"><div class="dot" style="background:#1F8F5B;"></div><span class="txt">Alguien intentó entrar a tu cuenta y fue bloqueado</span></div>
+        </div>
+        <div class="action" style="background:rgba(31,143,91,.1); border-color:#1F8F5B;"><span style="color:#166845;"><b>Acción:</b> Cambia la contraseña preventivamente, activa MFA, verifica en HaveIBeenPwned, reporta si aplica.</span></div>
+      </div>
+    </div>
+
+    <div class="note-final"><span>En caso de duda, actúa como si fuera rojo: es mejor reaccionar con más rapidez de la necesaria que esperar y dejar que el daño crezca.</span></div>
+
+    <div class="foot"><span>Fuente: NIST SP 800-61 · CISA Incident Response Guide 2024 · Centro Cibernético Policial Colombia 2023</span></div>
+  </div>
+</div>
+<script>
+  (function () {
+    var frame = document.querySelector('.frame'), W = 1600;
+    function fit() {
+      var s = window.innerWidth / W;
+      frame.style.transform = 'scale(' + s + ')';
+      var realH = Math.round(frame.offsetHeight * s);
+      document.body.style.height = realH + 'px';
+      if (window.parent) { window.parent.postMessage({ type: 'infographic-height', height: realH }, '*'); }
+    }
+    window.addEventListener('resize', fit); fit();
+  })();
+</script>
+</body>
+</html>

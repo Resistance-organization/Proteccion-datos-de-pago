@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>La regla 3-2-1 para copias de seguridad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html { margin:0; background:transparent; }
+  body { margin:0; background:transparent; font-family:"Inter",system-ui,sans-serif; }
+  .frame { width:1600px; position:relative; overflow:hidden; background:#EEF3FB; transform-origin:top left; box-sizing:border-box; }
+  .bg { position:absolute; inset:0; z-index:0; }
+  .logo-badge { position:absolute; top:56px; right:56px; height:60px; z-index:4; }
+  .pad { padding:142px 56px 60px; box-sizing:border-box; display:flex; flex-direction:column; z-index:3; }
+  .kicker { display:flex; align-items:center; gap:10px; margin-bottom:38px; }
+  .kicker .bar { width:34px; height:4px; border-radius:2px; background:#3178BD; }
+  .kicker span { font-size:20px; font-weight:700; letter-spacing:.10em; color:#3178BD; text-transform:uppercase; }
+  h1 { margin:0 0 12px; font-family:"Plus Jakarta Sans",sans-serif; font-weight:800; font-size:42px; line-height:1.22; color:#22284A; max-width:1350px; }
+  h1 em { font-style:normal; background:rgba(49,120,189,.14); padding:2px 14px; border-radius:10px; color:#1F5A96; }
+  .sub { margin:0 0 40px; font-size:22px; color:#5B6B94; line-height:1.5; max-width:1300px; }
+  .blocks { display:flex; gap:24px; margin-bottom:36px; }
+  .block { flex:1; background:#fff; border:1px solid rgba(43,43,100,.08); border-radius:20px; padding:30px 28px; box-shadow:0 14px 30px rgba(31,56,100,.07); display:flex; flex-direction:column; gap:14px; box-sizing:border-box; }
+  .block .top { display:flex; align-items:center; gap:16px; }
+  .block .num { font-family:"Plus Jakarta Sans",sans-serif; font-size:52px; font-weight:800; line-height:1; }
+  .block .ic { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .block .ttl { font-family:"Plus Jakarta Sans",sans-serif; font-size:24px; font-weight:800; color:#22284A; }
+  .block .desc { font-size:21px; color:#3F4A6B; line-height:1.5; }
+  .block .warn { font-size:20px; color:#8a2b25; background:rgba(194,42,34,.08); border-radius:8px; padding:10px 14px; line-height:1.4; }
+  .section-lbl { font-size:21px; font-weight:800; letter-spacing:.06em; color:#22284A; text-transform:uppercase; margin-bottom:18px; }
+  .examples { display:flex; gap:20px; margin-bottom:36px; }
+  .ex { flex:1; display:flex; align-items:center; gap:14px; background:#fff; border:1px solid rgba(43,43,100,.08); border-radius:14px; padding:16px 20px; box-shadow:0 8px 18px rgba(31,56,100,.05); box-sizing:border-box; }
+  .ex .n { width:34px; height:34px; border-radius:50%; color:#fff; font-size:20px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .ex span.txt { font-size:20px; color:#2E3760; line-height:1.4; }
+  .freq { background:#22284A; border-radius:18px; padding:26px 30px; margin-bottom:26px; display:flex; flex-direction:column; gap:10px; box-sizing:border-box; }
+  .freq .lbl { font-size:20px; font-weight:700; letter-spacing:.08em; color:#9FD8FF; text-transform:uppercase; }
+  .freq .body { font-family:"Plus Jakarta Sans",sans-serif; font-size:21px; font-weight:600; color:#fff; line-height:1.5; }
+  .foot { margin-top:auto; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(43,43,100,.14); padding-top:20px; }
+  .foot span { font-size:20px; color:#7C88AC; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <img class="logo-badge" src="../Logo.png" alt="Logo" />
+  <svg class="bg" width="1600" height="1780" viewBox="0 0 1600 1780" preserveAspectRatio="none">
+    <defs><filter id="bgk" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="90"/></filter></defs>
+    <circle cx="1540" cy="50" r="260" fill="#3178BD" opacity="0.1" filter="url(#bgk)"/>
+    <circle cx="30" cy="1730" r="260" fill="#3A3B74" opacity="0.08" filter="url(#bgk)"/>
+  </svg>
+  <div class="pad">
+    <div class="kicker"><span class="bar"></span><span>Infografía · Copias de seguridad</span></div>
+
+    <h1>La regla <em>3-2-1</em> para copias de seguridad que sí protegen</h1>
+    <p class="sub">Una sola copia no es una copia de seguridad. Así se hace bien.</p>
+
+    <div class="blocks">
+      <div class="block">
+        <div class="top">
+          <span class="num" style="color:#3178BD;">3</span>
+          <div class="ic" style="background:#3178BD;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="6" y="7" width="12" height="14" rx="2" stroke="white" stroke-width="1.6" fill="none"/><rect x="3" y="4" width="12" height="14" rx="2" stroke="white" stroke-width="1.4" fill="none" opacity="0.7"/></svg></div>
+        </div>
+        <span class="ttl">3 copias de tus datos</span>
+        <span class="desc">La original (en tu dispositivo) más dos copias adicionales.</span>
+        <span class="warn">Si solo tienes una copia, un solo evento puede eliminar todo.</span>
+      </div>
+      <div class="block">
+        <div class="top">
+          <span class="num" style="color:#3A3B74;">2</span>
+          <div class="ic" style="background:#3A3B74;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="6" width="9" height="13" rx="1.6" stroke="white" stroke-width="1.6" fill="none"/><path d="M15.5 8a5.5 5.5 0 0 1 0 11h-1" stroke="white" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M13.5 6.5a4 4 0 0 1 4.4 3" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        </div>
+        <span class="ttl">2 medios diferentes</span>
+        <span class="desc">Por ejemplo: una copia en un disco externo y otra en la nube.</span>
+        <span class="warn">Si los dos están en el mismo medio y falla, pierdes las dos.</span>
+      </div>
+      <div class="block">
+        <div class="top">
+          <span class="num" style="color:#1F8F5B;">1</span>
+          <div class="ic" style="background:#1F8F5B;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M7 18h10a3.5 3.5 0 0 0 0-7 5 5 0 0 0-9.6-1.7A3.5 3.5 0 0 0 7 18Z" stroke="white" stroke-width="1.6" fill="none"/></svg></div>
+        </div>
+        <span class="ttl">1 copia fuera del sitio</span>
+        <span class="desc">Al menos una copia debe estar en una ubicación diferente a tu dispositivo.</span>
+        <span class="warn">Si hay incendio, robo o inundación, la copia en la nube sigue disponible.</span>
+      </div>
+    </div>
+
+    <div class="section-lbl">Ejemplos prácticos</div>
+    <div class="examples">
+      <div class="ex"><span class="n" style="background:#3178BD;">1</span><span class="txt">Los archivos originales en tu computador o celular</span></div>
+      <div class="ex"><span class="n" style="background:#3A3B74;">2</span><span class="txt">Disco duro externo en tu casa</span></div>
+      <div class="ex"><span class="n" style="background:#1F8F5B;">3</span><span class="txt">Google Drive, iCloud, OneDrive o Dropbox</span></div>
+    </div>
+
+    <div class="freq">
+      <span class="lbl">Frecuencia recomendada</span>
+      <span class="body">Datos críticos (documentos, fotos, trabajo): mínimo una vez por semana. Archivos del celular: activa sincronización automática con Google Drive o iCloud.</span>
+    </div>
+
+    <div class="foot">
+      <span>Ciberseguridad Cotidiana</span>
+      <span>Fuente: CISA Secure Our World 2024 · NIST SP 800-34 · Verizon DBIR 2024</span>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var frame = document.querySelector('.frame'), W = 1600, H = 1780;
+    function fit() { var s = window.innerWidth / W; frame.style.transform = 'scale(' + s + ')'; var realH = Math.round(frame.offsetHeight * s); document.body.style.height = realH + 'px'; if (window.parent) { window.parent.postMessage({ type: 'infographic-height', height: realH }, '*'); } }
+    window.addEventListener('resize', fit); fit();
+  })();
+</script>
+</body>
+</html>

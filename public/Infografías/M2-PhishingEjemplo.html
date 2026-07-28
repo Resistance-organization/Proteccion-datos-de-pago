@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Un correo de phishing, anotado señal por señal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html { margin:0; background:transparent; }
+  body { margin:0; background:transparent; font-family:"Inter",system-ui,sans-serif; }
+  .frame { width:1000px; position:relative; overflow:hidden; background:#EEF1F9; transform-origin:top left; box-sizing:border-box; }
+  .bg { position:absolute; inset:0; z-index:0; }
+  .pad { padding:134px 48px 48px; box-sizing:border-box; display:flex; flex-direction:column; z-index:3; }
+  .header { margin-bottom:24px; }
+  .kicker { display:flex; align-items:center; gap:10px;  margin-bottom:30px; }
+  .kicker .bar { width:34px; height:4px; border-radius:2px; background:#C22A22; }
+  .kicker span { font-size:20px; font-weight:700; letter-spacing:.10em; color:#C22A22; text-transform:uppercase; }
+  .logo-badge { position:absolute; top:48px; right:48px; height:60px; z-index:4; }
+
+  h1 { margin:0 0 10px; font-family:"Plus Jakarta Sans",sans-serif; font-weight:800; font-size:36px; line-height:1.25; color:#22284A; }
+  h1 em { font-style:normal; background:rgba(194,42,34,.14); padding:2px 12px; border-radius:8px; color:#C22A22; }
+  .sub { margin:0 0 26px; font-size:21px; color:#5B6B94; line-height:1.5; }
+
+  .mail { background:#fff; border:1px solid rgba(43,43,100,.10); border-radius:14px; overflow:hidden; box-shadow:0 10px 26px rgba(31,56,100,.08); }
+  .mail-bar { padding:12px 18px; background:#F0F2FA; display:flex; gap:7px; }
+  .mail-bar span { width:10px; height:10px; border-radius:99px; background:#D8D4EC; }
+  .mail-body { padding:22px 26px 20px; }
+  .mail-from { font-size:20px; color:#5B6B94; }
+  .mail-from b { color:#C22A22; font-weight:700; }
+  .mail-subject { font-family:"Plus Jakarta Sans",sans-serif; font-weight:700; font-size:22px; margin-top:8px; color:#22284A; }
+  .mail-text { font-size:20px; line-height:1.65; margin-top:14px; color:#2E3760; }
+  .mail-text .hl { background:rgba(194,42,34,.14); padding:0 3px; border-bottom:2px solid #C22A22; font-weight:600; }
+  .mail-foot { margin-top:14px; font-size:20px; color:#7C88AC; border-top:1px dashed rgba(43,43,100,.14); padding-top:10px; }
+
+  .annotations { margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .ann { display:flex; gap:14px; align-items:flex-start; background:#fff; border:1px solid rgba(43,43,100,.08); border-left:3px solid #C22A22; border-radius:10px; padding:16px 18px; box-sizing:border-box; }
+  .ann .n { width:30px; height:30px; border-radius:50%; background:#C22A22; color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:"Plus Jakarta Sans",sans-serif; font-weight:800; font-size:16px; }
+  .ann p { margin:0; font-size:20px; line-height:1.5; color:#2E3760; }
+  .ann p b { color:#C22A22; }
+
+  .note { margin-top:22px; background:#1F3864; color:#fff; border-radius:14px; padding:18px 26px; text-align:center; box-sizing:border-box; }
+  .note p { margin:0; font-family:"Plus Jakarta Sans",sans-serif; font-weight:700; font-size:22px; }
+
+  .foot { margin-top:20px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(43,43,100,.14); padding-top:16px; }
+  .foot span { font-size:20px; color:#7C88AC; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <svg class="bg" width="1000" height="1160" viewBox="0 0 1000 1160" preserveAspectRatio="none">
+    <defs>
+      <pattern id="dgp" width="34" height="34" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#3A3B74" opacity="0.12"/></pattern>
+      <filter id="bgp" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="80"/></filter>
+    </defs>
+    <rect x="0" y="0" width="1000" height="1160" fill="url(#dgp)" opacity="0.5"/>
+    <circle cx="960" cy="60" r="220" fill="#C22A22" opacity="0.08" filter="url(#bgp)"/>
+    <circle cx="20" cy="1100" r="220" fill="#3178BD" opacity="0.1" filter="url(#bgp)"/>
+  </svg>
+  <img class="logo-badge" src="../Logo.png" alt="Logo" />
+  <div class="pad">
+    <div class="header">
+      <div class="kicker"><span class="bar"></span><span>Módulo 2 · Phishing</span></div>
+    </div>
+
+    <h1>Un correo de phishing tiene <em>5 señales de alerta</em></h1>
+    <p class="sub">Ninguna requiere conocimientos técnicos para identificarla. Solo hay que saber dónde mirar.</p>
+
+    <div class="mail">
+      <div class="mail-bar"><span></span><span></span><span></span></div>
+      <div class="mail-body">
+        <div class="mail-from">De: <b>seguridad@bancolombia-alertas.com</b></div>
+        <div class="mail-subject">Asunto: Acción requerida: verifique su cuenta</div>
+        <div class="mail-text">
+          <span class="hl">Estimado cliente</span>, hemos detectado un acceso no autorizado a su cuenta. Para proteger su dinero, debe verificar su identidad en las <span class="hl">próximas 2 horas</span>. Si no lo hace, <span class="hl">su cuenta quedará bloqueada</span> temporalmente. Haga clic aquí para verificar: <span class="hl">bit.ly/bancol-seguro</span>
+        </div>
+        <div class="mail-foot">Bancolombia · Servicio al Cliente · No responda este correo</div>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="ann"><div class="n">1</div><p><b>Remitente falso:</b> "bancolombia-alertas.com" no es el dominio oficial. Bancolombia usa @bancolombia.com.co</p></div>
+      <div class="ann"><div class="n">2</div><p><b>Urgencia artificial:</b> "2 horas" para crear presión y que no verifiques con calma.</p></div>
+      <div class="ann"><div class="n">3</div><p><b>Amenaza:</b> "su cuenta quedará bloqueada" para generar miedo.</p></div>
+      <div class="ann"><div class="n">4</div><p><b>Enlace acortado:</b> "bit.ly/bancol-seguro" oculta el destino real del enlace.</p></div>
+      <div class="ann" style="grid-column:1 / -1;"><div class="n">5</div><p><b>Saludo genérico:</b> "Estimado cliente" en lugar de tu nombre real.</p></div>
+    </div>
+
+    <div class="note"><p>Este correo tiene 5 señales de alerta visibles. Ninguna requiere conocimientos técnicos para identificarlas.</p></div>
+
+    <div class="foot">
+      <span>Ciberseguridad Cotidiana</span>
+      <span>Verizon DBIR 2024 · ESET LATAM 2024</span>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var frame = document.querySelector('.frame'), W = 1000, H = 1160;
+    function fit() { var s = window.innerWidth / W; frame.style.transform = 'scale(' + s + ')'; var realH = Math.round(frame.offsetHeight * s); document.body.style.height = realH + 'px'; if (window.parent) { window.parent.postMessage({ type: 'infographic-height', height: realH }, '*'); } }
+    window.addEventListener('resize', fit); fit();
+  })();
+</script>
+</body>
+</html>
