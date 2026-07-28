@@ -2,8 +2,8 @@
 export const MOODLE_COURSE_URL = 'https://elearning.resistance.com.co/course/view.php?id=9'
 
 export const CERTIFICATE_CONFIG = {
-  courseFullName: 'Ciberseguridad y Protección de la Información',
-  courseLabel: 'Capacitación Obligatoria en Ciberseguridad\ny Protección de la Información',
+  courseFullName: 'Curso de Concientización en Protección de Datos de Pago',
+  courseLabel: 'Concientización en Protección de Datos de Pago\nAlineado con PCI DSS 4.0.1 — Requisito 12.6',
   year: '2026',
   institution: 'Corporativo',
   passingScore: 80,

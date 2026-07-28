@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Los datos que protegemos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; background:transparent; }
+  .frame { transform-origin: top left; }
+</style>
+</head>
+<body>
+
+<div class="frame" style="position:relative; width:1080px; background:#FAFAFC; border-left:14px solid #3178BD; font-family:'Inter',sans-serif; box-sizing:border-box; overflow:hidden;">
+
+  <svg width="1080" height="420" style="position:absolute; inset:0;" viewBox="0 0 1080 420">
+    <defs>
+      <pattern id="dotgridD" width="34" height="34" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#3A3B74" opacity="0.12"/></pattern>
+      <filter id="blurD" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>
+    </defs>
+    <rect x="0" y="0" width="1080" height="420" fill="url(#dotgridD)" opacity="0.6"/>
+    <circle cx="1020" cy="10" r="220" fill="#3178BD" opacity="0.12" filter="url(#blurD)"/>
+    <circle cx="0" cy="380" r="200" fill="#C22A22" opacity="0.06" filter="url(#blurD)"/>
+  </svg>
+
+  <div style="position:relative; z-index:2; padding:64px 72px 56px 58px;">
+
+    <img src="../Logo.png" alt="Logo" style="position:absolute; top:44px; right:56px; height:60px; width:auto;" />
+
+    <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+      <div style="width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,#3178BD,#1A5493); display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 10px 22px rgba(49,120,189,0.3);">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="5.5" width="19" height="13" rx="2.2" stroke="white" stroke-width="1.7" fill="none"/><rect x="2.5" y="9" width="19" height="3" fill="white"/><line x1="5.5" y1="15.5" x2="10.5" y2="15.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <span style="font-family:'Inter',sans-serif; font-size:11.5px; font-weight:700; letter-spacing:0.08em; color:#3178BD; background:rgba(49,120,189,0.1); padding:4px 12px; border-radius:999px; text-transform:uppercase;">Infografía · Módulo 1</span>
+      </div>
+    </div>
+
+    <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:36px; font-weight:800; line-height:1.2; color:#22284A; max-width:900px; margin-bottom:8px;">Los datos que protegemos</div>
+    <div style="font-family:'Inter',sans-serif; font-size:15.5px; color:#5B6588; max-width:760px; margin-bottom:28px;">No todos los datos de una tarjeta tienen el mismo nivel de restricción. Esto es lo que debes saber.</div>
+
+    <!-- EJEMPLO -->
+    <div style="display:flex; align-items:flex-start; gap:18px; background:#22284A; border-radius:16px; padding:20px 26px; margin-bottom:36px;">
+      <div style="width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-4 3.5V17H6a2 2 0 0 1-2-2Z" stroke="white" stroke-width="1.6" fill="none"/></svg>
+      </div>
+      <div style="font-family:'Inter',sans-serif; font-size:14.5px; color:#D7DCEE; line-height:1.6;">"Te doy mis datos: el número de mi tarjeta es <b style="color:#fff;">4532 8812 3344 5566</b>, el nombre es <b style="color:#fff;">Carlos Andres Mejía</b>, vence en <b style="color:#fff;">09/27</b> y el código de seguridad es <b style="color:#fff;">741</b>."</div>
+    </div>
+
+    <!-- CATEGORIA 1 -->
+    <div style="margin-bottom:14px;">
+      <div style="display:inline-block; font-family:'Inter',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; color:#B5650A; text-transform:uppercase; background:#FDF0DC; padding:5px 14px; border-radius:999px; margin-bottom:14px;">Se pueden almacenar, solo con controles específicos</div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:34px;">
+      <div style="background:#FFF6E9; border:1.5px solid #F3D9A8; border-radius:16px; padding:18px 20px;">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:15.5px; font-weight:800; color:#8A5A0B; margin-bottom:6px;">Número de tarjeta (PAN)</div>
+        <div style="font-family:'Inter',sans-serif; font-size:13px; color:#7A6640; line-height:1.5;">Los 16 dígitos del frente. Ej: 4532 8812 3344 5566</div>
+      </div>
+      <div style="background:#FFF6E9; border:1.5px solid #F3D9A8; border-radius:16px; padding:18px 20px;">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:15.5px; font-weight:800; color:#8A5A0B; margin-bottom:6px;">Nombre del titular</div>
+        <div style="font-family:'Inter',sans-serif; font-size:13px; color:#7A6640; line-height:1.5;">El nombre impreso. Ej: Carlos Andres Mejía</div>
+      </div>
+      <div style="background:#FFF6E9; border:1.5px solid #F3D9A8; border-radius:16px; padding:18px 20px;">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:15.5px; font-weight:800; color:#8A5A0B; margin-bottom:6px;">Fecha de vencimiento</div>
+        <div style="font-family:'Inter',sans-serif; font-size:13px; color:#7A6640; line-height:1.5;">Mes y año. Ej: 09/27</div>
+      </div>
+    </div>
+
+    <!-- CATEGORIA 2 -->
+    <div style="margin-bottom:14px;">
+      <div style="display:inline-block; font-family:'Inter',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; color:#C22A22; text-transform:uppercase; background:#FBE4E2; padding:5px 14px; border-radius:999px; margin-bottom:14px;">Nunca se pueden almacenar — sin excepciones</div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:36px;">
+      <div style="background:#FDEEED; border:1.5px solid #F2C3BF; border-radius:16px; padding:18px 20px;">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:15.5px; font-weight:800; color:#9A2019; margin-bottom:6px;">Código de seguridad (CVV/CVC)</div>
+        <div style="font-family:'Inter',sans-serif; font-size:13px; color:#8A4A45; line-height:1.5;">Los 3 o 4 dígitos del respaldo. Ej: 741</div>
+      </div>
+      <div style="background:#FDEEED; border:1.5px solid #F2C3BF; border-radius:16px; padding:18px 20px;">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:15.5px; font-weight:800; color:#9A2019; margin-bottom:6px;">Datos de banda magnética o chip</div>
+        <div style="font-family:'Inter',sans-serif; font-size:13px; color:#8A4A45; line-height:1.5;">La información codificada en la banda o el chip.</div>
+      </div>
+      <div style="background:#FDEEED; border:1.5px solid #F2C3BF; border-radius:16px; padding:18px 20px;">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:15.5px; font-weight:800; color:#9A2019; margin-bottom:6px;">PIN del cliente</div>
+        <div style="font-family:'Inter',sans-serif; font-size:13px; color:#8A4A45; line-height:1.5;">El código secreto que ingresa en un datafono.</div>
+      </div>
+    </div>
+
+    <!-- REGLA DE ORO -->
+    <div style="background:#22284A; border-radius:18px; padding:26px 30px; display:flex; align-items:flex-start; gap:18px; position:relative; overflow:hidden;">
+      <svg width="200" height="200" style="position:absolute; right:-40px; top:-60px; opacity:0.15;" viewBox="0 0 200 200"><circle cx="100" cy="100" r="90" fill="none" stroke="#3178BD" stroke-width="16"/></svg>
+      <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#3178BD,#3A3B74); display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:1;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6v6c0 5.5 4 9.5 9 10 5-0.5 9-4.5 9-10V6Z" stroke="white" stroke-width="1.6" fill="none"/></svg>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; z-index:1;">
+        <span style="font-family:'Inter',sans-serif; font-size:11.5px; font-weight:700; letter-spacing:0.1em; color:#9FD8FF; text-transform:uppercase;">Regla de oro</span>
+        <span style="font-family:'Plus Jakarta Sans',sans-serif; font-size:17.5px; font-weight:600; color:#fff; line-height:1.5;">Si para hacer tu trabajo necesitas el CVV o el PIN del cliente, algo en ese proceso está mal. Esos datos nunca deben salir de la transacción.</span>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid rgba(43,43,100,0.14); padding-top:18px; margin-top:28px;">
+      <span style="font-family:'Inter',sans-serif; font-size:12.5px; color:#7C88AC; line-height:1.5;">Fuente: PCI DSS v4.0.1, Requisito 3 — Protección de datos de cuenta almacenados. PCI Security Standards Council, junio 2024.</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    const frame = document.querySelector('.frame');
+    const W = 1080;
+    function fit() { const s = window.innerWidth / W; frame.style.transform = 'scale(' + s + ')'; const realH = Math.round(frame.offsetHeight * s); document.body.style.height = realH + 'px'; if (window.parent) { window.parent.postMessage({ type: 'infographic-height', height: realH }, '*'); } }
+    window.addEventListener('resize', fit);
+    fit();
+  })();
+</script>
+
+</body>
+</html>
