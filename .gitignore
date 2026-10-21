@@ -4,3 +4,6 @@ dist/
 .env
 .DS_Store
 .claude/scheduled_tasks.lock
+
+# Videos: entran al ZIP desde public/videos, pero no se versionan
+public/videos/*.mp4

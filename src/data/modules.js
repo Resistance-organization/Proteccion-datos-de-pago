@@ -51,6 +51,14 @@ export const modules = [
         accent: 'primary',
       },
 
+      // Video — Un dato, una decisión
+      {
+        type: 'video',
+        title: 'Un dato, una decisión',
+        description: 'Por qué este curso importa en tu trabajo, aunque toques datos de pago solo de vez en cuando.',
+        src: './videos/m0-bienvenida.mp4',
+      },
+
       // 2. Apertura
       {
         type: 'text',
@@ -482,6 +490,14 @@ export const modules = [
         `,
       },
 
+      // Video — Tres mensajes falsos
+      {
+        type: 'video',
+        title: 'Tres mensajes falsos, señal por señal',
+        description: 'WhatsApp, correo y SMS: las señales que los delatan.',
+        src: './videos/m2-mensajes-falsos.mp4',
+      },
+
       // 7. Simulación — WhatsApp Bancolombia
       {
         type: 'box',
@@ -742,6 +758,14 @@ export const modules = [
         accent: 'primary',
       },
 
+      // Video — Las tres reglas
+      {
+        type: 'video',
+        title: 'Tus tres reglas',
+        description: 'Canales autorizados, credenciales personales y un entorno cuidado.',
+        src: './videos/m3-tres-reglas.mp4',
+      },
+
       // 2. 3.1 Apertura del módulo
       {
         type: 'text',
@@ -977,6 +1001,14 @@ export const modules = [
         subtitle: 'Qué hacer en los primeros minutos',
         requirements: 'PCI DSS 4.0.1 · Requisito 12.10 (Plan de respuesta a incidentes), Requisito 10.3 (Preservación de registros de auditoría) y Requisito 12.6.3 (Concientización sobre respuesta a incidentes)',
         accent: 'secondary',
+      },
+
+      // Video — Si algo sale mal
+      {
+        type: 'video',
+        title: 'Si algo sale mal',
+        description: 'Qué es un incidente, los cuatro pasos y lo que nunca debes hacer.',
+        src: './videos/m4-si-algo-sale-mal.mp4',
       },
 
       // 2. 4.1 Apertura del módulo
