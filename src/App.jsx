@@ -251,7 +251,6 @@ export default function App() {
   }, [moduleScrollDone, moduleQuizzesDone, reflectionAnswers])
 
   const isModuleUnlocked = useCallback((index) => {
-    if (import.meta.env.DEV) return true // TODO: quitar antes de empaquetar a SCORM si se deja código de prueba
     if (index === 0) return true
     return isModuleFullyDone(modules[index - 1].id)
   }, [isModuleFullyDone])
