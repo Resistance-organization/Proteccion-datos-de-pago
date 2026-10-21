@@ -510,7 +510,7 @@ export const modules = [
         accent: 'primary',
       },
 
-      // Video — Las tres reglas
+      // 2. Video — Las tres reglas
       {
         type: 'video',
         title: 'Tus tres reglas',
@@ -518,24 +518,17 @@ export const modules = [
         src: './videos/m3-tres-reglas.mp4',
       },
 
-      // 3. Regla 1 — canales autorizados
+      // 3. Tema 1 — Solo los canales autorizados
       {
         type: 'text',
-        title: 'Regla 1 — Solo los canales autorizados',
+        title: 'Tema 1 — Solo los canales autorizados',
         content: `
           <p>Los datos de tarjeta solo se reciben y procesan por el canal oficial.</p>
+          <p>La pregunta no es si la persona confía en ti, sino si el canal protege los datos. Para WhatsApp, correo, SMS o una llamada, la respuesta es no.</p>
         `,
       },
 
-      // 4. Callout — la pregunta correcta
-      {
-        type: 'box',
-        variant: 'accent',
-        text: '"¿La persona confía en mí?" no es la pregunta. La pregunta es: "¿el canal garantiza que esos datos no van a ser interceptados, guardados o usados de forma indebida?"',
-        footer: 'La respuesta para WhatsApp, correo electrónico, mensajes de texto, llamadas telefónicas y cualquier otro canal informal es siempre la misma: no.',
-      },
-
-      // 5. Infografía — canales autorizados
+      // 4. Infografía — canales autorizados
       {
         type: 'infographic',
         title: '¿Por este canal sí se pueden enviar datos de pago?',
@@ -544,42 +537,28 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 6. Qué decirle a quien paga
-      {
-        type: 'text',
-        title: '¿Qué hago cuando ya me enviaron los datos por WhatsApp?',
-        content: `
-          <p>Primero, no uses esos datos para procesar el pago. El hecho de que el titular de la tarjeta los haya enviado no los hace seguros ni los autoriza dentro de los procesos de tu organización.</p>
-          <p>Segundo, respóndele con amabilidad y claridad.</p>
-        `,
-      },
-
-      // 7. Ejemplo de respuesta
+      // 5. Si ya te enviaron los datos
       {
         type: 'box',
         variant: 'success',
-        title: 'Ejemplo de respuesta a quien paga:',
-        text: '"Gracias por tu confianza. Por seguridad, los datos de tu tarjeta solo pueden procesarse a través de nuestro canal oficial. Te comparto el enlace seguro para que puedas hacer el pago: [enlace]. Si tienes alguna dificultad, con gusto te ayudo."',
+        title: 'Si ya te enviaron los datos',
+        items: [
+          'No los uses para procesar el pago.',
+          'Responde con amabilidad: «Gracias por tu confianza. Por seguridad, los datos de tu tarjeta solo pueden procesarse por nuestro canal oficial. Te comparto el enlace seguro: [enlace]. Si tienes alguna dificultad, con gusto te ayudo.»',
+          'Reporta al área correspondiente que recibiste datos por un canal no autorizado. No es delatar a nadie: es parte del control.',
+        ],
       },
 
-      // 8. Tercer paso — reportar
+      // 6. Tema 2 — Tus credenciales son tu firma
       {
         type: 'text',
-        content: `
-          <p>Tercero, reporta al área correspondiente que recibiste datos de tarjeta por un canal no autorizado. Eso no es delatar a quien paga: es parte del proceso de control que protege a todos.</p>
-        `,
-      },
-
-      // 9. Regla 2 — credenciales
-      {
-        type: 'text',
-        title: 'Regla 2 — Tus credenciales son tu firma',
+        title: 'Tema 2 — Tus credenciales son tu firma',
         content: `
           <p>Todo lo que se hace con tu usuario queda registrado a tu nombre.</p>
         `,
       },
 
-      // 10. Las 5 reglas de las contraseñas
+      // 7. Las 5 reglas de las contraseñas
       {
         type: 'datatable',
         title: 'Las 5 reglas de las contraseñas',
@@ -593,16 +572,16 @@ export const modules = [
         ],
       },
 
-      // 11. Regla 3 — entorno de trabajo
+      // 8. Tema 3 — Tu entorno también es seguridad
       {
         type: 'text',
-        title: 'Regla 3 — El entorno de trabajo también es seguridad',
+        title: 'Tema 3 — Tu entorno también es seguridad',
         content: `
           <p>Un papel en el escritorio o una pantalla a la vista también son riesgos.</p>
         `,
       },
 
-      // 12. Infografía — trabajo remoto
+      // 9. Infografía — trabajo remoto
       {
         type: 'infographic',
         title: 'Cuando trabajas desde casa, el riesgo también va contigo',
@@ -611,19 +590,11 @@ export const modules = [
         maxWidth: 1100,
       },
 
-      // 13. Puente al checklist
-      {
-        type: 'text',
-        content: `
-          <p>Estos hábitos aplican tanto en la oficina como cuando trabajas desde casa. El siguiente checklist te ayuda a revisar dónde estás parado hoy mismo.</p>
-        `,
-      },
-
-      // 14. Checklist de autoevaluación (sin calificación)
+      // 10. Checklist de autoevaluación (sin calificación)
       {
         type: 'checklist',
         title: 'Checklist de autoevaluación — ¿Cómo está mi entorno hoy?',
-        subtitle: 'No hay respuestas correctas o incorrectas: esto es para que identifiques en qué áreas puedes mejorar. Nadie ve tus respuestas.',
+        subtitle: 'Estos hábitos aplican tanto en la oficina como cuando trabajas desde casa. Revisa dónde estás hoy: no hay respuestas correctas o incorrectas, es para que identifiques en qué puedes mejorar. Nadie ve tus respuestas.',
         items: [
           'Mi escritorio no tiene documentos con datos de pago o de terceros a la vista.',
           'Bloqueo mi equipo cada vez que me alejo, aunque sea por pocos minutos.',
@@ -643,7 +614,7 @@ export const modules = [
         },
       },
 
-      // 15. 3.5 Actividad de validación — quiz correcto/incorrecto
+      // 11. Actividad de validación — quiz correcto/incorrecto
       {
         type: 'quiz',
         title: '¿Esto está bien o está mal?',
@@ -695,7 +666,7 @@ export const modules = [
         ],
       },
 
-      // 16. Reflexión personal
+      // 12. Reflexión personal
       {
         type: 'reflection',
         title: 'Antes de continuar, una pregunta para ti',
@@ -704,7 +675,7 @@ export const modules = [
         placeholder: 'Escribe aquí...',
       },
 
-      // 17. Cierre del módulo
+      // 13. Cierre del módulo
       {
         type: 'closing',
         moduleLabel: 'Módulo 3 completado',
