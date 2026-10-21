@@ -47,7 +47,9 @@ export default function WelcomeScreen({ modules, studentName, currentModule, com
       <div className="absolute -bottom-48 -left-32 w-[30rem] h-[30rem] rounded-full -z-10 blur-3xl bg-accent/25" />
 
       <div className="max-w-[88rem] mx-auto px-5 sm:px-8 lg:px-12 py-8 sm:py-10 min-h-screen flex flex-col">
-        <img src="./Logo blanco.png" alt="Resistance" className="h-9 w-auto self-start" />
+        <a href="https://resistance.com.co" target="_blank" rel="noopener noreferrer" className="self-start">
+          <img src="./Logo blanco.png" alt="Resistance" className="h-9 w-auto" />
+        </a>
 
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-16 items-center py-12">
           {/* Columna principal */}

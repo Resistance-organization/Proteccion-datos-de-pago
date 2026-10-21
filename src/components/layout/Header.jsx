@@ -52,7 +52,9 @@ export default function Header({ currentModule, totalModules, completedCount, si
       </button>
 
       {/* Logo */}
-      <img src="./Logo.png" alt="Resistance" className="hidden sm:block h-12 w-auto flex-shrink-0" />
+      <a href="https://resistance.com.co" target="_blank" rel="noopener noreferrer" className="hidden sm:block flex-shrink-0">
+        <img src="./Logo.png" alt="Resistance" className="h-12 w-auto" />
+      </a>
 
       {/* Dónde estoy: módulo, tema y título, alineados a la derecha */}
       <div className="flex-1 min-w-0 text-right">
