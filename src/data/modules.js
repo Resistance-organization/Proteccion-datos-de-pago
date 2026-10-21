@@ -68,10 +68,10 @@ export const modules = [
         text: '<p>Son cinco módulos cortos. Cada uno responde una pregunta y se desbloquea al terminar el anterior.</p>',
         iconItems: [
           { icon: 'credit-card', text: '¿Qué estamos protegiendo y por qué importa? · 7 min' },
-          { icon: 'fish', text: '¿Cómo empiezan los incidentes? · 12 min' },
-          { icon: 'shield', text: '¿Cómo evitamos ser parte del problema? · 15 min' },
-          { icon: 'warning', text: '¿Qué hacemos cuando ocurre un incidente? · 11 min' },
-          { icon: 'graduation', text: '¿Cómo lo aplico en mi trabajo? · 9 min' },
+          { icon: 'fish', text: '¿Cómo empiezan los incidentes? · 10 min' },
+          { icon: 'shield', text: '¿Cómo evitamos ser parte del problema? · 14 min' },
+          { icon: 'warning', text: '¿Qué hacemos cuando ocurre un incidente? · 9 min' },
+          { icon: 'graduation', text: '¿Cómo lo aplico en mi trabajo? · 6 min' },
         ],
         footer: 'Algunos módulos terminan con una actividad de validación. Al completar el último recibirás tu certificado.',
       },
@@ -258,7 +258,7 @@ export const modules = [
     title: '¿Cómo empiezan los incidentes?',
     description: 'Las señales que preceden a un incidente, antes de que escale.',
     icon: 'fish',
-    estimatedTime: '12 min',
+    estimatedTime: '10 min',
     blocks: [
       // 1. Portada
       {
@@ -485,7 +485,7 @@ export const modules = [
     title: '¿Cómo evitamos ser parte del problema?',
     description: 'Tres reglas concretas: canales, credenciales y entorno de trabajo.',
     icon: 'shield',
-    estimatedTime: '15 min',
+    estimatedTime: '14 min',
     blocks: [
       // 1. Portada
       {
@@ -668,7 +668,7 @@ export const modules = [
     title: '¿Qué hacemos cuando ocurre un incidente?',
     description: 'Los primeros pasos correctos cuando algo sale mal.',
     icon: 'warning',
-    estimatedTime: '11 min',
+    estimatedTime: '9 min',
     blocks: [
       // 1. Portada
       {
@@ -796,7 +796,7 @@ export const modules = [
     title: '¿Cómo lo aplico en mi trabajo?',
     description: 'Tres situaciones reales para cerrar el recorrido.',
     icon: 'graduation',
-    estimatedTime: '7 min',
+    estimatedTime: '6 min',
     blocks: [
       // 1. Portada
       {
