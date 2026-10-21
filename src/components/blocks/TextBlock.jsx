@@ -34,13 +34,15 @@ export default function TextBlock({ block, moduleNumber, bookmarkedTema, onToggl
             {temaLabel}
           </span>
         </div>
-        <h2 className="font-title text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+        <h2 className={`font-title text-2xl sm:text-3xl font-bold text-gray-800 ${block.content ? 'mb-4' : ''}`}>
           {restTitle}
         </h2>
-        <div
-          className="prose-curso"
-          dangerouslySetInnerHTML={{ __html: block.content }}
-        />
+        {block.content && (
+          <div
+            className="prose-curso"
+            dangerouslySetInnerHTML={{ __html: block.content }}
+          />
+        )}
       </motion.div>
     )
   }

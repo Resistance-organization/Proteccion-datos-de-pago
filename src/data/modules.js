@@ -89,27 +89,17 @@ export const modules = [
         accent: 'primary',
       },
 
-      // 2. Alcance del curso
+      // 2. Tema 1 — Qué datos protegemos
       {
         type: 'text',
+        title: 'Tema 1 — Qué datos protegemos',
         content: `
-          <p>Este curso es sobre datos de tarjeta y el estándar que exige protegerlos: PCI DSS.</p>
+          <p>Una persona te dicta por teléfono: número 4532 8812 3344 5566, Carlos Andrés Mejía, vence 09/27, código 741.</p>
+          <p>¿Todos esos datos son iguales? No.</p>
         `,
       },
 
-      // 3. 1.2 Intro — ¿Qué son los datos de pago?
-      {
-        type: 'text',
-        title: 'Tema 1 — ¿Qué son los datos de pago?',
-        content: `
-          <p>Imagina que una persona llama a tu empresa para pagar una factura y te dice:</p>
-          <p><em>"Te doy mis datos: el número de mi tarjeta es 4532 8812 3344 5566, el nombre es Carlos Andres Mejía, vence en 09/27 y el código de seguridad es 741."</em></p>
-          <p>¿Cuáles de esos datos son realmente sensibles? ¿Todos son iguales? ¿Algunos se pueden guardar y otros no?</p>
-          <p>La respuesta no es obvia. Depende de qué dato es y de qué significa guardarlo. Aquí está la explicación.</p>
-        `,
-      },
-
-      // 4. Infografía — Los datos que protegemos
+      // 3. Infografía — Los datos que protegemos
       {
         type: 'infographic',
         title: 'Los datos que protegemos',
@@ -118,38 +108,21 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 5. Cierre de la sección 1.2
-      {
-        type: 'text',
-        content: `
-          <p>Volviendo a Carlos Andres: él compartió sus datos por teléfono con la mejor intención. El problema no es él. El problema es qué haces tú con esa información a partir de ese momento.</p>
-          <p>En los próximos minutos vas a entender por qué ese dato tiene tanto valor, y qué tan fácil es que termine en el lugar equivocado.</p>
-        `,
-      },
-
-      // 5b. No es solo quien recibe pagos por teléfono
+      // 4. Aplica a cualquier área
       {
         type: 'box',
         variant: 'info',
-        title: 'No es solo quien recibe pagos por teléfono.',
-        text: 'El mismo criterio aplica en cualquier área que toque un dato de tarjeta, aunque sea de forma ocasional. Por ejemplo: RRHH recibe un correo de un excolaborador pidiendo el reembolso de un gasto y adjunta una foto de su tarjeta para "agilizar" la devolución. Nombre, número completo y fecha de vencimiento, visibles en la imagen.',
-        footer: 'Las mismas dos categorías de este módulo aplican: el número y la fecha de vencimiento solo se pueden conservar con los controles adecuados, y ese correo con la foto adjunta ya es un incumplimiento por sí mismo, sin importar que el área no atienda pagos.',
+        title: 'Aplica a cualquier área',
+        text: 'El problema nunca es quien comparte sus datos: es qué haces tú con ellos. Y no solo pasa en quien recibe pagos: si RRHH recibe un correo con la foto de una tarjeta para un reembolso, ese correo ya es un incumplimiento.',
       },
 
-      // 6. 1.3 ¿Por qué importa? — narración
+      // 5. Tema 2 — De un error pequeño a un incidente real
       {
-        type: 'box',
-        variant: 'accent',
-        title: 'Esto mismo ha pasado en organizaciones como la tuya.',
-        text: `
-          <p>Una empresa de servicios recibe el pago de una persona por teléfono. El colaborador que toma la llamada no tiene un sistema habilitado para registrar la transacción en ese momento, así que anota los datos en un papel. Luego los pasa a un archivo en su computador para no perderlos.</p>
-          <p>Ese archivo queda guardado en una carpeta compartida del equipo. Tres personas más tienen acceso a esa carpeta. Una de ellas trabaja desde su casa y descarga el archivo en su computador personal.</p>
-          <p>Meses después, ese computador tiene un programa malicioso instalado sin que nadie lo sepa. Los datos de cientos de tarjetahabientes terminan publicados en un sitio ilegal en internet.</p>
-        `,
-        footer: 'Nadie tuvo intención de causar daño. El problema no fue malicia. Fue un proceso sin controles y una decisión que pareció razonable en el momento.',
+        type: 'text',
+        title: 'Tema 2 — De un error pequeño a un incidente real',
       },
 
-      // 7. Pieza gráfica — Diagrama de flujo
+      // 6. Infografía — el caso paso a paso
       {
         type: 'infographic',
         title: 'De un error pequeño a un incidente real',
@@ -158,38 +131,45 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 8. Contexto con datos de la industria
+      // 7. Para profundizar — el caso en texto y el contexto
       {
-        type: 'box',
-        variant: 'warning',
-        title: 'Esto no es un escenario hipotético.',
-        text: `
-          <p>Esto aplica a cualquier organización que procese datos de pago: comercios, pasarelas de pago, empresas de servicios o proveedores que manejan datos de pago de terceros, sin importar su tamaño.</p>
-        `,
-        footer: 'La pregunta no es si esto le puede pasar a tu organización. La pregunta es qué tan preparado estás para que no te pase a ti.',
+        type: 'more',
+        blocks: [
+          {
+            type: 'box',
+            variant: 'accent',
+            title: 'Esto mismo ha pasado en organizaciones como la tuya.',
+            text: `
+              <p>Una empresa de servicios recibe el pago de una persona por teléfono. El colaborador que toma la llamada no tiene un sistema habilitado para registrar la transacción en ese momento, así que anota los datos en un papel. Luego los pasa a un archivo en su computador para no perderlos.</p>
+              <p>Ese archivo queda guardado en una carpeta compartida del equipo. Tres personas más tienen acceso a esa carpeta. Una de ellas trabaja desde su casa y descarga el archivo en su computador personal.</p>
+              <p>Meses después, ese computador tiene un programa malicioso instalado sin que nadie lo sepa. Los datos de cientos de tarjetahabientes terminan publicados en un sitio ilegal en internet.</p>
+            `,
+            footer: 'Nadie tuvo intención de causar daño. El problema no fue malicia. Fue un proceso sin controles y una decisión que pareció razonable en el momento.',
+          },
+          {
+            type: 'box',
+            variant: 'warning',
+            title: 'Esto no es un escenario hipotético.',
+            text: `
+              <p>Esto aplica a cualquier organización que procese datos de pago: comercios, pasarelas de pago, empresas de servicios o proveedores que manejan datos de pago de terceros, sin importar su tamaño.</p>
+            `,
+            footer: 'La pregunta no es si esto le puede pasar a tu organización. La pregunta es qué tan preparado estás para que no te pase a ti.',
+          },
+        ],
       },
 
-      // 9. 1.4 El estándar que organiza todo esto
-      {
-        type: 'box',
-        variant: 'info',
-        title: 'PCI DSS en una sola frase:',
-        text: 'Es el estándar internacional que define cómo deben protegerse los datos de pago en cualquier organización que los procese, almacene o transmita.',
-      },
-
-      // 10. Explicación de PCI DSS
+      // 8. Tema 3 — Qué es PCI DSS
       {
         type: 'text',
-        content: `
-          <p>Lo crearon las principales marcas de tarjetas —Visa, Mastercard, American Express— para que los datos estén protegidos en cualquier comercio del mundo. La versión vigente es <strong>PCI DSS 4.0.1</strong>, publicada en junio de 2024.</p>
-        `,
+        title: 'Tema 3 — Qué es PCI DSS',
       },
 
-      // 11. A quiénes aplica PCI DSS
+      // 9. PCI DSS en una frase y a quién aplica
       {
         type: 'box',
         variant: 'accent',
-        title: 'PCI DSS aplica a tu organización si…',
+        title: 'PCI DSS en una frase',
+        text: 'El estándar internacional que define cómo proteger los datos de pago en cualquier organización que los procese, almacene o transmita. Lo crearon Visa, Mastercard y American Express. La versión vigente es la 4.0.1 (junio de 2024).',
         iconItems: [
           { icon: '🏬', text: 'Comercios y puntos de venta — aceptan pagos con tarjeta de crédito o débito, en físico o en línea.' },
           { icon: '⚙️', text: 'Pasarelas de pago — procesan o transmiten datos de pago entre el comercio y el banco.' },
@@ -214,7 +194,7 @@ export const modules = [
           },
           {
             id: 'm1_dato_2',
-            question: 'Nombre del titular: Carlos Andres Mejía',
+            question: 'Nombre del titular: Carlos Andrés Mejía',
             options: ['Solo se puede guardar con controles específicos', 'Nunca se puede guardar — prohibición absoluta'],
             correct: 0,
             explanation: 'El nombre puede almacenarse, pero siempre que vaya junto con el número de tarjeta activa los controles de PCI DSS. Solo el nombre, sin otros datos, no activa esos controles.',
