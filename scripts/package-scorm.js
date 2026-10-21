@@ -15,7 +15,7 @@ const DIST_DIR = path.resolve(__dirname, '../dist')
 const OUTPUT_FILE = path.resolve(__dirname, '../resistance-proteccion-datos-de-pago-scorm.zip')
 
 const MANIFEST = `<?xml version="1.0" encoding="UTF-8"?>
-<manifest identifier="resistance_ciberseguridad_v1" version="1.0"
+<manifest identifier="resistance_pci_v1" version="1.0"
   xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
   xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

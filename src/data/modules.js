@@ -270,7 +270,7 @@ export const modules = [
             title: 'Cuando pensamos en un ataque informático, imaginamos a alguien frente a pantallas llenas de código intentando forzar la entrada a un sistema. La realidad es diferente.',
             text: `
               <p>Según el Verizon Data Breach Investigations Report 2024, el 68% de las brechas de seguridad a nivel global involucran un error humano o ingeniería social. El atacante no forzó ninguna puerta: alguien la abrió sin saberlo.</p>
-              <p>En Colombia, el Centro Cibernético Policial de la DIJIN reportó más de 77.000 denuncias por delitos informáticos en 2024, un crecimiento del 23% frente al año anterior. Y según Kaspersky, los ataques de phishing en Colombia crecieron un 120% en 2024.</p>
+              <p>En Colombia, el Centro Cibernético Policial de la DIJIN reportó más de 77.000 denuncias por delitos informáticos en 2024, un crecimiento del 23% frente al año anterior. Y según Kaspersky, entre octubre de 2023 y octubre de 2024 se bloquearon en Colombia 37,5 millones de intentos de phishing: unos 102.000 por día.</p>
             `,
             footer: 'No es un problema de sistemas. Es un problema de criterio. Y el criterio se puede desarrollar.',
           },
@@ -348,17 +348,11 @@ export const modules = [
         ],
       },
 
-      // 11. Lo que tienen en común — palancas y señales de alerta
+      // 11. Lo que tienen en común — señales de alerta
       {
         type: 'box',
         variant: 'accent',
         title: 'Lo que tienen en común',
-        iconItemsColumns: 1,
-        iconItems: [
-          { icon: 'clock', text: 'Urgencia — "Necesito eso ahora, es para el cierre del mes." "Si no lo haces en los próximos 10 minutos perdemos la venta."' },
-          { icon: 'briefcase', text: 'Autoridad — "Soy el gerente general y necesito que me pases esos datos." "Llamo de parte de auditoría interna."' },
-          { icon: 'handshake', text: 'Confianza — "Ya hablé con tu jefe y me dijo que estaba bien." "Somos el proveedor de siempre, solo necesitamos actualizar los datos."' },
-        ],
         items: [
           'Urgencia extrema — te presionan para actuar de inmediato sin tiempo para verificar.',
           'Solicitud fuera del proceso habitual — algo que normalmente no se hace así.',
@@ -367,6 +361,24 @@ export const modules = [
           'Alguien pide datos que no necesitaría para hacer su trabajo legítimo.',
         ],
         footer: 'Ante la duda: pausa, verifica por otro canal y reporta.',
+      },
+
+      // 12. Para profundizar — cómo suenan las tres palancas
+      {
+        type: 'more',
+        blocks: [
+          {
+            type: 'box',
+            variant: 'info',
+            title: 'Cómo suenan',
+            iconItemsColumns: 1,
+            iconItems: [
+              { icon: 'clock', text: 'Urgencia — "Necesito eso ahora, es para el cierre del mes." "Si no lo haces en los próximos 10 minutos perdemos la venta."' },
+              { icon: 'briefcase', text: 'Autoridad — "Soy el gerente general y necesito que me pases esos datos." "Llamo de parte de auditoría interna."' },
+              { icon: 'handshake', text: 'Confianza — "Ya hablé con tu jefe y me dijo que estaba bien." "Somos el proveedor de siempre, solo necesitamos actualizar los datos."' },
+            ],
+          },
+        ],
       },
 
       // 20. Actividad de validación — simulación diagnóstica (no gating)
@@ -573,10 +585,10 @@ export const modules = [
         ],
       },
 
-      // 6. Tema 2 — Tu entorno también es seguridad (credenciales y espacio de trabajo)
+      // 6. Tema 2 — Tus credenciales y tu entorno
       {
         type: 'text',
-        title: 'Tema 2 — Tu entorno también es seguridad',
+        title: 'Tema 2 — Tus credenciales y tu entorno',
         content: `
           <p>Empieza por tu usuario: todo lo que se hace con él queda registrado a tu nombre.</p>
           <p>Y no todo es digital: un papel en el escritorio o una pantalla a la vista también son riesgos.</p>
@@ -849,7 +861,7 @@ export const modules = [
         type: 'text',
         title: 'Tema 1 — Tres situaciones, tres decisiones',
         content: `
-          <p>Tres situaciones reales de distintas áreas. Elige lo que harías. Necesitas acertar las tres para continuar; puedes reintentar sin penalización.</p>
+          <p>Tres situaciones reales de distintas áreas. Elige lo que harías; puedes reintentar sin penalización.</p>
         `,
       },
 
