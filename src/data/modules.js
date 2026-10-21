@@ -124,13 +124,7 @@ export const modules = [
         text: 'El problema nunca es quien comparte sus datos: es qué haces tú con ellos. Y no solo pasa en quien recibe pagos: si RRHH recibe un correo con la foto de una tarjeta para un reembolso, ese correo ya es un incumplimiento.',
       },
 
-      // 5. Tema 2 — De un error pequeño a un incidente real
-      {
-        type: 'text',
-        title: 'Tema 2 — De un error pequeño a un incidente real',
-      },
-
-      // 6. Infografía — el caso paso a paso
+      // 5. Infografía — de un error pequeño a un incidente real
       {
         type: 'infographic',
         title: 'De un error pequeño a un incidente real',
@@ -139,7 +133,7 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 7. Para profundizar — el caso en texto y el contexto
+      // 6. Para profundizar — el caso en texto y el contexto
       {
         type: 'more',
         blocks: [
@@ -166,13 +160,13 @@ export const modules = [
         ],
       },
 
-      // 8. Tema 3 — Qué es PCI DSS
+      // 7. Tema 2 — Qué es PCI DSS
       {
         type: 'text',
-        title: 'Tema 3 — Qué es PCI DSS',
+        title: 'Tema 2 — Qué es PCI DSS',
       },
 
-      // 9. PCI DSS en una frase y a quién aplica
+      // 8. PCI DSS en una frase y a quién aplica
       {
         type: 'box',
         variant: 'accent',
@@ -186,54 +180,54 @@ export const modules = [
         footer: 'Si trabajas en alguna de estas organizaciones, este curso aplica a ti.',
       },
 
-      // 12. Actividad de validación — quiz de clasificación
+      // 11. Actividad de validación — quiz de clasificación
       {
         type: 'quiz',
         title: 'Actividad de validación — ¿Puedo guardar este dato?',
-        subtitle: 'Una persona acaba de llamar para pagar y te dio varios datos. Clasifica cada uno: ¿se puede guardar o nunca se puede guardar? Necesitas 5 de 6 correctas para avanzar.',
+        subtitle: 'En cada situación alguien quiere conservar un dato de tarjeta. Decide si se puede guardar con controles o si nunca se puede guardar. Necesitas 5 de 6 correctas para avanzar.',
         passingScore: 83,
         questions: [
           {
             id: 'm1_dato_1',
-            question: 'Número de tarjeta (PAN): 4532 8812 3344 5566',
+            question: 'Para agilizar el próximo cobro, una persona pide que dejes anotado su código CVV en las notas de su cuenta, dentro del sistema autorizado.',
             options: ['Solo se puede guardar con controles específicos', 'Nunca se puede guardar — prohibición absoluta'],
-            correct: 0,
-            explanation: 'El número de tarjeta puede almacenarse, pero solo en sistemas con cifrado fuerte, control de acceso y auditoría activa. Guardarlo en un medio no autorizado —papel, Excel, correo, WhatsApp o cualquier otro— es un incumplimiento, aunque no lo veas a simple vista.',
+            correct: 1,
+            explanation: 'El CVV nunca puede almacenarse, bajo ninguna circunstancia y en ningún formato: ni papel, ni Excel, ni sistema, aunque el sistema esté autorizado y aunque la persona lo pida. Su único propósito es verificar que la tarjeta está presente en el momento de la transacción.',
           },
           {
             id: 'm1_dato_2',
-            question: 'Nombre del titular: Carlos Andrés Mejía',
+            question: 'El sistema de pagos autorizado de tu organización conserva el número de tarjeta (PAN) cifrado para procesar cobros recurrentes.',
             options: ['Solo se puede guardar con controles específicos', 'Nunca se puede guardar — prohibición absoluta'],
             correct: 0,
-            explanation: 'El nombre puede almacenarse, pero siempre que vaya junto con el número de tarjeta activa los controles de PCI DSS. Solo el nombre, sin otros datos, no activa esos controles.',
+            explanation: 'El número de tarjeta puede almacenarse, pero solo en sistemas con cifrado fuerte, control de acceso y auditoría activa, como el de esta situación. Guardarlo en un medio no autorizado —papel, Excel, correo, WhatsApp— es un incumplimiento.',
           },
           {
             id: 'm1_dato_3',
-            question: 'Fecha de vencimiento: 09/27',
+            question: 'Quieres avisarle a la persona cuando su tarjeta esté por vencer, así que el sistema autorizado guarda la fecha de vencimiento.',
             options: ['Solo se puede guardar con controles específicos', 'Nunca se puede guardar — prohibición absoluta'],
             correct: 0,
-            explanation: 'La fecha puede almacenarse con los controles adecuados. Combinada con el número de tarjeta y el nombre, incrementa el riesgo de fraude significativamente.',
+            explanation: 'La fecha de vencimiento puede almacenarse con los controles adecuados. Combinada con el número de tarjeta y el nombre, aumenta el riesgo de fraude, por eso solo se conserva en el sistema autorizado.',
           },
           {
             id: 'm1_dato_4',
-            question: 'Código CVV: 741',
+            question: 'Para no pedirle a la persona que vuelva a acercar la tarjeta, alguien propone guardar los datos del chip que leyó el datáfono.',
             options: ['Solo se puede guardar con controles específicos', 'Nunca se puede guardar — prohibición absoluta'],
             correct: 1,
-            explanation: 'El CVV nunca puede almacenarse, bajo ninguna circunstancia, en ningún formato: ni papel, ni Excel, ni sistema. Su único propósito es verificar que la tarjeta está física o virtualmente presente en el momento de la transacción.',
+            explanation: 'Los datos de la banda magnética o del chip nunca pueden almacenarse, aunque el objetivo sea ahorrar un paso. Contienen información suficiente para clonar una tarjeta físicamente.',
           },
           {
             id: 'm1_dato_5',
-            question: 'Datos del chip de la tarjeta',
+            question: 'El sistema autorizado guarda el nombre del titular, Carlos Andrés Mejía, junto con el número de su tarjeta.',
             options: ['Solo se puede guardar con controles específicos', 'Nunca se puede guardar — prohibición absoluta'],
-            correct: 1,
-            explanation: 'Los datos de banda magnética o chip nunca pueden almacenarse. Contienen información suficiente para clonar una tarjeta físicamente.',
+            correct: 0,
+            explanation: 'El nombre puede almacenarse con controles. Cuando va junto con el número de tarjeta, activa los controles de PCI DSS: por eso debe quedar en el sistema autorizado y no en otro lugar. Solo el nombre, sin otros datos, no activa esos controles.',
           },
           {
             id: 'm1_dato_6',
-            question: 'PIN del titular de la tarjeta',
+            question: 'Una persona te dicta su PIN "por si el datáfono falla" y te pide que lo tengas a mano mientras termina el pago.',
             options: ['Solo se puede guardar con controles específicos', 'Nunca se puede guardar — prohibición absoluta'],
             correct: 1,
-            explanation: 'El PIN es el secreto exclusivo del titular de la tarjeta. Ningún sistema, proceso ni colaborador debe tener acceso a él. Si alguien te pide el PIN de una persona por cualquier razón, es una señal de alerta inmediata.',
+            explanation: 'El PIN es el secreto exclusivo del titular de la tarjeta. Ningún sistema, proceso ni colaborador debe tener acceso a él, ni siquiera por unos minutos. Si alguien te ofrece o te pide un PIN, es una señal de alerta inmediata.',
           },
         ],
       },
@@ -428,24 +422,24 @@ export const modules = [
             question: '¿Qué haces?',
             options: [
               {
-                text: 'Abro el enlace para ver si la transacción es real y cancelarla antes de que sea tarde.',
+                text: 'Llamo al número que envió el mensaje para confirmar con Nequi si el movimiento es real.',
                 correct: false,
-                feedback: 'Eso es exactamente lo que el atacante espera que hagas. El enlace no es de Nequi. Lleva a una página falsa que captura tu clave o instala malware en tu dispositivo. Una vez ingresas tus datos, el atacante tiene acceso a tu cuenta y potencialmente a los sistemas de tu organización. Señal que debiste notar: el dominio del enlace no es nequi.com.co. Tres días después de un caso así, el equipo de seguridad detecta accesos inusuales al sistema de facturación: alguien entró con las credenciales robadas desde una IP desconocida, y en los registros aparecen consultas masivas a la base de datos de tarjetahabientes. El incidente se originó en el momento en que se ingresó la clave en una página que no era Nequi. Esto no es para generar miedo: es para mostrar que una sola decisión, en un momento de distracción, puede ser el inicio de una cadena que afecta a toda la organización.',
+                feedback: 'Verificar está bien, pero no por el canal que te dio el mensaje: ese número lo controla la misma persona que lo envió, y al llamar te va a pedir la clave "para cancelar la transacción". La verificación siempre se hace por un canal que tú buscas por tu cuenta, como la aplicación oficial o el número del respaldo de la tarjeta. Y después, reporta el intento al canal de tu organización.',
               },
               {
-                text: 'Ignoro el mensaje. Si fuera real, Nequi me lo notificaría por la aplicación oficial.',
-                correct: false,
-                feedback: 'Ignorar no es suficiente — y puede ser riesgoso si el mensaje llegó por error a más personas del equipo. La acción correcta no es solo no hacer clic. Es reportar el intento al equipo de seguridad o al responsable designado en tu organización. Esto permite bloquear el mensaje si llegó a otras personas y documentar el intento.',
-              },
-              {
-                text: 'Abro la aplicación de Nequi directamente desde mi celular para verificar si hay algún movimiento.',
+                text: 'No abro el enlace: reviso la aplicación oficial de Nequi y reporto el mensaje al canal de seguridad.',
                 correct: true,
-                feedback: 'Muy bien. Eso es exactamente lo correcto. Verificar directamente desde la aplicación oficial —no desde el enlace del mensaje— es la forma segura de confirmar si hay un problema real. Si en la aplicación no aparece ningún movimiento sospechoso, el mensaje era falso. Acción final obligatoria: reporta el intento al canal definido por tu organización para este tipo de situaciones. Aunque no hayas caído, el reporte permite alertar al equipo, bloquear el número o dominio y proteger a otros compañeros que puedan recibir el mismo mensaje.',
+                feedback: 'Muy bien. Verificar directamente desde la aplicación oficial —no desde el enlace del mensaje— es la forma segura de confirmar si hay un problema real. Si en la aplicación no aparece ningún movimiento sospechoso, el mensaje era falso. Y el reporte es parte de la respuesta: permite alertar al equipo, bloquear el número o el dominio y proteger a otros compañeros que puedan recibir el mismo mensaje.',
               },
               {
-                text: 'Le reenvío el mensaje a un compañero para preguntarle si parece legítimo.',
+                text: 'Abro el enlace solo para revisar si el movimiento aparece, sin ingresar mi clave.',
                 correct: false,
-                feedback: 'Es mejor que hacer clic, pero no es suficiente. Preguntar a un compañero no es el canal correcto para reportar un intento de phishing. Tu compañero puede no saberlo con certeza y podrías generar confusión. Repórtalo directamente al responsable de seguridad o al canal que tu organización tenga definido.',
+                feedback: 'Abrir el enlace ya es el riesgo: la página puede instalar malware en tu dispositivo o estar diseñada para que ingreses la clave "solo para ver". Señal que debiste notar: el dominio del enlace no es nequi.com.co. Tres días después de un caso así, el equipo de seguridad detecta accesos inusuales al sistema de facturación: alguien entró con las credenciales robadas desde una IP desconocida, y en los registros aparecen consultas masivas a la base de datos de tarjetahabientes. Esto no es para generar miedo: es para mostrar que una sola decisión, en un momento de distracción, puede ser el inicio de una cadena que afecta a toda la organización.',
+              },
+              {
+                text: 'No abro el enlace y borro el mensaje: si fuera real, Nequi me avisaría por la aplicación.',
+                correct: false,
+                feedback: 'No abrir el enlace está bien, pero borrar el mensaje no es suficiente, y puede ser riesgoso si llegó a más personas del equipo. La acción correcta es reportar el intento al equipo de seguridad o al responsable designado en tu organización. Esto permite bloquear el mensaje si llegó a otras personas y documentar el intento. Tampoco conviene reenviarlo a un compañero para preguntarle: ese no es el canal de reporte.',
               },
             ],
           },
@@ -796,15 +790,15 @@ export const modules = [
             situation: 'Elige, en orden, las tres acciones correctas entre las seis disponibles. El resto son acciones incorrectas que no deberías tomar.',
             question: '¿En qué orden actuarías?',
             options: [
-              { key: 'A', text: 'Cierras la sesión del sistema de facturación y limpias el historial del navegador para que nadie vea qué se consultó.' },
-              { key: 'B', text: 'Sin tocar el equipo, contactas de inmediato al responsable de seguridad o al canal oficial de tu organización para reportar lo que encontraste.' },
-              { key: 'C', text: 'Llamas a un compañero de confianza para preguntarle si sabe qué pasó antes de reportarlo oficialmente.' },
-              { key: 'D', text: 'Dejas el equipo encendido, sin tocar nada.' },
-              { key: 'E', text: 'Anotas en otro dispositivo lo que viste y la hora, y esperas instrucciones del equipo de seguridad antes de volver a usar el equipo.' },
-              { key: 'F', text: 'Apagas el equipo para que nadie más pueda acceder mientras llega el equipo de seguridad.' },
+              { key: 'A', text: 'Cierras la sesión del usuario desconocido para cortarle el acceso cuanto antes.' },
+              { key: 'B', text: 'Avisas al responsable de seguridad o al canal de reporte de tu organización.' },
+              { key: 'C', text: 'Revisas el historial para confirmar cuántas tarjetas consultaron y reportar el dato exacto.' },
+              { key: 'D', text: 'Dejas el equipo tal como está: encendido y sin tocar nada.' },
+              { key: 'E', text: 'Anotas en otro dispositivo lo que viste y la hora, y esperas instrucciones.' },
+              { key: 'F', text: 'Apagas el equipo para que nadie más pueda entrar mientras llega el equipo de seguridad.' },
             ],
             correctOrder: ['D', 'B', 'E'],
-            justification: 'Orden correcto: D → B → E, es decir: para, reporta, documenta y espera. Primero (D) paras: dejas el equipo encendido y no tocas nada, para no alterar la evidencia. Segundo (B) reportas de inmediato al canal oficial: no por WhatsApp personal ni por correo a un compañero. Tercero (E) documentas en otro dispositivo —no en el equipo involucrado— lo que viste y la hora, y esperas instrucciones: tu rol terminó cuando reportaste, así que no tomas decisiones técnicas por tu cuenta. Las otras tres son incorrectas: (A) cerrar la sesión y limpiar el historial destruye evidencia que el equipo de seguridad necesita; (C) consultar a un compañero antes de reportar retrasa la respuesta y puede contaminar la investigación; (F) apagar el equipo destruye evidencia en memoria (RAM) de forma permanente. Reporta primero y recibe instrucciones antes de actuar.',
+            justification: 'Orden correcto: D → B → E, es decir: para, reporta, documenta y espera. Primero (D) paras: dejas el equipo encendido y no tocas nada, para no alterar la evidencia. Segundo (B) reportas de inmediato al canal oficial: no por WhatsApp personal ni por correo a un compañero. Tercero (E) documentas en otro dispositivo —no en el equipo involucrado— lo que viste y la hora, y esperas instrucciones: tu rol terminó cuando reportaste, así que no tomas decisiones técnicas por tu cuenta. Las otras tres parecen razonables, pero son incorrectas: (A) cerrar la sesión altera la evidencia que el equipo de seguridad necesita y es una decisión técnica que no te corresponde; (C) revisar el historial por tu cuenta retrasa el reporte y deja tus propios accesos mezclados con los del intruso; (F) apagar el equipo destruye de forma permanente la evidencia en memoria (RAM). Reporta primero y recibe instrucciones antes de actuar.',
           },
         ],
       },
@@ -882,37 +876,37 @@ export const modules = [
             id: 'm5_situacion_1',
             question: 'Administración / Compras: un proveedor de servicios te contacta por correo y te adjunta un archivo de Excel con datos de tarjeta de varios terceros "para que puedas verificar las transacciones". El archivo incluye números de tarjeta completos, nombres y fechas de vencimiento. Dice que es urgente porque necesita confirmación antes del cierre del día. ¿Qué haces?',
             options: [
-              'Abres el archivo, verificas la información que necesitas y luego la eliminas.',
-              'Reenvías el archivo al área de TI para que ellos lo gestionen.',
-              'No abres el archivo. Le informas al proveedor que ese canal no es autorizado para compartir datos de pago, y reportas el correo internamente.',
-              'Le respondes al proveedor pidiéndole que te envíe solo los últimos cuatro dígitos para reducir el riesgo.',
+              'Abres el archivo solo para verificar lo urgente y después lo eliminas de tu correo.',
+              'Reenvías el correo al área de TI para que ellos decidan qué hacer con el archivo.',
+              'Le pides al proveedor que vuelva a enviar el archivo protegido con contraseña.',
+              'No abres el archivo, le respondes que ese canal no está autorizado y reportas el correo.',
             ],
-            correct: 2,
-            explanation: 'Correcto: no abrir el archivo y reportar el correo protege a la organización y activa el proceso para comunicarle al proveedor el canal correcto. El canal no autorizado es el problema, no el contenido del archivo. Abrirlo y luego eliminarlo no deshace que los datos existieron fuera de un entorno controlado; reenviarlo a TI por correo sigue siendo una transmisión por canal no autorizado; y pedir solo los últimos cuatro dígitos no resuelve el problema de fondo, porque el canal sigue siendo incorrecto.',
+            correct: 3,
+            explanation: 'Correcto: no abrir el archivo y reportar el correo protege a la organización y activa el proceso para indicarle al proveedor el canal correcto. El problema es el canal, no el contenido del archivo. Abrirlo y luego eliminarlo no deshace que los datos existieron fuera de un entorno controlado; reenviarlo a TI por correo es otra transmisión por un canal no autorizado; y protegerlo con contraseña no lo convierte en un canal autorizado: el correo sigue sin los controles que exige PCI DSS.',
           },
           {
             id: 'm5_situacion_2',
             question: 'RRHH: tu compañera te pide que uses sus credenciales para consultar el número de tarjeta de una persona en el sistema y procesar una devolución, mientras ella atiende una llamada urgente. "Es solo un momento", dice. "Nadie va a saber." ¿Qué haces?',
             options: [
-              'Accedes con sus credenciales porque es una tarea rutinaria y de bajo riesgo.',
-              'Le explicas que no puedes usar sus credenciales y le propones buscar una alternativa: que ella haga la consulta al salir de la llamada o que use un canal de aprobación diferente si existe.',
-              'Accedes, haces la consulta y procesas la devolución, y luego cambias la contraseña de tu compañera para que quede solo a tu nombre.',
-              'Le dices que sí y le pides que te cambie la contraseña para que quede como si hubieras entrado con la tuya.',
+              'Le dices que no puedes usar su usuario y le propones hacer la consulta cuando termine la llamada.',
+              'Entras con su usuario, consultas solo lo necesario y le cuentas después exactamente qué hiciste.',
+              'Le pides que inicie sesión ella antes de contestar y tú terminas la devolución en su equipo.',
+              'Entras con su usuario porque te lo autorizó por chat y así queda constancia de su permiso.',
             ],
-            correct: 1,
-            explanation: 'Correcto: las credenciales son personales e intransferibles, y consultar el número de tarjeta de un tercero con el usuario de otra persona rompe la trazabilidad exigida por PCI DSS. Proponer una alternativa resuelve la necesidad sin comprometer la seguridad. No hay tareas de "bajo riesgo" cuando se comparten credenciales; cambiar la contraseña de otro usuario sin autorización es un incidente en sí mismo y no borra el historial de accesos previos; y pedir que te cambie la contraseña para "entrar con la tuya" es el mismo problema en dirección contraria, porque el sistema registra accesos por usuario, no por contraseña.',
+            correct: 0,
+            explanation: 'Correcto: las credenciales son personales e intransferibles, y consultar el número de tarjeta de un tercero con el usuario de otra persona rompe la trazabilidad exigida por PCI DSS. Proponer una alternativa resuelve la necesidad sin comprometer la seguridad. Consultar "solo lo necesario" no cambia que la acción quede a nombre de otra persona; que ella inicie la sesión y tú la uses es exactamente lo mismo; y una autorización por chat no vuelve transferibles las credenciales: el sistema registra accesos por usuario, no por permisos informales.',
           },
           {
             id: 'm5_situacion_3',
             question: 'Ventas: una persona que va a pagar insiste en enviarte los datos de su tarjeta por WhatsApp. Ya te los mandó: número, nombre y vencimiento. Dice que es la forma más rápida y que lo ha hecho antes con otras empresas sin problema. ¿Qué haces?',
             options: [
-              'Usas los datos que te envió porque ya están en tu celular y sería más difícil pedirle que los ingrese de nuevo.',
-              'Los usas esta vez, pero le pides que la próxima vez use el canal oficial.',
-              'No usas los datos del mensaje. Le explicas que, por su seguridad, no puedes procesar datos de tarjeta recibidos por WhatsApp, y le ofreces el canal oficial. Luego reportas internamente que recibiste datos por ese canal.',
-              'Eliminas los mensajes de WhatsApp para que no quede rastro y le pides que ingrese los datos por el canal oficial.',
+              'Procesas el pago esta vez, porque ya llegaron, y le pides que la próxima vez use el canal oficial.',
+              'No usas los datos, le envías el enlace del canal oficial y reportas que los recibiste por WhatsApp.',
+              'No usas los datos, borras los mensajes para que no quede rastro y le envías el enlace del canal oficial.',
+              'Ingresas tú mismo sus datos en el canal oficial para que no tenga que volver a escribirlos.',
             ],
-            correct: 2,
-            explanation: 'Correcto: la protección del titular de la tarjeta empieza por no procesar datos recibidos por canales que no garantizan su seguridad. Explicárselo con claridad genera confianza, no fricción, y el reporte interno permite registrar el caso. Usarlos porque "ya llegaron" no los hace válidos; una excepción "esta vez" sigue siendo un incumplimiento —el proceso se valida por el canal, no por la frecuencia—; y eliminar los mensajes no elimina el riesgo (los datos ya pudieron quedar en servidores o copias de seguridad) y además va en contra del protocolo de respuesta al no reportar el incidente.',
+            correct: 1,
+            explanation: 'Correcto: la protección del titular de la tarjeta empieza por no procesar datos recibidos por canales que no garantizan su seguridad. Explicárselo con claridad genera confianza, no fricción, y el reporte interno permite registrar el caso. Una excepción "esta vez" sigue siendo un incumplimiento; borrar los mensajes no elimina el riesgo (los datos pueden haber quedado en servidores o copias de seguridad) y, sin reporte, nadie puede gestionar el caso; e ingresarlos tú en el canal oficial sigue siendo usar datos que llegaron por un canal no autorizado.',
           },
         ],
       },

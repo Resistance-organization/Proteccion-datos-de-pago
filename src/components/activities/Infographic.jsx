@@ -152,12 +152,11 @@ export default function Infographic({ block }) {
     return (
       <>
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-          {block.title && (
+          {/* El HTML embebido ya trae su propio título: aquí no se repite.
+              block.title solo se usa en pantalla completa y como título accesible. */}
+          {block.intro && (
             <div className="px-6 sm:px-8 py-5 border-b border-gray-100">
-              <h2 className="font-title text-xl font-semibold text-gray-800">{block.title}</h2>
-              {block.intro && (
-                <p className="font-body text-sm text-gray-600 mt-2">{block.intro}</p>
-              )}
+              <p className="font-body text-sm text-gray-600">{block.intro}</p>
             </div>
           )}
 
