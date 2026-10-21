@@ -862,24 +862,16 @@ export const modules = [
         accent: 'accent',
       },
 
-      // 2. Apertura del módulo
+      // 2. Tema 1 — Tres situaciones, tres decisiones
       {
         type: 'text',
+        title: 'Tema 1 — Tres situaciones, tres decisiones',
         content: `
-          <p>Este módulo no es un examen. Vas a enfrentar tres situaciones reales y, al final, a pensar qué vas a hacer diferente desde mañana.</p>
+          <p>Tres situaciones reales de distintas áreas. Elige lo que harías. Necesitas acertar las tres para continuar; puedes reintentar sin penalización.</p>
         `,
       },
 
-      // 3. 5.2 intro
-      {
-        type: 'text',
-        title: 'Actividad integradora — Tres situaciones, tres decisiones',
-        content: `
-          <p>Vas a ver tres situaciones, cada una desde una área distinta —pero cualquiera podría tocarte a ti, sin importar dónde trabajes—. Lee cada una y elige la respuesta que mejor describe lo que deberías hacer. Necesitas responder correctamente las tres para continuar; puedes reintentar sin penalización.</p>
-        `,
-      },
-
-      // 4. Las tres situaciones integradoras (quiz gated, passingScore 100)
+      // 3. Las tres situaciones integradoras (quiz gated, passingScore 100)
       {
         type: 'quiz',
         title: 'Tres situaciones, tres decisiones',
@@ -925,37 +917,19 @@ export const modules = [
         ],
       },
 
-      // 5. 5.3 intro
-      {
-        type: 'text',
-        title: 'Reflexión final — antes del certificado',
-        content: `
-          <p>Esta no es una evaluación. No hay respuestas correctas o incorrectas. Es un momento para que pienses en lo que aprendiste y lo conectes con tu trabajo real.</p>
-        `,
-      },
-
-      // 6. Pregunta 1 — obligatoria (aproximada, no gating técnico)
+      // 4. Una pregunta para ti
       {
         type: 'reflection',
-        title: 'Pregunta 1',
-        storageKey: 'm5_reflexion_1',
-        promptPrefix: '¿Cuál de las situaciones que viste en este curso se parece más a algo que podría pasarte en tu trabajo?',
-        placeholder: 'Escribe aquí...',
-      },
-
-      // 7. Pregunta 2 — obligatoria
-      {
-        type: 'reflection',
-        title: 'Pregunta 2',
+        title: 'Una pregunta para ti',
         storageKey: 'm5_reflexion_2',
         promptPrefix: '¿Qué vas a hacer diferente en tu trabajo a partir de mañana?',
         placeholder: 'Ej: Voy a usar el canal oficial para recibir pagos / Voy a bloquear mi equipo cuando me levante / Voy a reportar los correos sospechosos en lugar de ignorarlos.',
       },
 
-      // 8. Pregunta 3 — obligatoria (opción múltiple, sin calificación)
+      // 5. ¿Sabes a quién reportar? (opción múltiple, sin calificación)
       {
         type: 'selfcheck',
-        title: 'Pregunta 3',
+        title: '¿Sabes a quién reportar?',
         subtitle: 'Si detectaras un posible incidente mañana, ¿sabes a quién reportarlo?',
         questions: [
           {
@@ -968,16 +942,7 @@ export const modules = [
         resultText: 'Si no tienes 100% claro el canal de reporte, consulta con tu líder o con el área de TI cuál es exactamente. Esa información también está en la tarjeta de referencia descargable del Módulo 4 — guárdala donde puedas encontrarla.',
       },
 
-      // 9. Pregunta 4 — opcional
-      {
-        type: 'reflection',
-        title: 'Pregunta 4 (opcional)',
-        storageKey: 'm5_reflexion_4',
-        promptPrefix: '¿Qué tema del curso te resultó más útil y por qué?',
-        placeholder: 'Escribe aquí (opcional)...',
-      },
-
-      // 10. 5.4 Cierre narrativo del curso
+      // 6. Cierre narrativo del curso
       {
         type: 'text',
         title: 'Cierre narrativo del curso',
@@ -985,19 +950,11 @@ export const modules = [
           <p><strong>Lo que aprendiste en este curso no es teoría.</strong></p>
           <p>Aprendiste a reconocer qué información tiene valor real y por qué protegerla importa. Aprendiste a identificar una situación de riesgo antes de que se convierta en un problema. Aprendiste las reglas concretas que puedes aplicar desde hoy en tu trabajo diario. Y aprendiste qué hacer si, a pesar de todo, algo sale mal.</p>
           <p>Nada de esto requiere ser experto en seguridad. Requiere criterio, hábito y disposición para actuar cuando algo no cuadra.</p>
+          <p><strong>Cada dato de pago representa la confianza de una persona. Protegerlo también depende de las decisiones que tomas cada día.</strong></p>
         `,
       },
 
-      // 12. Frase de cierre
-      {
-        type: 'flyer',
-        color: 'primary',
-        icon: '🔒',
-        badge: 'Para recordar',
-        body: 'Cada dato de pago representa la confianza de una persona. Protegerlo también depende de las decisiones que tomas cada día.',
-      },
-
-      // 13. Cierre del módulo
+      // 7. Cierre del módulo
       {
         type: 'closing',
         moduleLabel: 'Módulo 5 completado — curso finalizado',
