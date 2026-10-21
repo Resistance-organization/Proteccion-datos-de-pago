@@ -77,7 +77,7 @@ export const modules = [
     id: 1,
     title: '¿Qué estamos protegiendo y por qué importa?',
     description: 'Qué son los datos de pago y qué consecuencias reales tiene exponerlos.',
-    icon: '💳',
+    icon: 'credit-card',
     estimatedTime: '7 min',
     blocks: [
       // 1. Portada
@@ -263,7 +263,7 @@ export const modules = [
     id: 2,
     title: '¿Cómo empiezan los incidentes?',
     description: 'Las señales que preceden a un incidente, antes de que escale.',
-    icon: '🎣',
+    icon: 'fish',
     estimatedTime: '12 min',
     blocks: [
       // 1. Portada
@@ -498,7 +498,7 @@ export const modules = [
     id: 3,
     title: '¿Cómo evitamos ser parte del problema?',
     description: 'Tres reglas concretas: canales, credenciales y entorno de trabajo.',
-    icon: '🛡️',
+    icon: 'shield',
     estimatedTime: '15 min',
     blocks: [
       // 1. Portada
@@ -698,7 +698,7 @@ export const modules = [
     id: 4,
     title: '¿Qué hacemos cuando ocurre un incidente?',
     description: 'Los primeros pasos correctos cuando algo sale mal.',
-    icon: '🚨',
+    icon: 'warning',
     estimatedTime: '11 min',
     blocks: [
       // 1. Portada
@@ -850,7 +850,7 @@ export const modules = [
     id: 5,
     title: '¿Cómo lo aplico en mi trabajo?',
     description: 'Tres situaciones reales para cerrar el recorrido.',
-    icon: '🎓',
+    icon: 'graduation',
     estimatedTime: '9 min',
     blocks: [
       // 1. Portada

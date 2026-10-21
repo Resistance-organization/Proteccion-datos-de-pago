@@ -1,6 +1,6 @@
 import {
   Apple, BarChart3, Bot, Briefcase, Camera, CircleCheck, CircleX, ClipboardList, Compass,
-  Contact, CreditCard, Eye, FileText, Fish, FolderOpen, Gamepad2, Gift, Globe, Key, Landmark,
+  Contact, CreditCard, Eye, FileText, Fish, FolderOpen, Gamepad2, Gift, Globe, GraduationCap, Key, Landmark,
   Laptop, LifeBuoy, Link, Lock, LockOpen, Mail, Megaphone, MessageCircle, Monitor, Package,
   PartyPopper, Phone, Receipt, RefreshCw, Scale, Search, ShieldAlert, ShieldCheck, ShoppingCart,
   Smartphone, SmartphoneNfc, ThumbsUp, TrendingUp, TriangleAlert, Truck, Tv, Users, VenetianMask,
@@ -28,6 +28,7 @@ const ICONS = {
   'gamepad': Gamepad2,
   'gift': Gift,
   'globe': Globe,
+  'graduation': GraduationCap,
   'key': Key,
   'laptop': Laptop,
   'life-buoy': LifeBuoy,
