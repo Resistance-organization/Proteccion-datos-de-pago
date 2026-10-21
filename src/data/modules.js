@@ -66,6 +66,7 @@ export const modules = [
         variant: 'info',
         title: 'Tu recorrido',
         text: '<p>Son cinco módulos cortos. Cada uno responde una pregunta y se desbloquea al terminar el anterior.</p>',
+        iconItemsColumns: 1,
         iconItems: [
           { icon: 'credit-card', text: '¿Qué estamos protegiendo y por qué importa? · 7 min' },
           { icon: 'fish', text: '¿Cómo empiezan los incidentes? · 12 min' },
@@ -210,7 +211,7 @@ export const modules = [
         type: 'closing',
         moduleLabel: 'Módulo 1 completado',
         title: '¿Qué estamos protegiendo y por qué importa?',
-        summary: 'Ahora sabes qué información constituye un dato de pago, cuáles tienen prohibición absoluta de almacenamiento, y por qué esos datos tienen valor real en el mercado del fraude. También entendiste que la mayoría de los problemas no empiezan con un ataque sofisticado: empiezan con un proceso sin controles y una decisión que pareció razonable.',
+        summary: 'Ya sabes qué datos de tarjeta se pueden guardar con controles y cuáles nunca. Y que un incidente rara vez empieza con un ataque: empieza con una decisión que pareció razonable.',
         takeaways: [
           'El número de tarjeta, el nombre del titular y la fecha de vencimiento se pueden almacenar, pero solo con controles específicos.',
           'El CVV, los datos del chip/banda magnética y el PIN nunca se pueden almacenar, sin excepciones.',
@@ -502,7 +503,7 @@ export const modules = [
         type: 'closing',
         moduleLabel: 'Módulo 2 completado',
         title: '¿Cómo empiezan los incidentes?',
-        summary: 'En el módulo anterior aprendiste qué información protegemos. En este aprendiste cómo intentan obtenerla. Ahora ya sabes reconocer cómo empieza un incidente: casi nunca es un ataque técnico sofisticado. Es un mensaje con un enlace que parece legítimo, una solicitud que suena urgente, una visita de soporte que nadie verificó.',
+        summary: 'Casi ningún incidente empieza con un ataque técnico: empieza con un mensaje o una solicitud que parecía normal. Ahora sabes reconocer las señales antes de actuar.',
         takeaways: [
           'Las dos vías más comunes por las que empiezan los incidentes: phishing y solicitudes de ingeniería social disfrazadas por área.',
           'El 68% de las brechas globales involucran un error humano. Reconocer las señales antes de actuar es la primera línea de defensa.',
@@ -588,11 +589,11 @@ export const modules = [
         title: 'Las 5 reglas de las contraseñas',
         columns: ['#', 'Regla', 'Qué significa en la práctica'],
         rows: [
-          { icon: '1️⃣', highlight: 'red', cells: ['Nunca compartas tu contraseña con nadie', 'Ni con tu jefe, ni con TI, ni con un compañero de confianza. Nadie necesita tu contraseña para hacer su trabajo. Si alguien la pide, es una señal de alerta.'] },
-          { icon: '2️⃣', highlight: 'orange', cells: ['No uses la misma contraseña en varios sistemas', 'Si un sistema es comprometido, el atacante prueba esa contraseña en todos los demás. Una contraseña única por sistema limita el daño.'] },
-          { icon: '3️⃣', highlight: 'orange', cells: ['No escribas tu contraseña en papel ni en el escritorio', 'Un papel con tu contraseña es tan riesgoso como dejar la puerta abierta. Si tu organización tiene un gestor de contraseñas oficial, úsalo. Nunca uses un gestor personal para credenciales corporativas.'] },
-          { icon: '4️⃣', highlight: 'blue', cells: ['Bloquea tu equipo cuando te alejes', 'Aunque sea por 2 minutos. Un equipo desbloqueado con tu sesión activa es acceso abierto a todo lo que puedes ver y hacer.'] },
-          { icon: '5️⃣', highlight: 'blue', cells: ['Activa la doble autenticación si está disponible', 'Es una capa adicional que hace que tu contraseña sola no sea suficiente para entrar. Actívala siempre que el sistema lo permita.'] },
+          { icon: '1', highlight: 'red', cells: ['Nunca compartas tu contraseña con nadie', 'Ni con tu jefe, ni con TI, ni con un compañero de confianza. Nadie necesita tu contraseña para hacer su trabajo. Si alguien la pide, es una señal de alerta.'] },
+          { icon: '2', highlight: 'orange', cells: ['No uses la misma contraseña en varios sistemas', 'Si un sistema es comprometido, el atacante prueba esa contraseña en todos los demás. Una contraseña única por sistema limita el daño.'] },
+          { icon: '3', highlight: 'orange', cells: ['No escribas tu contraseña en papel ni en el escritorio', 'Un papel con tu contraseña es tan riesgoso como dejar la puerta abierta. Si tu organización tiene un gestor de contraseñas oficial, úsalo. Nunca uses un gestor personal para credenciales corporativas.'] },
+          { icon: '4', highlight: 'blue', cells: ['Bloquea tu equipo cuando te alejes', 'Aunque sea por 2 minutos. Un equipo desbloqueado con tu sesión activa es acceso abierto a todo lo que puedes ver y hacer.'] },
+          { icon: '5', highlight: 'blue', cells: ['Activa la doble autenticación si está disponible', 'Es una capa adicional que hace que tu contraseña sola no sea suficiente para entrar. Actívala siempre que el sistema lo permita.'] },
         ],
       },
 
@@ -686,7 +687,7 @@ export const modules = [
         type: 'closing',
         moduleLabel: 'Módulo 3 completado',
         title: '¿Cómo evitamos ser parte del problema?',
-        summary: 'En el módulo 1 aprendiste qué protegemos. En el módulo 2 aprendiste cómo intentan obtenerlo. En este aprendiste qué puedes hacer tú para que no lo logren. Las reglas que viste no son complicadas: usa solo los canales autorizados, cuida tus credenciales como si fueran la llave de tu casa, y controla lo que hay en tu entorno de trabajo, tanto en la oficina como en casa.',
+        summary: 'Tres reglas sencillas evitan que seas parte del problema: usa solo canales autorizados, cuida tus credenciales y controla tu entorno de trabajo, en la oficina y en casa.',
         takeaways: [
           'Regla 1 — Solo canales autorizados para recibir o transmitir datos de pago.',
           'Regla 2 — Las credenciales son personales. Nunca se comparten, nunca se escriben en un lugar visible.',
@@ -731,7 +732,6 @@ export const modules = [
         content: `
           <p>Cualquier situación en la que datos de tarjeta pudieron ser vistos, copiados, enviados o usados por alguien que no debía.</p>
           <p>La palabra clave es <strong>pudieron</strong>: no necesitas certeza, basta una duda razonable.</p>
-          <p><strong>Reportar algo que resultó no ser un incidente no tiene consecuencias negativas. No reportar algo que sí era un incidente sí las tiene.</strong></p>
         `,
       },
 
@@ -813,7 +813,7 @@ export const modules = [
         type: 'closing',
         moduleLabel: 'Módulo 4 completado',
         title: '¿Qué hacemos cuando ocurre un incidente?',
-        summary: 'Un incidente es cualquier situación en la que datos de tarjeta pudieron haber sido vistos, copiados, transmitidos o usados por alguien que no debía. Ante la duda, siempre reporta. Y cuando ocurra: para, reporta, documenta y espera instrucciones, en ese orden.',
+        summary: 'Ante la duda, reporta. Y cuando ocurra un incidente: para, reporta, documenta y espera instrucciones, en ese orden.',
         takeaways: [
           'La palabra clave es "pudieron": no necesitas certeza, basta una situación razonable de duda para reportar.',
           'Los cuatro pasos en orden: para, reporta al canal oficial, documenta sin manipular el equipo, y espera instrucciones.',
@@ -916,7 +916,7 @@ export const modules = [
         type: 'closing',
         moduleLabel: 'Módulo 5 completado — curso finalizado',
         title: '¿Cómo lo aplico en mi trabajo?',
-        summary: 'Completaste el recorrido completo del curso de Protección de Datos de Pago. Ya sabes qué protegemos, cómo intentan obtenerlo, qué hacer para no ser parte del problema, qué hacer si algo sale mal, y cómo se ve todo esto en situaciones reales de tu trabajo.',
+        summary: 'Terminaste el curso. Ya sabes qué protegemos, cómo intentan obtenerlo, cómo evitarlo y qué hacer si algo sale mal.',
         takeaways: [
           'La seguridad de los datos de pago depende de decisiones cotidianas, no solo de los sistemas.',
           'Ante cualquier duda sobre un canal, una credencial o un posible incidente: pausa, verifica y reporta.',
