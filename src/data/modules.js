@@ -275,27 +275,16 @@ export const modules = [
         accent: 'secondary',
       },
 
-      // 2. Apertura del módulo
+      // 2. Tema 1 — Por dónde entran los incidentes
       {
         type: 'text',
+        title: 'Tema 1 — Por dónde entran los incidentes',
         content: `
           <p>Casi ningún incidente empieza con un ataque sofisticado: empieza con un mensaje, una llamada o una solicitud que parecía normal.</p>
         `,
       },
 
-      // 3. 2.2 — Contexto con datos
-      {
-        type: 'box',
-        variant: 'warning',
-        title: 'Cuando pensamos en un ataque informático, imaginamos a alguien frente a pantallas llenas de código intentando forzar la entrada a un sistema. La realidad es diferente.',
-        text: `
-          <p>Según el Verizon Data Breach Investigations Report 2024, el 68% de las brechas de seguridad a nivel global involucran un error humano o ingeniería social. El atacante no forzó ninguna puerta: alguien la abrió sin saberlo.</p>
-          <p>En Colombia, el Centro Cibernético Policial de la DIJIN reportó más de 77.000 denuncias por delitos informáticos en 2024, un crecimiento del 23% frente al año anterior. Y según Kaspersky, los ataques de phishing en Colombia crecieron un 120% en 2024.</p>
-        `,
-        footer: 'No es un problema de sistemas. Es un problema de criterio. Y el criterio se puede desarrollar.',
-      },
-
-      // 4. Infografía — vectores de entrada
+      // 3. Infografía — vectores de entrada
       {
         type: 'infographic',
         title: '¿Por dónde entran los incidentes de seguridad?',
@@ -304,37 +293,33 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 5. 2.3 Intro — dos vías
+      // 4. Para profundizar — las cifras
+      {
+        type: 'more',
+        blocks: [
+          {
+            type: 'box',
+            variant: 'warning',
+            title: 'Cuando pensamos en un ataque informático, imaginamos a alguien frente a pantallas llenas de código intentando forzar la entrada a un sistema. La realidad es diferente.',
+            text: `
+              <p>Según el Verizon Data Breach Investigations Report 2024, el 68% de las brechas de seguridad a nivel global involucran un error humano o ingeniería social. El atacante no forzó ninguna puerta: alguien la abrió sin saberlo.</p>
+              <p>En Colombia, el Centro Cibernético Policial de la DIJIN reportó más de 77.000 denuncias por delitos informáticos en 2024, un crecimiento del 23% frente al año anterior. Y según Kaspersky, los ataques de phishing en Colombia crecieron un 120% en 2024.</p>
+            `,
+            footer: 'No es un problema de sistemas. Es un problema de criterio. Y el criterio se puede desarrollar.',
+          },
+        ],
+      },
+
+      // 5. Tema 2 — El mensaje que no es lo que parece
       {
         type: 'text',
-        title: 'Tema 2 — Las dos formas más comunes en que empieza un incidente',
+        title: 'Tema 2 — El mensaje que no es lo que parece',
         content: `
-          <p>Los incidentes relacionados con datos de pago casi siempre empiezan por una de estas dos vías:</p>
-          <p><strong><em>Un mensaje que parece legítimo pero no lo es.</em></strong></p>
-          <p><strong><em>Una solicitud que parece urgente y razonable pero tiene algo raro.</em></strong></p>
-          <p>Cada una de estas vías tiene señales de alerta que puedes aprender a reconocer. Eso es exactamente lo que vamos a ver ahora.</p>
+          <p>Te escriben haciéndose pasar por alguien de confianza para que hagas clic, entregues datos o pagues.</p>
         `,
       },
 
-      // 6. Vía 1 — explicación del phishing
-      {
-        type: 'text',
-        title: 'Vía 1 — El mensaje que no es lo que parece',
-        content: `
-          <p>El phishing es cuando alguien te envía un mensaje haciéndose pasar por una persona o entidad de confianza —tu banco, la DIAN, un proveedor, tu jefe— para conseguir que hagas algo: hacer clic en un enlace, ingresar tus datos, transferir dinero o abrir un archivo.</p>
-          <p>El objetivo no siempre es robarte a ti directamente. A veces el objetivo es usar tu acceso para llegar a los datos de pago que están en los sistemas de tu organización.</p>
-          <p>En Colombia, los mensajes de phishing más frecuentes en el entorno empresarial se hacen pasar por:</p>
-          <ul>
-            <li><strong>Bancolombia o Nequi:</strong> alertas de transacciones sospechosas o bloqueo de cuenta.</li>
-            <li><strong>La DIAN:</strong> citaciones tributarias o notificaciones de inconsistencias.</li>
-            <li><strong>Servicios de mensajería:</strong> paquetes retenidos que requieren pago de impuesto.</li>
-            <li><strong>El área de TI interna:</strong> solicitudes de actualización de contraseña o acceso a sistema.</li>
-            <li><strong>Proveedores conocidos:</strong> facturas urgentes para aprobar o datos bancarios a actualizar.</li>
-          </ul>
-        `,
-      },
-
-      // Video — Tres mensajes falsos
+      // 6. Video — Tres mensajes falsos
       {
         type: 'video',
         title: 'Tres mensajes falsos, señal por señal',
@@ -342,7 +327,7 @@ export const modules = [
         src: './videos/m2-mensajes-falsos.mp4',
       },
 
-      // 12. La regla
+      // 7. La regla
       {
         type: 'flyer',
         color: 'primary',
@@ -351,52 +336,52 @@ export const modules = [
         body: 'Ningún proceso legítimo de pago te va a pedir el número completo de la tarjeta y el CVV juntos por mensaje de texto, correo o WhatsApp después de que la compra ya se hizo. Si te lo piden así, es phishing.',
       },
 
-      // 13. Vía 2 — intro
+      // 8. Para profundizar — qué es el phishing y a quién suplantan
+      {
+        type: 'more',
+        blocks: [
+          {
+            type: 'text',
+            title: 'Qué es el phishing',
+            content: `
+              <p>El phishing es cuando alguien te envía un mensaje haciéndose pasar por una persona o entidad de confianza —tu banco, la DIAN, un proveedor, tu jefe— para conseguir que hagas algo: hacer clic en un enlace, ingresar tus datos, transferir dinero o abrir un archivo.</p>
+              <p>El objetivo no siempre es robarte a ti directamente. A veces el objetivo es usar tu acceso para llegar a los datos de pago que están en los sistemas de tu organización.</p>
+              <p>En Colombia, los mensajes de phishing más frecuentes en el entorno empresarial se hacen pasar por:</p>
+              <ul>
+                <li><strong>Bancolombia o Nequi:</strong> alertas de transacciones sospechosas o bloqueo de cuenta.</li>
+                <li><strong>La DIAN:</strong> citaciones tributarias o notificaciones de inconsistencias.</li>
+                <li><strong>Servicios de mensajería:</strong> paquetes retenidos que requieren pago de impuesto.</li>
+                <li><strong>El área de TI interna:</strong> solicitudes de actualización de contraseña o acceso a sistema.</li>
+                <li><strong>Proveedores conocidos:</strong> facturas urgentes para aprobar o datos bancarios a actualizar.</li>
+              </ul>
+            `,
+          },
+        ],
+      },
+
+      // 9. Tema 3 — La solicitud que tiene algo raro
       {
         type: 'text',
-        title: 'Vía 2 — La solicitud que tiene algo raro',
+        title: 'Tema 3 — La solicitud que tiene algo raro',
         content: `
-          <p>La ingeniería social no siempre llega por mensaje. A veces es una llamada, una visita, una conversación. Mira si reconoces alguna de estas cuatro situaciones en tu propio trabajo:</p>
+          <p>No siempre llega por mensaje: a veces es una llamada, una visita o un pedido de alguien conocido.</p>
         `,
       },
 
-      // 14. Escenario — Ventas
+      // 10. Cuatro situaciones, cuatro áreas
       {
-        type: 'box',
-        variant: 'warning',
-        title: 'Ventas',
-        text: 'Una persona que suele pagarte llama furiosa. Dice que Bancolombia le bloqueó la tarjeta y necesita que le proceses el pago directamente con los datos que te va a dictar por teléfono, "como excepción". Insiste en que es urgente y que ya habló con tu jefe.',
-        footer: 'Señal de alerta: ningún proceso autorizado de tu organización debería requerir que tomes datos de tarjeta por teléfono fuera del canal oficial. La urgencia y la presión son una técnica de manipulación.',
+        type: 'datatable',
+        title: 'Cuatro situaciones, cuatro áreas',
+        columns: ['Área', 'Qué pasa', 'La señal de alerta'],
+        rows: [
+          { icon: 'shopping-cart', highlight: 'orange', cells: ['Ventas', 'Una persona que suele pagarte llama furiosa. Dice que Bancolombia le bloqueó la tarjeta y necesita que le proceses el pago directamente con los datos que te va a dictar por teléfono, "como excepción". Insiste en que es urgente y que ya habló con tu jefe.', 'Ningún proceso autorizado de tu organización debería requerir que tomes datos de tarjeta por teléfono fuera del canal oficial. La urgencia y la presión son una técnica de manipulación.'] },
+          { icon: 'users', highlight: 'blue', cells: ['RRHH', 'Recibes un correo de alguien que dice ser el nuevo proveedor de nómina. Te pide que confirmes los datos bancarios de los empleados para "sincronizar el sistema antes del cierre de mes". El correo parece profesional y cita el nombre de tu jefe.', 'Los datos bancarios de los empleados son información sensible. Ningún proveedor legítimo necesita que se los confirmes por correo. Verifica siempre por un canal independiente antes de compartir cualquier dato.'] },
+          { icon: 'clipboard', highlight: 'default', cells: ['Administración', 'Un hombre se presenta en recepción diciendo que viene a revisar los datáfonos. Trae chaleco con el logo de una empresa de tecnología. Pide que lo dejen a solas con los equipos "para no interrumpir el trabajo de nadie".', 'Cualquier visita de soporte técnico debe estar registrada y acompañada. Nadie debe tener acceso sin supervisión a equipos que procesan datos de pago. Solicita identificación y llama a confirmar la visita con el proveedor directamente.'] },
+          { icon: 'briefcase', highlight: 'red', cells: ['Liderazgo', 'Recibes un mensaje de WhatsApp del número de tu gerente general. Te pide que hagas una transferencia urgente a una cuenta nueva de un proveedor. Dice que está en una reunión y no puede hablar, solo necesita la confirmación.', 'Este es el llamado "fraude del CEO". Los delincuentes clonan o suplantan el número del directivo. Ante cualquier solicitud financiera urgente por canal informal, llama al número de siempre para verificar antes de ejecutar.'] },
+        ],
       },
 
-      // 15. Escenario — RRHH
-      {
-        type: 'box',
-        variant: 'info',
-        title: 'RRHH',
-        text: 'Recibes un correo de alguien que dice ser el nuevo proveedor de nómina. Te pide que confirmes los datos bancarios de los empleados para "sincronizar el sistema antes del cierre de mes". El correo parece profesional y cita el nombre de tu jefe.',
-        footer: 'Señal de alerta: los datos bancarios de los empleados son información sensible. Ningún proveedor legítimo necesita que se los confirmes por correo. Verifica siempre por un canal independiente antes de compartir cualquier dato.',
-      },
-
-      // 16. Escenario — Administración
-      {
-        type: 'box',
-        variant: 'purple',
-        title: 'Administración',
-        text: 'Un hombre se presenta en recepción diciendo que viene a revisar los datáfonos. Trae chaleco con el logo de una empresa de tecnología. Pide que lo dejen a solas con los equipos "para no interrumpir el trabajo de nadie".',
-        footer: 'Señal de alerta: cualquier visita de soporte técnico debe estar registrada y acompañada. Nadie debe tener acceso sin supervisión a equipos que procesan datos de pago. Solicita identificación y llama a confirmar la visita con el proveedor directamente.',
-      },
-
-      // 17. Escenario — Liderazgo
-      {
-        type: 'box',
-        variant: 'accent',
-        title: 'Liderazgo',
-        text: 'Recibes un mensaje de WhatsApp del número de tu gerente general. Te pide que hagas una transferencia urgente a una cuenta nueva de un proveedor. Dice que está en una reunión y no puede hablar, solo necesita la confirmación.',
-        footer: 'Señal de alerta: este es el llamado "fraude del CEO". Los delincuentes clonan o suplantan el número del directivo. Ante cualquier solicitud financiera urgente por canal informal, llama al número de siempre para verificar antes de ejecutar.',
-      },
-
-      // 18. Lo que tienen en común — palancas y señales de alerta
+      // 11. Lo que tienen en común — palancas y señales de alerta
       {
         type: 'box',
         variant: 'accent',
