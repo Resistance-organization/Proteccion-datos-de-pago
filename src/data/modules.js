@@ -203,7 +203,8 @@ export const modules = [
       {
         type: 'hero',
         title: '¿Qué estamos protegiendo y por qué importa?',
-        subtitle: 'Dominio PCI DSS 4.0.1: Requisito 3 (Protección de datos de cuenta) y Requisito 12.6 (Programa de concientización)',
+        subtitle: 'Qué datos de tarjeta pasan por tus manos y por qué valen tanto',
+        requirements: 'PCI DSS 4.0.1 · Requisito 3 (Protección de datos de cuenta) y Requisito 12.6 (Programa de concientización)',
         accent: 'primary',
       },
 
@@ -286,8 +287,6 @@ export const modules = [
         variant: 'warning',
         title: 'Esto no es un escenario hipotético.',
         text: `
-          <p>Según el Verizon Data Breach Investigations Report 2024, el 68% de las brechas de seguridad a nivel global involucran un error humano o un proceso mal diseñado, no un ataque técnico sofisticado. El mismo informe señala que el costo promedio de una brecha relacionada con datos de pago es significativamente mayor cuando la causa es un proceso interno sin controles, precisamente porque nadie detecta el problema hasta que ya escaló.</p>
-          <p>En Colombia, el Centro Cibernético Policial de la DIJIN reportó más de 77.000 denuncias por delitos informáticos en 2024. La mayoría de esos casos no empiezan vulnerando sistemas: empiezan por un proceso mal diseñado o una decisión que pareció inofensiva en el momento, como la de Carlos Andrés y el archivo compartido.</p>
           <p>Esto aplica a cualquier organización que procese datos de pago: comercios, pasarelas de pago, empresas de servicios o proveedores que manejan datos de pago de terceros, sin importar su tamaño.</p>
         `,
         footer: 'La pregunta no es si esto le puede pasar a tu organización. La pregunta es qué tan preparado estás para que no te pase a ti.',
@@ -416,7 +415,8 @@ export const modules = [
       {
         type: 'hero',
         title: '¿Cómo empiezan los incidentes?',
-        subtitle: 'Dominio PCI DSS 4.0.1: Requisito 5.4 (Protección contra phishing) y Requisito 12.6.3 (Concientización sobre amenazas de ingeniería social)',
+        subtitle: 'Los mensajes y las solicitudes con los que empieza casi todo',
+        requirements: 'PCI DSS 4.0.1 · Requisito 5.4 (Protección contra phishing) y Requisito 12.6.3 (Concientización sobre amenazas de ingeniería social)',
         accent: 'secondary',
       },
 
@@ -737,7 +737,8 @@ export const modules = [
       {
         type: 'hero',
         title: '¿Cómo evitamos ser parte del problema?',
-        subtitle: 'Dominio PCI DSS 4.0.1: Requisito 4.2 (Transmisión segura de datos), Requisito 8 (Control de acceso y credenciales), Requisito 9.4 (Protección de medios físicos) y Requisito 12.6 (Concientización)',
+        subtitle: 'Tres reglas que puedes aplicar hoy',
+        requirements: 'PCI DSS 4.0.1 · Requisito 4.2 (Transmisión segura de datos), Requisito 8 (Control de acceso y credenciales), Requisito 9.4 (Protección de medios físicos) y Requisito 12.6 (Concientización)',
         accent: 'primary',
       },
 
@@ -973,7 +974,8 @@ export const modules = [
       {
         type: 'hero',
         title: '¿Qué hacemos cuando ocurre un incidente?',
-        subtitle: 'Dominio PCI DSS 4.0.1: Requisito 12.10 (Plan de respuesta a incidentes), Requisito 10.3 (Preservación de registros de auditoría) y Requisito 12.6.3 (Concientización sobre respuesta a incidentes)',
+        subtitle: 'Qué hacer en los primeros minutos',
+        requirements: 'PCI DSS 4.0.1 · Requisito 12.10 (Plan de respuesta a incidentes), Requisito 10.3 (Preservación de registros de auditoría) y Requisito 12.6.3 (Concientización sobre respuesta a incidentes)',
         accent: 'secondary',
       },
 
@@ -1146,12 +1148,12 @@ export const modules = [
               { key: 'A', text: 'Cierras la sesión del sistema de facturación y limpias el historial del navegador para que nadie vea qué se consultó.' },
               { key: 'B', text: 'Sin tocar el equipo, contactas de inmediato al responsable de seguridad o al canal oficial de tu organización para reportar lo que encontraste.' },
               { key: 'C', text: 'Llamas a un compañero de confianza para preguntarle si sabe qué pasó antes de reportarlo oficialmente.' },
-              { key: 'D', text: 'Dejas el equipo encendido y sin modificaciones, y anotas la hora exacta en que lo encontraste y lo que observaste.' },
-              { key: 'E', text: 'Esperas instrucciones del equipo de seguridad antes de volver a usar el equipo.' },
+              { key: 'D', text: 'Dejas el equipo encendido, sin tocar nada.' },
+              { key: 'E', text: 'Anotas en otro dispositivo lo que viste y la hora, y esperas instrucciones del equipo de seguridad antes de volver a usar el equipo.' },
               { key: 'F', text: 'Apagas el equipo para que nadie más pueda acceder mientras llega el equipo de seguridad.' },
             ],
             correctOrder: ['D', 'B', 'E'],
-            justification: 'Orden correcto: D → B → E. Primero (D) dejas el equipo intacto y documentas lo que encontraste —hora, qué viste, en qué sistema— en otro dispositivo, sin tocar el equipo involucrado. Segundo (B) reportas de inmediato al canal oficial: no por WhatsApp personal ni por correo a un compañero. Tercero (E) tu rol terminó cuando reportaste, así que esperas instrucciones y no tomas decisiones técnicas por tu cuenta. Las otras tres son incorrectas: (A) cerrar la sesión y limpiar el historial destruye evidencia que el equipo de seguridad necesita; (C) consultar a un compañero antes de reportar retrasa la respuesta y puede contaminar la investigación; (F) apagar el equipo destruye evidencia en memoria (RAM) de forma permanente. Reporta primero y recibe instrucciones antes de actuar.',
+            justification: 'Orden correcto: D → B → E, es decir: para, reporta, documenta y espera. Primero (D) paras: dejas el equipo encendido y no tocas nada, para no alterar la evidencia. Segundo (B) reportas de inmediato al canal oficial: no por WhatsApp personal ni por correo a un compañero. Tercero (E) documentas en otro dispositivo —no en el equipo involucrado— lo que viste y la hora, y esperas instrucciones: tu rol terminó cuando reportaste, así que no tomas decisiones técnicas por tu cuenta. Las otras tres son incorrectas: (A) cerrar la sesión y limpiar el historial destruye evidencia que el equipo de seguridad necesita; (C) consultar a un compañero antes de reportar retrasa la respuesta y puede contaminar la investigación; (F) apagar el equipo destruye evidencia en memoria (RAM) de forma permanente. Reporta primero y recibe instrucciones antes de actuar.',
           },
         ],
       },
@@ -1227,7 +1229,8 @@ export const modules = [
       {
         type: 'hero',
         title: '¿Cómo lo aplico en mi trabajo?',
-        subtitle: 'Dominio PCI DSS 4.0.1: Requisito 12.6.3 (Verificación de comprensión y aplicación) y Requisito 12.6.3.2 (Evaluación de concientización)',
+        subtitle: 'Llevar lo que aprendiste a tu trabajo',
+        requirements: 'PCI DSS 4.0.1 · Requisito 12.6.3 (Verificación de comprensión y aplicación) y Requisito 12.6.3.2 (Evaluación de concientización)',
         accent: 'accent',
       },
 
@@ -1365,10 +1368,10 @@ export const modules = [
         type: 'box',
         variant: 'accent',
         iconItems: [
-          { icon: '1️⃣', text: 'M1 — Sabés qué protegemos y por qué tiene valor.' },
-          { icon: '2️⃣', text: 'M2 — Sabés reconocer cómo intentan obtenerlo.' },
-          { icon: '3️⃣', text: 'M3 — Sabés qué hacer para no ser parte del problema.' },
-          { icon: '4️⃣', text: 'M4 — Sabés qué hacer si algo sale mal.' },
+          { icon: '1️⃣', text: 'M1 — Sabes qué protegemos y por qué tiene valor.' },
+          { icon: '2️⃣', text: 'M2 — Sabes reconocer cómo intentan obtenerlo.' },
+          { icon: '3️⃣', text: 'M3 — Sabes qué hacer para no ser parte del problema.' },
+          { icon: '4️⃣', text: 'M4 — Sabes qué hacer si algo sale mal.' },
         ],
         footer: 'La seguridad de los datos de pago no depende solo de los sistemas. Depende de las decisiones que toma cada persona del equipo, todos los días.',
       },

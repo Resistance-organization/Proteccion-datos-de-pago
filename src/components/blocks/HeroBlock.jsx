@@ -137,6 +137,18 @@ export default function HeroBlock({ block, module, moduleNumber, estimatedTime }
           </motion.p>
         )}
 
+        {/* Referencia normativa, discreta */}
+        {block.requirements && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.38, duration: 0.4 }}
+            className="mt-3 font-body text-white/50 text-xs sm:text-sm max-w-2xl leading-relaxed"
+          >
+            {block.requirements}
+          </motion.p>
+        )}
+
         {/* Nivel 4 — qué contiene */}
         {stats.length > 0 && (
           <motion.ul
