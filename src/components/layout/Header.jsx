@@ -54,10 +54,8 @@ export default function Header({ currentModule, totalModules, completedCount, si
       {/* Logo */}
       <img src="./Logo.png" alt="Resistance" className="hidden sm:block h-8 w-auto flex-shrink-0" />
 
-      <div className="hidden sm:block h-7 w-px bg-gray-200 flex-shrink-0" />
-
-      {/* Dónde estoy: módulo y tema actual */}
-      <div className="flex-1 min-w-0">
+      {/* Dónde estoy: módulo, tema y título, alineados a la derecha */}
+      <div className="flex-1 min-w-0 text-right">
         <p className="text-[11px] font-title font-semibold uppercase tracking-[0.18em] text-secondary truncate">
           Módulo {currentModule.id}
           {showTema && <span className="text-gray-400"> · Tema {temaIndex + 1} de {temaTotal}</span>}
@@ -69,19 +67,14 @@ export default function Header({ currentModule, totalModules, completedCount, si
 
       {/* Progreso del curso */}
       <div
-        className="relative flex-shrink-0 flex items-center gap-2.5"
+        className="relative flex-shrink-0"
         title={`${completedCount} de ${totalModules} módulos completados`}
+        aria-label={`Progreso del curso: ${completedCount} de ${totalModules} módulos completados`}
       >
-        <span className="hidden md:block text-right leading-tight">
-          <span className="block text-[11px] font-body text-gray-400">Progreso del curso</span>
-          <span className="block text-xs font-body font-semibold text-gray-600">{completedCount} de {totalModules} módulos</span>
+        <ProgressRing value={progress} />
+        <span className="absolute inset-0 flex items-center justify-center text-[11px] font-title font-bold text-primary">
+          {progress}%
         </span>
-        <div className="relative">
-          <ProgressRing value={progress} />
-          <span className="absolute inset-0 flex items-center justify-center text-[11px] font-title font-bold text-primary">
-            {progress}%
-          </span>
-        </div>
       </div>
 
       {/* Lectura del módulo actual */}
