@@ -40,7 +40,7 @@ export const modules = [
     title: 'Bienvenida',
     description: 'Por qué este curso importa en tu trabajo.',
     icon: 'compass',
-    estimatedTime: '5 min',
+    estimatedTime: '3 min',
     blocks: [
       // 1. Portada
       {
@@ -76,7 +76,7 @@ export const modules = [
     title: '¿Qué estamos protegiendo y por qué importa?',
     description: 'Qué son los datos de pago y qué consecuencias reales tiene exponerlos.',
     icon: '💳',
-    estimatedTime: '12–15 min',
+    estimatedTime: '10 min',
     blocks: [
       // 1. Portada
       {
@@ -282,7 +282,7 @@ export const modules = [
     title: '¿Cómo empiezan los incidentes?',
     description: 'Las señales que preceden a un incidente, antes de que escale.',
     icon: '🎣',
-    estimatedTime: '12–14 min',
+    estimatedTime: '14 min',
     blocks: [
       // 1. Portada
       {
@@ -532,7 +532,7 @@ export const modules = [
     title: '¿Cómo evitamos ser parte del problema?',
     description: 'Tres reglas concretas: canales, credenciales y entorno de trabajo.',
     icon: '🛡️',
-    estimatedTime: '15–18 min',
+    estimatedTime: '15 min',
     blocks: [
       // 1. Portada
       {
@@ -761,7 +761,7 @@ export const modules = [
     title: '¿Qué hacemos cuando ocurre un incidente?',
     description: 'Los primeros pasos correctos cuando algo sale mal.',
     icon: '🚨',
-    estimatedTime: '12–15 min',
+    estimatedTime: '11 min',
     blocks: [
       // 1. Portada
       {
@@ -922,7 +922,7 @@ export const modules = [
     title: '¿Cómo lo aplico en mi trabajo?',
     description: 'Tres situaciones reales para cerrar el recorrido.',
     icon: '🎓',
-    estimatedTime: '10–12 min',
+    estimatedTime: '11 min',
     blocks: [
       // 1. Portada
       {

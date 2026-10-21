@@ -61,7 +61,7 @@ export default function ModuleFooter({ currentIndex, total, nextModule, isDone, 
             </h2>
             <p className="mt-2 font-body text-white/75 text-base leading-relaxed">
               {isLast
-                ? 'Elige tu sede y descarga el certificado que acredita que completaste el curso.'
+                ? 'Descarga el certificado que acredita que completaste el curso.'
                 : heroSubtitle(nextModule)}
             </p>
             {!isLast && nextModule.estimatedTime && (

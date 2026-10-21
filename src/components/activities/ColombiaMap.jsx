@@ -17,7 +17,7 @@ const CITIES = [
   {
     name: 'Bogotá D.C.',
     level: 'Muy Alto',
-    reason: 'Concentración de sedes administrativas y financieras',
+    reason: 'Concentración de oficinas administrativas y financieras',
     coordinates: [-74.07, 4.71],
     anchor: 'right',
   },

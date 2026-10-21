@@ -33,7 +33,7 @@ Cada módulo contiene un array de `blocks`. Tipos disponibles (ver también el c
 
 | Tipo | Componente | Uso |
 |---|---|---|
-| `hero` | `HeroBlock` | Portada del módulo |
+| `hero` | `HeroBlock` | Portada del módulo (`title`, `subtitle` en lenguaje simple, `requirements` opcional con los requisitos PCI DSS en texto chico) |
 | `text` | `TextBlock` | HTML enriquecido (`content` es HTML raw) |
 | `box` | `InfoBox` | Caja destacada — `variant`: `accent`\|`info`\|`warning`\|`success`\|`purple`; soporta `title`, `text` (HTML), `iconItems[]`, `items[]`, `footer` |
 | `datatable` | `DataTable` | Selector de chips + panel de detalle (`columns[]`, `rows[]` con `{icon, highlight, cells[]}`) |
@@ -45,7 +45,7 @@ Cada módulo contiene un array de `blocks`. Tipos disponibles (ver también el c
 | `slides` | `Slides` | Presentación JSX interna |
 | `infographic` | `Infographic` | Imagen estática (`image:`) o HTML embebido en iframe (`src:`) |
 | `iframepresentation` | `IframePresentation` | PPT standalone en HTML cargada en iframe (`src:`) |
-| `video` | `VideoPlayer` | Video HTML5 o YouTube |
+| `video` | `VideoPlayer` | Video HTML5 o YouTube (`title`, `description`, `src`). Si un archivo local no carga, muestra "Video en preparación" |
 | `quiz` | `Quiz` | Quiz calificado con retroalimentación por pregunta — afecta el desbloqueo de módulos (`passingScore` opcional, default 80) |
 | `scenario` | `ScenarioQuiz` | Simulación ramificada con mockups (`sms`\|`email`\|`wifi`\|`whatsapp`\|`instagram`), retroalimentación por opción — diagnóstico, **no bloquea** el avance |
 | `scenariobuilder` | `ScenarioBuilder` | Actividad de ordenar (`mode: 'order'`) o seleccionar (`mode: 'select'`) opciones, con distractores — **no bloquea** el avance |
@@ -82,18 +82,19 @@ Las rutas en los bloques son relativas al build (ej. `./Infografías/M1-DatosQue
 | Carpeta | Contenido |
 |---|---|
 | `public/Infografías/*.html` | Infografías interactivas en HTML (embebidas en iframe), una por recurso "INFOGRAFÍA" o "PIEZA GRÁFICA" del contenido fuente. Siguen un template común: frame de 1080px de ancho, fuentes Plus Jakarta Sans/Inter vía Google Fonts, script de auto-resize por `postMessage`. Logo en `../Logo.png`. |
+| `public/videos/*.mp4` | Videos locales del curso (lista en `public/videos/README.md`). No se versionan en git; entran al ZIP desde esta carpeta |
 | `public/Logo*.png` | Logos usados dentro de las infografías y el certificado |
 
 ### Módulos del curso
 
 | # | Título | Tiempo | Actividad de validación | Criterio de avance |
 |---|---|---|---|---|
-| 0 | Bienvenida | — | — | Placeholder, contenido pendiente |
-| 1 | ¿Qué estamos protegiendo y por qué importa? | 12–15 min | Clasificación de datos protegidos (`quiz`) | 5/6 correctas |
-| 2 | ¿Cómo empiezan los incidentes? | 12–14 min | Simulación de phishing (`scenario`) | Diagnóstico, no bloquea |
-| 3 | ¿Cómo evitamos ser parte del problema? | 15–18 min | Pares correcto/incorrecto (`quiz`) | 5/6 correctas |
-| 4 | ¿Qué hacemos cuando ocurre un incidente? | 12–15 min | Ordenamiento de acciones (`scenariobuilder`) | Orden correcto D→B→E (no bloquea técnicamente) |
-| 5 | ¿Cómo lo aplico en mi trabajo? | 10–12 min | 3 situaciones integradoras (`quiz`, passingScore 100) | Las 3 correctas |
+| 0 | Bienvenida | 3 min | — (video de bienvenida) | Solo lectura |
+| 1 | ¿Qué estamos protegiendo y por qué importa? | 10 min | Clasificación de datos protegidos (`quiz`) | 5/6 correctas |
+| 2 | ¿Cómo empiezan los incidentes? | 14 min | Simulación de phishing (`scenario`) | Diagnóstico, no bloquea |
+| 3 | ¿Cómo evitamos ser parte del problema? | 15 min | Pares correcto/incorrecto (`quiz`) | 5/6 correctas |
+| 4 | ¿Qué hacemos cuando ocurre un incidente? | 11 min | Ordenamiento de acciones (`scenariobuilder`) | Orden correcto D→B→E: para, reporta, documenta y espera (no bloquea técnicamente) |
+| 5 | ¿Cómo lo aplico en mi trabajo? | 11 min | 3 situaciones integradoras (`quiz`, passingScore 100) | Las 3 correctas |
 
 ### Certificado (`src/components/CertificateScreen.jsx`)
 

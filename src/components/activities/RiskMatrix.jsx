@@ -47,7 +47,7 @@ const EXAMPLES = [
   },
   {
     id: 'e3',
-    label: 'Envío erróneo de listado de clientes',
+    label: 'Envío erróneo de listado de tarjetahabientes',
     probability: 3,
     impact: 4,
     description: 'Probabilidad Media × Impacto Mayor = Riesgo Crítico',
