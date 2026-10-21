@@ -64,7 +64,7 @@ export const modules = [
       {
         type: 'text',
         content: `
-          <p>Son cinco módulos de 10 a 15 minutos. Al final recibirás tu certificado.</p>
+          <p>Son cinco módulos de 7 a 15 minutos. Al final recibirás tu certificado.</p>
         `,
       },
     ],
@@ -78,7 +78,7 @@ export const modules = [
     title: '¿Qué estamos protegiendo y por qué importa?',
     description: 'Qué son los datos de pago y qué consecuencias reales tiene exponerlos.',
     icon: '💳',
-    estimatedTime: '10 min',
+    estimatedTime: '7 min',
     blocks: [
       // 1. Portada
       {
@@ -264,7 +264,7 @@ export const modules = [
     title: '¿Cómo empiezan los incidentes?',
     description: 'Las señales que preceden a un incidente, antes de que escale.',
     icon: '🎣',
-    estimatedTime: '14 min',
+    estimatedTime: '12 min',
     blocks: [
       // 1. Portada
       {
@@ -851,7 +851,7 @@ export const modules = [
     title: '¿Cómo lo aplico en mi trabajo?',
     description: 'Tres situaciones reales para cerrar el recorrido.',
     icon: '🎓',
-    estimatedTime: '11 min',
+    estimatedTime: '9 min',
     blocks: [
       // 1. Portada
       {

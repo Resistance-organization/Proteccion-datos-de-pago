@@ -91,11 +91,11 @@ Las rutas en los bloques son relativas al build (ej. `./Infografías/M1-DatosQue
 | # | Título | Tiempo | Actividad de validación | Criterio de avance |
 |---|---|---|---|---|
 | 0 | Bienvenida | 3 min | — (video de bienvenida) | Solo lectura |
-| 1 | ¿Qué estamos protegiendo y por qué importa? | 10 min | Clasificación de datos protegidos (`quiz`) | 5/6 correctas |
-| 2 | ¿Cómo empiezan los incidentes? | 14 min | Simulación de phishing (`scenario`) | Diagnóstico, no bloquea |
+| 1 | ¿Qué estamos protegiendo y por qué importa? | 7 min | Clasificación de datos protegidos (`quiz`) | 5/6 correctas |
+| 2 | ¿Cómo empiezan los incidentes? | 12 min | Simulación de phishing (`scenario`) | Diagnóstico, no bloquea |
 | 3 | ¿Cómo evitamos ser parte del problema? | 15 min | Pares correcto/incorrecto (`quiz`) | 5/6 correctas |
 | 4 | ¿Qué hacemos cuando ocurre un incidente? | 11 min | Ordenamiento de acciones (`scenariobuilder`) | Orden correcto D→B→E: para, reporta, documenta y espera (no bloquea técnicamente) |
-| 5 | ¿Cómo lo aplico en mi trabajo? | 11 min | 3 situaciones integradoras (`quiz`, passingScore 100) | Las 3 correctas |
+| 5 | ¿Cómo lo aplico en mi trabajo? | 9 min | 3 situaciones integradoras (`quiz`, passingScore 100) | Las 3 correctas |
 
 ### Certificado (`src/components/CertificateScreen.jsx`)
 
