@@ -33,27 +33,158 @@ export const courseInfo = {
 
 export const modules = [
   // ─────────────────────────────────────
-  // MÓDULO 0 — Apertura del curso
-  // (Pendiente de contenido)
+  // MÓDULO 0 — Bienvenida
+  // (Redactado sin PDF fuente del negocio — pendiente de validación)
   // ─────────────────────────────────────
   {
     id: 0,
     title: 'Bienvenida',
-    description: 'Antes de empezar',
-    icon: '👋',
-    estimatedTime: '—',
+    description: 'Por qué este curso es para ti y cómo vas a recorrerlo.',
+    icon: 'compass',
+    estimatedTime: '5 min',
     blocks: [
+      // 1. Portada
       {
         type: 'hero',
-        title: 'Protección de Datos de Pago',
-        subtitle: 'Curso de concientización en PCI DSS 4.0.1',
+        title: 'Bienvenida',
+        subtitle: 'Por qué este curso es para ti y cómo vas a recorrerlo',
         accent: 'primary',
       },
+
+      // 2. Apertura
       {
         type: 'text',
         content: `
-          <p>Contenido pendiente — este módulo de apertura se completará más adelante.</p>
+          <p><strong>Cada día, en tu organización, alguien recibe un dato de tarjeta.</strong></p>
+          <p>Un cliente que dicta su número por teléfono para pagar una factura. Un correo con la foto de una tarjeta "para agilizar" un reembolso. Una captura de pantalla que alguien reenvía por WhatsApp sin pensarlo dos veces.</p>
+          <p>En cada uno de esos momentos hay una decisión. Y esa decisión casi nunca la toma el área de tecnología: la toma la persona que tiene el dato enfrente.</p>
+          <p>Este curso existe para que, cuando ese momento llegue, sepas exactamente qué hacer.</p>
         `,
+      },
+
+      // 3. Tema 1 — Por qué estás aquí
+      {
+        type: 'text',
+        title: 'Tema 1 — Por qué este curso es para ti',
+        content: `
+          <p>No necesitas trabajar en sistemas ni atender pagos todo el día para que este curso aplique a ti. Basta con que, de vez en cuando, veas, escuches, recibas o reenvíes información de una tarjeta de pago.</p>
+        `,
+      },
+
+      // 4. A quiénes aplica dentro de la organización
+      {
+        type: 'box',
+        variant: 'accent',
+        title: 'Los datos de pago pasan por más áreas de las que parece',
+        iconItems: [
+          { icon: 'phone', text: 'Atención al cliente y ventas — reciben pagos por teléfono, chat o en persona.' },
+          { icon: 'receipt', text: 'Facturación, cartera y tesorería — gestionan cobros, reembolsos y conciliaciones.' },
+          { icon: 'users', text: 'Recursos humanos y administración — reciben soportes de gastos, anticipos y reembolsos.' },
+          { icon: 'laptop', text: 'Tecnología y soporte — administran los sistemas donde esos datos se procesan.' },
+          { icon: 'briefcase', text: 'Liderazgo — aprueba procesos y excepciones que pueden exponer esos datos.' },
+        ],
+        footer: 'Si tu rol aparece aquí, o si alguna vez un dato de tarjeta llegó a tu correo o a tu celular, este curso es para ti.',
+      },
+
+      // 5. Por qué es obligatorio
+      {
+        type: 'box',
+        variant: 'info',
+        title: '¿Por qué tengo que hacer este curso?',
+        text: `
+          <p>El estándar <strong>PCI DSS 4.0.1</strong>, que define cómo deben protegerse los datos de pago, exige que toda organización que los maneje tenga un programa formal de concientización en seguridad (Requisito 12.6).</p>
+          <p>Ese programa incluye formación al ingresar a la organización y, como mínimo, una vez cada 12 meses. También debe cubrir amenazas como el phishing y la ingeniería social, que vas a ver en el módulo 2.</p>
+        `,
+        footer: 'Por eso el certificado de este curso tiene una vigencia de 12 meses.',
+      },
+
+      // 6. Pregunta rápida
+      {
+        type: 'quickcheck',
+        context: 'Antes de seguir, una pregunta para ubicarte.',
+        question: '¿Quién es responsable de proteger los datos de pago en tu organización?',
+        options: [
+          'El área de tecnología y seguridad.',
+          'El banco o la pasarela de pago que procesa la transacción.',
+          'Cada persona que ve, escucha, recibe o reenvía un dato de pago.',
+          'Solo quien atiende pagos directamente.',
+        ],
+        correct: 2,
+        explanation: 'Los sistemas y los proveedores ponen controles, pero no pueden impedir que alguien anote un número en un papel o lo reenvíe por un canal no autorizado. La protección depende de las decisiones de cada persona que tiene el dato enfrente, aunque sea una sola vez.',
+      },
+
+      // 7. Tema 2 — Cómo funciona el curso
+      {
+        type: 'text',
+        title: 'Tema 2 — Cómo vas a recorrer el curso',
+        content: `
+          <p>El curso tiene cinco módulos. Cada uno responde una pregunta concreta y se apoya en el anterior: primero entiendes qué proteges, después cómo intentan obtenerlo, qué hacer para evitarlo, qué hacer si algo sale mal y, al final, cómo se ve todo esto en tu trabajo.</p>
+          <p>Los módulos se abren en orden. Para pasar al siguiente, recorre el contenido completo y aprueba la actividad de validación del módulo, si la tiene.</p>
+        `,
+      },
+
+      // 8. Recorrido del curso
+      {
+        type: 'datatable',
+        title: 'Tu recorrido',
+        columns: ['Módulo', 'La pregunta', 'Qué vas a poder hacer'],
+        rows: [
+          { icon: '1', highlight: 'blue', cells: ['¿Qué estamos protegiendo y por qué importa?', 'Distinguir qué datos de tarjeta se pueden guardar con controles y cuáles nunca se pueden guardar.'] },
+          { icon: '2', highlight: 'orange', cells: ['¿Cómo empiezan los incidentes?', 'Reconocer un mensaje o una solicitud sospechosa antes de que se convierta en un incidente.'] },
+          { icon: '3', highlight: 'green', cells: ['¿Cómo evitamos ser parte del problema?', 'Aplicar tres reglas: solo canales autorizados, credenciales protegidas y un entorno de trabajo controlado.'] },
+          { icon: '4', highlight: 'red', cells: ['¿Qué hacemos cuando ocurre un incidente?', 'Actuar en los primeros minutos: parar, reportar, documentar y esperar instrucciones.'] },
+          { icon: '5', highlight: 'blue', cells: ['¿Cómo lo aplico en mi trabajo?', 'Resolver tres situaciones reales que integran todo lo que aprendiste y obtener tu certificado.'] },
+        ],
+      },
+
+      // 9. Cómo se aprueba
+      {
+        type: 'box',
+        variant: 'success',
+        title: 'Cómo avanzas y cómo apruebas',
+        items: [
+          'Los módulos 1 y 3 tienen un quiz de validación: necesitas al menos 5 de 6 respuestas correctas.',
+          'El módulo 5 cierra con tres situaciones integradoras: necesitas responder las tres correctamente.',
+          'Puedes repetir los quizzes las veces que necesites.',
+          'Las simulaciones, las actividades de ordenar, las autoevaluaciones y las reflexiones no tienen nota: son para que practiques y pienses en tu propio trabajo.',
+          'Tu progreso se guarda automáticamente. Puedes salir y retomar donde quedaste.',
+        ],
+        footer: 'Al terminar el módulo 5 eliges tu sede y descargas tu certificado.',
+      },
+
+      // 10. Autoevaluación de punto de partida
+      {
+        type: 'selfcheck',
+        title: '¿Desde dónde empiezas?',
+        subtitle: 'Dos preguntas rápidas, sin nota. Responde con lo que realmente pasa en tu día a día.',
+        questions: [
+          {
+            id: 'm0_contacto_datos',
+            question: '¿Con qué frecuencia tienes contacto con datos de tarjeta en tu trabajo?',
+            options: ['Todos los días.', 'De vez en cuando.', 'Casi nunca, o no estoy seguro.'],
+          },
+          {
+            id: 'm0_que_hacer',
+            question: 'Si hoy un cliente te enviara la foto de su tarjeta por WhatsApp, ¿sabrías qué hacer?',
+            options: ['Sí, tengo claro el procedimiento.', 'Tengo una idea, pero no estoy seguro.', 'No sabría qué hacer.'],
+          },
+        ],
+        resultTitle: 'Cualquiera que sea tu respuesta, este es el lugar correcto.',
+        resultText: 'Si tienes contacto frecuente con datos de pago, el curso te ayudará a confirmar que lo estás haciendo bien. Si es ocasional, te preparará para el día en que ocurra, que suele ser cuando nadie lo espera. Y la respuesta a la pregunta del WhatsApp la vas a encontrar en el módulo 3.',
+      },
+
+      // 11. Cierre del módulo
+      {
+        type: 'closing',
+        moduleLabel: 'Bienvenida completada',
+        title: 'Bienvenida',
+        summary: 'Ya sabes por qué este curso aplica a ti, por qué es obligatorio y cómo vas a recorrerlo. La protección de los datos de pago no depende solo de los sistemas: depende de las decisiones de cada persona que tiene un dato enfrente.',
+        takeaways: [
+          'Los datos de pago pasan por muchas áreas, no solo por quien atiende pagos.',
+          'PCI DSS 4.0.1 exige formación en concientización al ingresar y al menos una vez cada 12 meses.',
+          'Los módulos se abren en orden; los quizzes de validación requieren 80% o más.',
+        ],
+        nextHint: 'En el módulo 1 vas a ver qué datos de tarjeta protegemos y por qué tienen tanto valor.',
       },
     ],
   },

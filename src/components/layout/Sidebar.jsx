@@ -1,20 +1,12 @@
 import { useState } from 'react'
 import { CheckCircle, Circle, Lock, Clock, LogOut, RotateCcw, ArrowRight } from 'lucide-react'
 import { MOODLE_COURSE_URL } from '../../config'
-import { TEMA_PATTERN, temaId } from '../../utils/temaSlug'
+import { courseInfo } from '../../data/modules'
+import { getModuleTemas } from '../../utils/temaSlug'
+import Icon from '../ui/Icon'
 import { motion, AnimatePresence } from 'framer-motion'
 
-function getModuleTemas(mod) {
-  if (!mod?.blocks) return []
-  return mod.blocks
-    .filter(b => b.type === 'text' && TEMA_PATTERN.test(b.title || ''))
-    .map(b => {
-      const [, , temaNumber, temaTitle] = b.title.match(TEMA_PATTERN)
-      return { id: temaId(mod.id, temaNumber), number: temaNumber, title: temaTitle }
-    })
-}
-
-export default function Sidebar({ modules, currentIndex, completedModules, onSelectModule, isOpen, isModuleUnlocked, scrollProgress = 0, onReset, bookmarkedTema }) {
+export default function Sidebar({ modules, currentIndex, completedModules, onSelectModule, isOpen, isModuleUnlocked, onReset, bookmarkedTema, currentTemaId, onClose }) {
   const [showResetConfirm, setShowResetConfirm] = useState(false)
   return (
     <AnimatePresence>
@@ -24,37 +16,17 @@ export default function Sidebar({ modules, currentIndex, completedModules, onSel
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -300, opacity: 0 }}
           transition={{ type: 'tween', duration: 0.25 }}
-          className="fixed left-0 top-16 bottom-0 z-40 w-72 flex flex-col overflow-hidden shadow-xl"
+          id="course-sidebar"
+          className="fixed left-0 top-16 bottom-0 z-40 w-72 max-w-[85vw] flex flex-col overflow-hidden shadow-xl"
           style={{ background: 'linear-gradient(180deg, #3A3B74 0%, #2D2E63 100%)' }}
         >
-          {/* Barra de lectura vertical — borde derecho del sidebar */}
-          <div className="absolute right-0 top-0 bottom-0 w-1 bg-white/5 z-10">
-            <div
-              className="w-full transition-all duration-200 rounded-b"
-              style={{
-                height: `${scrollProgress}%`,
-                background: 'linear-gradient(to bottom, #3178BD, #E73780)',
-              }}
-            />
-          </div>
-
-          {/* Header del sidebar */}
-          <div className="px-5 py-4 border-b border-white/10">
-            <p className="text-white/50 text-xs font-body uppercase tracking-widest">Contenido del curso</p>
-            <div className="mt-2 flex items-center gap-2">
-              <div className="flex-1 bg-white/10 rounded-full h-1.5">
-                <div
-                  className="h-1.5 rounded-full transition-all duration-500"
-                  style={{
-                    width: `${Math.round((completedModules.size / modules.length) * 100)}%`,
-                    background: 'linear-gradient(90deg, #3178BD, #E73780)',
-                  }}
-                />
-              </div>
-              <span className="text-white/70 text-xs font-body">
-                {Math.round((completedModules.size / modules.length) * 100)}%
-              </span>
-            </div>
+          {/* Header del sidebar — el progreso del curso vive en el anillo del header */}
+          <div className="px-5 pt-5 pb-4 border-b border-white/10">
+            <p className="text-white/45 text-[11px] font-title font-semibold uppercase tracking-[0.2em]">Contenido del curso</p>
+            <p className="mt-1 text-white font-title text-lg font-semibold leading-tight">{courseInfo.title}</p>
+            <p className="mt-1 text-white/55 text-xs font-body">
+              {completedModules.size} de {modules.length} módulos completados
+            </p>
           </div>
 
           {/* Lista de módulos */}
@@ -112,7 +84,7 @@ export default function Sidebar({ modules, currentIndex, completedModules, onSel
                   </div>
 
                   {/* Emoji ícono */}
-                  <span className="text-base flex-shrink-0 opacity-70">{mod.icon}</span>
+                  <Icon name={mod.icon} size={16} className="flex-shrink-0 mt-0.5 text-white/50" />
                 </button>
 
                 {/* Temas del módulo activo — salto directo dentro del contenido */}
@@ -120,11 +92,18 @@ export default function Sidebar({ modules, currentIndex, completedModules, onSel
                   <div className="pl-11 pr-3 pb-2 flex flex-col gap-0.5">
                     {temas.map(tema => {
                       const isSaved = bookmarkedTema === tema.id
+                      const isCurrent = currentTemaId === tema.id
                       return (
                         <button
                           key={tema.id}
-                          onClick={() => document.getElementById(tema.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                          className="w-full flex items-center gap-1.5 text-left px-3 py-1.5 rounded-lg text-xs font-body text-white/55 hover:text-white hover:bg-white/8 transition-colors"
+                          onClick={() => {
+                            document.getElementById(tema.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                            onClose?.()
+                          }}
+                          aria-current={isCurrent ? 'location' : undefined}
+                          className={`w-full flex items-center gap-1.5 text-left px-3 py-1.5 rounded-lg text-xs font-body transition-colors ${
+                            isCurrent ? 'text-white bg-white/10' : 'text-white/55 hover:text-white hover:bg-white/8'
+                          }`}
                         >
                           <span className="flex-shrink-0 text-white/40 font-semibold">T{tema.number}</span>
                           <ArrowRight size={11} className="flex-shrink-0 opacity-60" />

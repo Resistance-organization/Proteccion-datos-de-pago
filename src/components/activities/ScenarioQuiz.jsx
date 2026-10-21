@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle, XCircle, ChevronRight, Compass, Search, Star, ShieldCheck, Gamepad2 } from 'lucide-react'
+import { CheckCircle, XCircle, ChevronRight, Compass, Search, Star, ShieldCheck, Gamepad2, Signal } from 'lucide-react'
 import ActivityRibbon from './ActivityRibbon'
 
 // ─── Mockups por tipo de escenario ───────────────────────────────────────────
@@ -55,7 +55,7 @@ function WifiMockup({ content }) {
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm max-w-md mx-auto p-5 text-center">
       <p className="font-body text-sm text-gray-600 leading-relaxed">{content.message}</p>
       <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-50 border border-secondary-100">
-        <span className="text-secondary text-lg">📶</span>
+        <Signal size={16} className="text-secondary" aria-hidden="true" />
         <span className="font-title text-sm font-semibold text-secondary">{content.network}</span>
       </div>
     </div>
@@ -147,7 +147,7 @@ function Situation({ situation, index, total, onAnswer }) {
                   ? <CheckCircle size={20} className="text-green-500 flex-shrink-0 mt-0.5" />
                   : <XCircle size={20} className="text-amber-500 flex-shrink-0 mt-0.5" />
                 }
-                <p className="text-sm font-body text-gray-700">{situation.options[selected].feedback}</p>
+                <p className="text-base font-body text-gray-700 leading-relaxed">{situation.options[selected].feedback}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -182,7 +182,7 @@ function Situation({ situation, index, total, onAnswer }) {
                   >
                     {String.fromCharCode(65 + i)}
                   </span>
-                  <span className="font-body text-sm text-gray-700">{option.text}</span>
+                  <span className="font-body text-base text-gray-700 leading-snug">{option.text}</span>
                   {submitted && option.correct && (
                     <CheckCircle size={18} className="ml-auto text-green-500 flex-shrink-0" />
                   )}

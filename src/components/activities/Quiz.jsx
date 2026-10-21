@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle, XCircle, ChevronRight, Award, RotateCcw, Brain } from 'lucide-react'
 import ActivityRibbon from './ActivityRibbon'
+import { courseInfo } from '../../data/modules'
 
 function Question({ question, index, total, onAnswer, answered }) {
   const [selected, setSelected] = useState(null)
@@ -28,7 +29,7 @@ function Question({ question, index, total, onAnswer, answered }) {
         </span>
       </div>
 
-      <p className="font-title text-lg font-semibold text-gray-800 leading-snug">
+      <p className="font-title text-xl font-semibold text-gray-800 leading-snug">
         {question.question}
       </p>
 
@@ -62,7 +63,7 @@ function Question({ question, index, total, onAnswer, answered }) {
               >
                 {String.fromCharCode(65 + i)}
               </span>
-              <span className="font-body text-sm text-gray-700">{option}</span>
+              <span className="font-body text-base text-gray-700 leading-snug">{option}</span>
               {submitted && i === question.correct && (
                 <CheckCircle size={18} className="ml-auto text-green-500" />
               )}
@@ -103,11 +104,11 @@ function Question({ question, index, total, onAnswer, answered }) {
               : <XCircle size={20} className="text-amber-500 flex-shrink-0 mt-0.5" />
             }
             <div>
-              <p className={`font-title font-semibold text-sm ${isCorrect ? 'text-green-700' : 'text-amber-700'}`}>
+              <p className={`font-title font-semibold text-base ${isCorrect ? 'text-green-700' : 'text-amber-700'}`}>
                 {isCorrect ? '¡Correcto!' : 'Respuesta incorrecta'}
               </p>
               {question.explanation && (
-                <p className="text-sm font-body text-gray-600 mt-1">{question.explanation}</p>
+                <p className="text-base font-body text-gray-700 leading-relaxed mt-1">{question.explanation}</p>
               )}
             </div>
           </motion.div>
@@ -146,7 +147,8 @@ export default function Quiz({ block, onComplete }) {
   const isCurrentAnswered = answers[block.questions[currentQ]?.id] !== undefined
   const correctCount = Object.values(answers).filter(Boolean).length
   const score = Math.round((correctCount / block.questions.length) * 100)
-  const passed = score >= (block.passingScore || 80)
+  // Mismo umbral que usa App.jsx para desbloquear y Moodle (masteryscore) para 'passed'
+  const passed = score >= courseInfo.passingScore
 
   return (
     <div className="relative">
@@ -156,7 +158,7 @@ export default function Quiz({ block, onComplete }) {
       <div className="px-6 sm:px-8 pt-7 pb-5 border-b border-gray-100" style={{ background: 'linear-gradient(135deg, #E73780 0%, #A23EA1 100%)' }}>
         <h2 className="font-title text-xl font-semibold text-white">{block.title}</h2>
         {block.subtitle && (
-          <p className="text-white/70 text-sm font-body mt-1">{block.subtitle}</p>
+          <p className="text-white/80 text-base font-body mt-1">{block.subtitle}</p>
         )}
         {/* Barra de progreso */}
         <div className="mt-3 bg-white/20 rounded-full h-1.5">

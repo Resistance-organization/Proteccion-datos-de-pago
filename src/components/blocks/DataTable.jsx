@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Table2, ChevronDown } from 'lucide-react'
+import Icon from '../ui/Icon'
 
 const HIGHLIGHTS = {
   red:    { bar: 'bg-red-400',    chip: 'bg-red-50 text-red-600 border-red-200',       chipActive: 'bg-red-500 text-white border-red-500' },
@@ -42,7 +43,7 @@ export default function DataTable({ block }) {
                 onClick={() => setActive(i)}
                 className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full border-2 text-sm font-body font-semibold transition-all ${isActive ? rh.chipActive : rh.chip}`}
               >
-                {r.icon && <span>{r.icon}</span>} {r.cells[0]}
+                <Icon name={r.icon} size={15} className="flex-shrink-0" /> {r.cells[0]}
               </button>
             )
           })}
@@ -54,7 +55,7 @@ export default function DataTable({ block }) {
             onClick={() => setOpen(o => !o)}
             className={`w-full flex items-center justify-between gap-2 px-4 py-3 rounded-xl border-2 text-sm font-body font-semibold ${h.chipActive}`}
           >
-            <span className="flex items-center gap-2">{row.icon && <span>{row.icon}</span>} {row.cells[0]}</span>
+            <span className="flex items-center gap-2"><Icon name={row.icon} size={15} className="flex-shrink-0" /> {row.cells[0]}</span>
             <ChevronDown size={16} className={`transition-transform ${open ? 'rotate-180' : ''}`} />
           </button>
           <AnimatePresence>
@@ -71,7 +72,7 @@ export default function DataTable({ block }) {
                     onClick={() => { setActive(i); setOpen(false) }}
                     className="w-full text-left px-4 py-2.5 text-sm font-body text-gray-700 hover:bg-gray-50 flex items-center gap-2"
                   >
-                    {r.icon && <span>{r.icon}</span>} {r.cells[0]}
+                    <Icon name={r.icon} size={15} className="flex-shrink-0" /> {r.cells[0]}
                   </button>
                 ))}
               </motion.div>

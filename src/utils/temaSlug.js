@@ -6,3 +6,14 @@ export const TEMA_PATTERN = /^(Tema\s+(\d+))\s*—\s*(.+)$/
 export function temaId(moduleId, temaNumber) {
   return `tema-${moduleId}-${temaNumber}`
 }
+
+// Temas de un módulo, en orden: [{ id, number, title }]
+export function getModuleTemas(mod) {
+  if (!mod?.blocks) return []
+  return mod.blocks
+    .filter(b => b.type === 'text' && TEMA_PATTERN.test(b.title || ''))
+    .map(b => {
+      const [, , temaNumber, temaTitle] = b.title.match(TEMA_PATTERN)
+      return { id: temaId(mod.id, temaNumber), number: temaNumber, title: temaTitle }
+    })
+}

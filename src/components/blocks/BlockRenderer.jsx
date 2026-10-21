@@ -31,6 +31,7 @@ import DataTable from './DataTable'
 import ConnectionNote from './ConnectionNote'
 import ModuleClosing from './ModuleClosing'
 import ValuePyramid from '../activities/ValuePyramid'
+import QuickCheck from '../activities/QuickCheck'
 
 const wrapMotion = (children, key) => (
   <motion.div
@@ -44,7 +45,7 @@ const wrapMotion = (children, key) => (
   </motion.div>
 )
 
-export default function BlockRenderer({ block, index, moduleNumber, estimatedTime, onQuizComplete, onScenarioFinish, onReflectionSave, reflectionAnswers, bookmarkedTema, onToggleBookmark }) {
+export default function BlockRenderer({ block, index, module, moduleNumber, estimatedTime, onQuizComplete, onScenarioFinish, onReflectionSave, reflectionAnswers, bookmarkedTema, onToggleBookmark }) {
   const key = `block-${index}`
 
   switch (block.type) {
@@ -53,6 +54,7 @@ export default function BlockRenderer({ block, index, moduleNumber, estimatedTim
         <HeroBlock
           key={key}
           block={block}
+          module={module}
           moduleNumber={moduleNumber}
           estimatedTime={estimatedTime}
         />
@@ -168,6 +170,9 @@ export default function BlockRenderer({ block, index, moduleNumber, estimatedTim
 
     case 'closing':
       return wrapMotion(<ModuleClosing block={block} />, key)
+
+    case 'quickcheck':
+      return wrapMotion(<QuickCheck block={block} />, key)
 
     case 'pyramid':
       return wrapMotion(<ValuePyramid block={block} />, key)

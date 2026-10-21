@@ -2,14 +2,32 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ImageOff, Maximize2, X, ZoomIn } from 'lucide-react'
 
-const PREVIEW_HEIGHT = 320 // px — altura del recorte previo
+const PREVIEW_HEIGHT = 560 // px — altura del recorte previo de las infografías largas
+const LONG_HEIGHT = 900    // px — lo que cabe en una pantalla se muestra completo; más alto, se recorta
+
+// '1080 / 1900' → 1900 / 1080
+function heightRatio(aspectRatio) {
+  const [w, h] = (aspectRatio || '800 / 2400').split('/').map(Number)
+  return w > 0 && h > 0 ? h / w : 3
+}
 
 export default function Infographic({ block }) {
   const [expanded, setExpanded] = useState(false)
   const [fullscreen, setFullscreen] = useState(false)
   const [measuredHeight, setMeasuredHeight] = useState(null)
+  const [frameWidth, setFrameWidth] = useState(null)
   const iframeRef = useRef(null)
   const fullscreenIframeRef = useRef(null)
+  const frameWrapRef = useRef(null)
+
+  // Ancho disponible: permite estimar el alto antes de que el iframe lo reporte
+  useEffect(() => {
+    const el = frameWrapRef.current
+    if (!el) return
+    const ro = new ResizeObserver(([entry]) => setFrameWidth(entry.contentRect.width))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   useEffect(() => {
     const handler = (e) => { if (e.key === 'Escape') setFullscreen(false) }
@@ -37,12 +55,15 @@ export default function Infographic({ block }) {
     const iframeStyle = measuredHeight
       ? { height: `${measuredHeight}px`, display: 'block' }
       : { aspectRatio: block.aspectRatio || '800 / 2400', display: 'block' }
+    const height = measuredHeight ?? (frameWidth ? frameWidth * heightRatio(block.aspectRatio) : null)
+    const isLong = height == null || height > LONG_HEIGHT
+    const collapsed = isLong && !expanded
 
     const iframeEl = (
-      <div className="relative" style={{ maxWidth: block.maxWidth ? `${block.maxWidth}px` : '900px', width: '100%', margin: '0 auto' }}>
+      <div ref={frameWrapRef} className="relative" style={{ maxWidth: block.maxWidth ? `${block.maxWidth}px` : '900px', width: '100%', margin: '0 auto' }}>
         <div
           className="relative overflow-hidden rounded-xl transition-all duration-500"
-          style={{ maxHeight: expanded ? 'none' : `${PREVIEW_HEIGHT}px` }}
+          style={{ maxHeight: collapsed ? `${PREVIEW_HEIGHT}px` : 'none' }}
         >
           <iframe
             ref={iframeRef}
@@ -52,7 +73,7 @@ export default function Infographic({ block }) {
             style={iframeStyle}
             scrolling="no"
           />
-          {!expanded && (
+          {collapsed && (
             <div
               className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
               style={{ background: 'linear-gradient(to bottom, transparent, white)' }}
@@ -60,14 +81,16 @@ export default function Infographic({ block }) {
           )}
         </div>
 
-        <div className={`flex items-center justify-center gap-3 mt-3 ${expanded ? '' : '-mt-2 relative z-10'}`}>
-          <button
-            onClick={() => setExpanded(e => !e)}
-            className="flex items-center gap-2 px-5 py-2 rounded-full bg-primary-50 text-primary font-body text-sm font-medium hover:bg-primary-100 transition-colors border border-primary-100"
-          >
-            <ZoomIn size={15} />
-            {expanded ? 'Ver menos' : 'Ver infografía completa'}
-          </button>
+        <div className={`flex items-center justify-center gap-3 mt-3 ${collapsed ? '-mt-2 relative z-10' : ''}`}>
+          {isLong && (
+            <button
+              onClick={() => setExpanded(e => !e)}
+              className="flex items-center gap-2 px-5 py-2 rounded-full bg-primary-50 text-primary font-body text-sm font-medium hover:bg-primary-100 transition-colors border border-primary-100"
+            >
+              <ZoomIn size={15} />
+              {expanded ? 'Ver menos' : 'Ver infografía completa'}
+            </button>
+          )}
           <button
             onClick={() => setFullscreen(true)}
             className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-50 text-gray-500 font-body text-sm hover:bg-gray-100 transition-colors border border-gray-200"
@@ -91,7 +114,7 @@ export default function Infographic({ block }) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="fixed inset-0 z-50 flex flex-col"
-                style={{ background: 'rgba(1, 56, 48, 0.95)' }}
+                style={{ background: 'rgba(11, 11, 48, 0.95)' }}
               >
                 <div className="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-white/10">
                   <p className="text-white font-title font-semibold text-sm truncate">
@@ -154,7 +177,7 @@ export default function Infographic({ block }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-50 flex flex-col"
-              style={{ background: 'rgba(1, 56, 48, 0.95)' }}
+              style={{ background: 'rgba(11, 11, 48, 0.95)' }}
             >
               <div className="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-white/10">
                 <p className="text-white font-title font-semibold text-sm truncate">
@@ -252,7 +275,7 @@ export default function Infographic({ block }) {
           ) : (
             <div
               className="w-full rounded-xl flex flex-col items-center justify-center gap-4 py-20"
-              style={{ background: 'linear-gradient(135deg, #E6F5EF 0%, #C0E6D5 100%)' }}
+              style={{ background: 'linear-gradient(135deg, #EEEEF6 0%, #D3D3E9 100%)' }}
             >
               <ImageOff size={40} className="text-primary/30" />
               <div className="text-center">
@@ -283,7 +306,7 @@ export default function Infographic({ block }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex flex-col"
-            style={{ background: 'rgba(1, 56, 48, 0.95)' }}
+            style={{ background: 'rgba(11, 11, 48, 0.95)' }}
           >
             {/* Barra superior */}
             <div className="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-white/10">

@@ -1,15 +1,19 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight, CheckCircle, Lock } from 'lucide-react'
+import { X } from 'lucide-react'
 
 import { modules, courseInfo } from './data/modules'
 import { scorm } from './utils/scorm'
+import { getModuleTemas } from './utils/temaSlug'
 
 import CourseLayout from './components/layout/CourseLayout'
 import Header from './components/layout/Header'
 import Sidebar from './components/layout/Sidebar'
 import BlockRenderer from './components/blocks/BlockRenderer'
 import CertificateScreen from './components/CertificateScreen'
+import ModuleFooter from './components/layout/ModuleFooter'
+import FloatingActions from './components/layout/FloatingActions'
+import WelcomeScreen from './components/layout/WelcomeScreen'
 
 // ─── Persistencia local ──────────────────────────────────────────────────────
 
@@ -79,10 +83,34 @@ function quizBlocksOf(module) {
     .filter(b => b.type === 'quiz')
 }
 
+// ─── Barra lateral ───────────────────────────────────────────────────────────
+
+const SIDEBAR_PREF_KEY = 'lo_sidebar_open'
+const DESKTOP_QUERY = '(min-width: 1024px)'
+
+// En escritorio se respeta la última preferencia; en pantallas pequeñas la
+// barra se superpone al contenido, así que arranca cerrada.
+function initialSidebarOpen() {
+  if (!window.matchMedia(DESKTOP_QUERY).matches) return false
+  try { return localStorage.getItem(SIDEBAR_PREF_KEY) !== '0' } catch { return true }
+}
+
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(() => window.matchMedia(DESKTOP_QUERY).matches)
+  useEffect(() => {
+    const mq = window.matchMedia(DESKTOP_QUERY)
+    const onChange = e => setIsDesktop(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  return isDesktop
+}
+
 // ─── Componente principal ─────────────────────────────────────────────────────
 
 export default function App() {
-  const [sidebarOpen,        setSidebarOpen]        = useState(true)
+  const [sidebarOpen,        setSidebarOpen]        = useState(initialSidebarOpen)
+  const isDesktop = useIsDesktop()
   const [currentModuleIndex, setCurrentModuleIndex] = useState(0)
   const [completedModules,   setCompletedModules]   = useState(new Set())
   const [quizScores,         setQuizScores]         = useState({})
@@ -91,6 +119,7 @@ export default function App() {
   const [studentName,        setStudentName]        = useState('')
   const [showSedeModal,      setShowSedeModal]      = useState(false)
   const [selectedSede,       setSelectedSede]       = useState('')
+  const [showWelcome,        setShowWelcome]        = useState(true)
 
   // Tracking de progreso de lectura
   const [scrollProgress,    setScrollProgress]   = useState(0)
@@ -144,6 +173,8 @@ export default function App() {
 
   // ── Barra de progreso de lectura (scroll del window) ─────────────────────
   useEffect(() => {
+    // La pantalla de bienvenida no cuenta como lectura del módulo
+    if (showWelcome) return
     const onScroll = () => {
       const scrollTop    = window.scrollY || document.documentElement.scrollTop
       const scrollable   = document.documentElement.scrollHeight - document.documentElement.clientHeight
@@ -167,7 +198,34 @@ export default function App() {
 
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [currentModule.id])
+  }, [currentModule.id, showWelcome])
+
+  // ── Tema actual (para el header y el menú) ──────────────────────────────
+  const moduleTemas = useMemo(() => getModuleTemas(currentModule), [currentModule])
+  const [currentTemaIndex, setCurrentTemaIndex] = useState(-1)
+
+  useEffect(() => {
+    setCurrentTemaIndex(-1)
+    if (!moduleTemas.length) return
+    const onScroll = () => {
+      let idx = -1
+      moduleTemas.forEach((t, i) => {
+        const el = document.getElementById(t.id)
+        if (el && el.getBoundingClientRect().top <= 160) idx = i
+      })
+      setCurrentTemaIndex(idx)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [moduleTemas])
+
+  // ── Cerrar la ventana de sede con Escape ─────────────────────────────────
+  useEffect(() => {
+    if (!showSedeModal) return
+    const onKey = e => { if (e.key === 'Escape') setShowSedeModal(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [showSedeModal])
 
   // ── Volver al top al cambiar de módulo ───────────────────────────────────
   useEffect(() => {
@@ -212,6 +270,10 @@ export default function App() {
     return null
   }
   const blockReason = nextBlockReason()
+
+  // Primer quiz que aún no se aprueba (para el indicador flotante)
+  const pendingQuizBlock = quizBlocksOf(currentModule)
+    .find(q => !(moduleQuizzesDone[currentModule.id] || new Set()).has(q.blockIndex))?.blockIndex ?? null
 
   // ── Guardar progreso ─────────────────────────────────────────────────────
 
@@ -274,8 +336,16 @@ export default function App() {
     }
     setCurrentModuleIndex(index)
     persistProgress({ currentModuleIndex: index, completedModules: newCompleted })
+    if (!isDesktop) setSidebarOpen(false)
   }, [currentModuleIndex, currentModule, completedModules, currentModuleDone,
-      markModuleComplete, isModuleUnlocked, persistProgress])
+      markModuleComplete, isModuleUnlocked, persistProgress, isDesktop])
+
+  const toggleSidebar = useCallback(() => {
+    const next = !sidebarOpen
+    setSidebarOpen(next)
+    // Solo se recuerda la elección hecha en escritorio
+    if (isDesktop) { try { localStorage.setItem(SIDEBAR_PREF_KEY, next ? '1' : '0') } catch {} }
+  }, [sidebarOpen, isDesktop])
 
   const handleNext = () => {
     if (blockReason) return
@@ -356,19 +426,40 @@ export default function App() {
     return <CertificateScreen studentName={studentName} score={avgScore} sede={selectedSede} />
   }
 
+  if (showWelcome) {
+    const isReturning = currentModuleIndex > 0 || completedModules.size > 0 || moduleScrollDone.size > 0
+    return (
+      <WelcomeScreen
+        modules={modules}
+        studentName={studentName}
+        currentModule={currentModule}
+        completedModules={completedModules}
+        isReturning={isReturning}
+        onStart={() => { setShowWelcome(false); window.scrollTo({ top: 0 }) }}
+        onSelectModule={index => { setShowWelcome(false); goToModule(index); window.scrollTo({ top: 0 }) }}
+        isModuleUnlocked={isModuleUnlocked}
+      />
+    )
+  }
+
   const isLastModule = currentModuleIndex === modules.length - 1
 
   return (
     <>
     <CourseLayout
       sidebarOpen={sidebarOpen}
+      isDesktop={isDesktop}
+      onCloseSidebar={() => setSidebarOpen(false)}
       header={
         <Header
           currentModule={currentModule}
           totalModules={modules.length}
           completedCount={completedModules.size}
           sidebarOpen={sidebarOpen}
-          onToggleSidebar={() => setSidebarOpen(o => !o)}
+          onToggleSidebar={toggleSidebar}
+          temaIndex={currentTemaIndex}
+          temaTotal={moduleTemas.length}
+          readingProgress={scrollProgress}
         />
       }
       sidebar={
@@ -379,9 +470,10 @@ export default function App() {
           onSelectModule={goToModule}
           isOpen={sidebarOpen}
           isModuleUnlocked={isModuleUnlocked}
-          scrollProgress={scrollProgress}
           onReset={handleReset}
           bookmarkedTema={bookmarkedTema}
+          currentTemaId={moduleTemas[currentTemaIndex]?.id}
+          onClose={isDesktop ? undefined : () => setSidebarOpen(false)}
         />
       }
     >
@@ -397,100 +489,76 @@ export default function App() {
           {/* Bloques del módulo */}
           <div className="space-y-6">
             {currentModule.blocks.map((block, i) => (
-              <BlockRenderer
+              <div
                 key={`${currentModuleIndex}-${i}`}
-                block={block}
-                index={i}
-                moduleNumber={currentModule.id}
-                estimatedTime={currentModule.estimatedTime}
-                onQuizComplete={(score, isFinal) => handleQuizComplete(score, isFinal, i)}
-                onReflectionSave={saveReflection}
-                reflectionAnswers={reflectionAnswers}
-                bookmarkedTema={bookmarkedTema}
-                onToggleBookmark={toggleBookmark}
-              />
+                id={`block-${i}`}
+                className="scroll-mt-24"
+              >
+                <BlockRenderer
+                  block={block}
+                  index={i}
+                  module={currentModule}
+                  moduleNumber={currentModule.id}
+                  estimatedTime={currentModule.estimatedTime}
+                  onQuizComplete={(score, isFinal) => handleQuizComplete(score, isFinal, i)}
+                  onReflectionSave={saveReflection}
+                  reflectionAnswers={reflectionAnswers}
+                  bookmarkedTema={bookmarkedTema}
+                  onToggleBookmark={toggleBookmark}
+                />
+              </div>
             ))}
           </div>
 
-          {/* Navegación inferior */}
-          <div className="mt-10 pt-6 border-t border-gray-200 flex items-center justify-between gap-4">
-            {/* Anterior */}
-            <button
-              onClick={handlePrev}
-              disabled={currentModuleIndex === 0}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-gray-200 font-title font-semibold text-sm text-gray-600
-                hover:border-primary hover:text-primary disabled:opacity-30 disabled:cursor-not-allowed transition-all"
-            >
-              <ChevronLeft size={16} />
-              Módulo anterior
-            </button>
-
-            {/* Estado central */}
-            <div className="flex flex-col items-center gap-1 min-w-0">
-              <span className="text-xs text-gray-400 font-body">
-                {currentModuleIndex + 1} / {modules.length}
-              </span>
-              {currentModuleDone && (
-                <span className="flex items-center gap-1 text-xs text-green-600 font-body">
-                  <CheckCircle size={12} />
-                  Listo para avanzar
-                </span>
-              )}
-              {blockReason && !currentModuleDone && (
-                <span className="flex items-center gap-1 text-xs text-amber-500 font-body text-center">
-                  <Lock size={11} />
-                  {blockReason}
-                </span>
-              )}
-            </div>
-
-            {/* Siguiente / Finalizar */}
-            {!isLastModule ? (
-              <div className="relative group">
-                <button
-                  onClick={handleNext}
-                  disabled={!!blockReason}
-                  className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-title font-semibold text-sm transition-all
-                    ${blockReason
-                      ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'text-white gradient-primary shadow-md hover:opacity-90'
-                    }`}
-                >
-                  {blockReason ? <Lock size={15} /> : <ChevronRight size={16} />}
-                  Siguiente módulo
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={() => {
-                  markModuleComplete(currentModule.id)
-                  setShowSedeModal(true)
-                }}
-                disabled={!!blockReason}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-title font-semibold text-sm transition-all
-                  ${blockReason
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'text-white gradient-secondary shadow-md hover:opacity-90'
-                  }`}
-              >
-                {blockReason ? <Lock size={15} /> : <CheckCircle size={16} />}
-                Finalizar y obtener certificado
-              </button>
-            )}
-          </div>
+          <ModuleFooter
+            currentIndex={currentModuleIndex}
+            total={modules.length}
+            nextModule={isLastModule ? null : modules[currentModuleIndex + 1]}
+            isDone={currentModuleDone}
+            blockReason={blockReason}
+            onNext={handleNext}
+            onPrev={handlePrev}
+            onFinish={() => {
+              markModuleComplete(currentModule.id)
+              setShowSedeModal(true)
+            }}
+          />
         </motion.div>
       </AnimatePresence>
     </CourseLayout>
 
+    <FloatingActions
+      moduleKey={currentModuleIndex}
+      readingDone={currentScrollDone}
+      readingProgress={scrollProgress}
+      pendingQuizBlock={pendingQuizBlock}
+      isDone={currentModuleDone}
+      offsetLeft={sidebarOpen && isDesktop ? 288 : 0}
+    />
+
     {/* ── Modal selección de sede ─────────────────────────────────────── */}
     {showSedeModal && (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4"
+        onClick={() => setShowSedeModal(false)}
+      >
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8"
+          onClick={e => e.stopPropagation()}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="sede-modal-title"
+          className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-8"
         >
-          <h2 className="font-title text-xl font-bold text-primary mb-1 text-center">
+          <button
+            onClick={() => setShowSedeModal(false)}
+            aria-label="Cerrar"
+            className="absolute top-4 right-4 w-9 h-9 rounded-xl flex items-center justify-center text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+          >
+            <X size={18} />
+          </button>
+          <h2 id="sede-modal-title" className="font-title text-xl font-bold text-primary mb-1 text-center">
             Antes de obtener tu certificado
           </h2>
           <p className="font-body text-sm text-gray-500 text-center mb-6">

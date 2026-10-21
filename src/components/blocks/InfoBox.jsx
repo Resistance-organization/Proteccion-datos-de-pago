@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Zap, Info, AlertTriangle, CheckCircle2, Sparkles } from 'lucide-react'
+import ContentIcon from '../ui/Icon'
 
 const VARIANTS = {
   accent: {
@@ -104,7 +105,7 @@ export default function InfoBox({ block }) {
                   transition={{ delay: 0.06 * i + 0.15 }}
                   className={`flex items-center gap-2.5 rounded-xl px-4 py-3 ${v.chipWrap}`}
                 >
-                  {it.icon && <span className="text-lg flex-shrink-0">{it.icon}</span>}
+                  {it.icon && <ContentIcon name={it.icon} size={18} className={`flex-shrink-0 ${v.itemIcon}`} />}
                   <span className={`font-body text-base leading-snug ${v.item}`}>{it.text}</span>
                 </motion.div>
               ))}

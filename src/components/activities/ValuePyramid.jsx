@@ -8,9 +8,25 @@ const COLORS = {
   yellow: { grad: 'linear-gradient(135deg, #F3B23A 0%, #E0982A 100%)', badge: '#B5761C' },
 }
 
+const LEVEL_HEIGHTS = [130, 96, 96] // px — la punta es más alta para que quepa el texto
+const GAP = 4                         // px — separación entre niveles
+
+// Posición vertical de cada nivel dentro del triángulo completo
+function pyramidLayout(count) {
+  let y = 0
+  const levels = Array.from({ length: count }, (_, i) => {
+    const start = i === 0 ? 0 : y + GAP
+    const end = start + (LEVEL_HEIGHTS[i] ?? LEVEL_HEIGHTS.at(-1))
+    y = end
+    return { start, end }
+  })
+  return Object.assign(levels, { total: y })
+}
+
 export default function ValuePyramid({ block }) {
   const [active, setActive] = useState(null)
   const activeLevel = block.levels.find(l => l.id === active)
+  const layout = pyramidLayout(block.levels.length)
 
   return (
     <motion.div
@@ -29,13 +45,14 @@ export default function ValuePyramid({ block }) {
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 items-center">
-        {/* Pirámide */}
-        <div className="flex flex-col items-center w-full max-w-[360px] mx-auto">
+        {/* Pirámide — cada nivel es un corte del mismo triángulo, así los
+            lados forman una sola pendiente continua sin importar el ancho */}
+        <div className="flex flex-col items-center w-full max-w-[420px] mx-auto">
           {block.levels.map((level, i) => {
             const c = COLORS[level.color] || COLORS.red
-            const widthPct = 46 + i * 27
-            const isTop = i === 0
-            const slant = 22
+            const top = layout[i].start / layout.total
+            const bottom = layout[i].end / layout.total
+            const edge = t => 50 - 50 * t
             return (
               <button
                 key={level.id}
@@ -44,22 +61,19 @@ export default function ValuePyramid({ block }) {
                 onFocus={() => setActive(level.id)}
                 onBlur={() => setActive(null)}
                 onClick={() => setActive(prev => prev === level.id ? null : level.id)}
+                aria-pressed={active === level.id}
                 style={{
-                  width: `${widthPct}%`,
+                  height: LEVEL_HEIGHTS[i] ?? LEVEL_HEIGHTS.at(-1),
+                  marginTop: i === 0 ? 0 : GAP,
                   background: c.grad,
-                  clipPath: isTop
-                    ? `polygon(50% 0%, 100% 100%, 0% 100%)`
-                    : `polygon(${slant}px 0%, calc(100% - ${slant}px) 0%, 100% 100%, 0% 100%)`,
-                  marginTop: isTop ? 0 : '-1px',
+                  clipPath: `polygon(${edge(top)}% 0%, ${100 - edge(top)}% 0%, ${100 - edge(bottom)}% 100%, ${edge(bottom)}% 100%)`,
                 }}
-                className={`relative flex flex-col items-center justify-end text-center gap-1.5 px-4 text-white transition-transform hover:scale-[1.02] ${isTop ? 'pt-10 pb-4' : 'py-4 sm:py-5'}`}
+                className={`relative w-full flex flex-col items-center justify-end text-center gap-1.5 pb-4 text-white transition-[filter] duration-200 hover:brightness-110 focus:outline-none focus-visible:brightness-110 ${active === level.id ? 'brightness-110' : ''}`}
               >
-                <span className="relative w-8 h-8 rounded-full bg-white/20 border border-white/40 flex items-center justify-center font-title font-bold text-xs flex-shrink-0">
+                <span className="w-8 h-8 rounded-full bg-white/20 border border-white/50 flex items-center justify-center font-title font-bold text-sm flex-shrink-0">
                   {i + 1}
-                  <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-white animate-ping" />
-                  <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-white" />
                 </span>
-                <h3 className="font-title font-bold text-sm sm:text-base leading-tight">{level.title}</h3>
+                <h3 className="font-title font-bold text-sm sm:text-base leading-tight px-2">{level.title}</h3>
               </button>
             )
           })}
