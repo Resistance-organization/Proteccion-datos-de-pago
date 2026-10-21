@@ -38,7 +38,7 @@ export default function TextBlock({ block, moduleNumber, bookmarkedTema, onToggl
           {restTitle}
         </h2>
         <div
-          className="prose-olivos"
+          className="prose-curso"
           dangerouslySetInnerHTML={{ __html: block.content }}
         />
       </motion.div>
@@ -57,7 +57,7 @@ export default function TextBlock({ block, moduleNumber, bookmarkedTema, onToggl
         </h2>
       )}
       <div
-        className="prose-olivos"
+        className="prose-curso"
         dangerouslySetInnerHTML={{ __html: block.content }}
       />
     </motion.div>

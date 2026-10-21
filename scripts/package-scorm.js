@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const DIST_DIR = path.resolve(__dirname, '../dist')
-const OUTPUT_FILE = path.resolve(__dirname, '../resistance-ciberseguridad-scorm.zip')
+const OUTPUT_FILE = path.resolve(__dirname, '../resistance-proteccion-datos-de-pago-scorm.zip')
 
 const MANIFEST = `<?xml version="1.0" encoding="UTF-8"?>
 <manifest identifier="resistance_ciberseguridad_v1" version="1.0"
@@ -30,9 +30,9 @@ const MANIFEST = `<?xml version="1.0" encoding="UTF-8"?>
 
   <organizations default="resistance_org">
     <organization identifier="resistance_org">
-      <title>Ciberseguridad y Protección de la Información</title>
+      <title>Protección de Datos de Pago</title>
       <item identifier="item_1" identifierref="resource_1" isvisible="true">
-        <title>Ciberseguridad y Protección de la Información</title>
+        <title>Protección de Datos de Pago</title>
         <adlcp:masteryscore>80</adlcp:masteryscore>
       </item>
     </organization>

@@ -33,7 +33,7 @@ export default function Reading({ block }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="prose-olivos"
+            className="prose-curso"
             dangerouslySetInnerHTML={{ __html: block.content }}
           />
         )}
@@ -48,7 +48,7 @@ export default function Reading({ block }) {
               </h3>
             )}
             <div
-              className="prose-olivos"
+              className="prose-curso"
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
           </div>

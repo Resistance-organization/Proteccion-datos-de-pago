@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { X } from 'lucide-react'
 
 import { modules, courseInfo } from './data/modules'
 import { scorm } from './utils/scorm'
@@ -117,8 +116,6 @@ export default function App() {
   const [direction,          setDirection]          = useState(1)
   const [showCertificate,    setShowCertificate]    = useState(false)
   const [studentName,        setStudentName]        = useState('')
-  const [showSedeModal,      setShowSedeModal]      = useState(false)
-  const [selectedSede,       setSelectedSede]       = useState('')
   const [showWelcome,        setShowWelcome]        = useState(true)
 
   // Tracking de progreso de lectura
@@ -218,14 +215,6 @@ export default function App() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [moduleTemas])
-
-  // ── Cerrar la ventana de sede con Escape ─────────────────────────────────
-  useEffect(() => {
-    if (!showSedeModal) return
-    const onKey = e => { if (e.key === 'Escape') setShowSedeModal(false) }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [showSedeModal])
 
   // ── Volver al top al cambiar de módulo ───────────────────────────────────
   useEffect(() => {
@@ -423,7 +412,7 @@ export default function App() {
     : null
 
   if (showCertificate) {
-    return <CertificateScreen studentName={studentName} score={avgScore} sede={selectedSede} />
+    return <CertificateScreen studentName={studentName} score={avgScore} />
   }
 
   if (showWelcome) {
@@ -520,7 +509,7 @@ export default function App() {
             onPrev={handlePrev}
             onFinish={() => {
               markModuleComplete(currentModule.id)
-              setShowSedeModal(true)
+              setShowCertificate(true)
             }}
           />
         </motion.div>
@@ -536,76 +525,6 @@ export default function App() {
       offsetLeft={sidebarOpen && isDesktop ? 288 : 0}
     />
 
-    {/* ── Modal selección de sede ─────────────────────────────────────── */}
-    {showSedeModal && (
-      <div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4"
-        onClick={() => setShowSedeModal(false)}
-      >
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          onClick={e => e.stopPropagation()}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="sede-modal-title"
-          className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-8"
-        >
-          <button
-            onClick={() => setShowSedeModal(false)}
-            aria-label="Cerrar"
-            className="absolute top-4 right-4 w-9 h-9 rounded-xl flex items-center justify-center text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
-          >
-            <X size={18} />
-          </button>
-          <h2 id="sede-modal-title" className="font-title text-xl font-bold text-primary mb-1 text-center">
-            Antes de obtener tu certificado
-          </h2>
-          <p className="font-body text-sm text-gray-500 text-center mb-6">
-            Selecciona la sede a la que perteneces
-          </p>
-
-          <div className="flex flex-col gap-2 mb-6">
-            {[
-              'Bogotá',
-              'Caldas - Sercofun Caldas Ltda.',
-              'Cali - SERCOFUN LTDA',
-              'Ibagué',
-              'Tuluá - SERCOFUN TULUÁ LTDA',
-              'Villavicencio - SERFUNLLANOS',
-            ].map((sede) => (
-              <button
-                key={sede}
-                onClick={() => setSelectedSede(sede)}
-                className={`w-full text-left px-4 py-3 rounded-xl border-2 font-body text-sm transition-all
-                  ${selectedSede === sede
-                    ? 'border-primary bg-primary/5 text-primary font-semibold'
-                    : 'border-gray-200 text-gray-700 hover:border-primary/40'
-                  }`}
-              >
-                {sede}
-              </button>
-            ))}
-          </div>
-
-          <button
-            onClick={() => {
-              if (!selectedSede) return
-              setShowSedeModal(false)
-              setShowCertificate(true)
-            }}
-            disabled={!selectedSede}
-            className={`w-full py-3 rounded-xl font-title font-semibold text-sm transition-all
-              ${selectedSede
-                ? 'text-white gradient-primary shadow-md hover:opacity-90'
-                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-              }`}
-          >
-            Continuar y obtener certificado
-          </button>
-        </motion.div>
-      </div>
-    )}
     </>
   )
 }

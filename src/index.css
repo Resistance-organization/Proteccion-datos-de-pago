@@ -76,31 +76,31 @@
   }
 
   /* Prose styles for reading blocks */
-  .prose-olivos p {
+  .prose-curso p {
     margin-bottom: 1rem;
     line-height: 1.75;
     color: #374151;
   }
 
-  .prose-olivos strong {
+  .prose-curso strong {
     color: #3A3B74;
     font-weight: 600;
   }
 
-  .prose-olivos ul {
+  .prose-curso ul {
     list-style: none;
     padding: 0;
     margin-bottom: 1rem;
   }
 
-  .prose-olivos ul li {
+  .prose-curso ul li {
     padding-left: 1.5rem;
     position: relative;
     margin-bottom: 0.5rem;
     color: #374151;
   }
 
-  .prose-olivos ul li::before {
+  .prose-curso ul li::before {
     content: '';
     position: absolute;
     left: 0;
@@ -111,13 +111,13 @@
     background-color: #3178BD;
   }
 
-  .prose-olivos ol {
+  .prose-curso ol {
     counter-reset: list-counter;
     padding: 0;
     margin-bottom: 1rem;
   }
 
-  .prose-olivos ol li {
+  .prose-curso ol li {
     counter-increment: list-counter;
     padding-left: 2rem;
     position: relative;
@@ -125,7 +125,7 @@
     color: #374151;
   }
 
-  .prose-olivos ol li::before {
+  .prose-curso ol li::before {
     content: counter(list-counter);
     position: absolute;
     left: 0;

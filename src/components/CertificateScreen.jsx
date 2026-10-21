@@ -7,7 +7,7 @@ import { MOODLE_COURSE_URL, CERTIFICATE_CONFIG } from '../config'
 const CERT_W = 1400
 const CERT_H = 990
 
-export default function CertificateScreen({ studentName, score, sede }) {
+export default function CertificateScreen({ studentName, score }) {
   const [downloading, setDownloading] = useState(false)
   const wrapRef = useRef(null)
   const scalerRef = useRef(null)
@@ -45,7 +45,7 @@ export default function CertificateScreen({ studentName, score, sede }) {
   const handleDownload = async () => {
     setDownloading(true)
     try {
-      await generateCertificate({ studentName, score, sede })
+      await generateCertificate({ studentName, score })
     } finally {
       setDownloading(false)
     }
@@ -59,8 +59,6 @@ export default function CertificateScreen({ studentName, score, sede }) {
       window.location.href = MOODLE_COURSE_URL
     }
   }
-
-  const orgText = sede || 'Capacitación Corporativa'
 
   return (
     <>
@@ -137,7 +135,7 @@ export default function CertificateScreen({ studentName, score, sede }) {
                   </span>
                 </p>
                 <div className="cp-org">
-                  <b>{CERTIFICATE_CONFIG.institution}</b> · {orgText}
+                  <b>{CERTIFICATE_CONFIG.institution}</b>
                 </div>
 
                 <div className="cp-footrow">

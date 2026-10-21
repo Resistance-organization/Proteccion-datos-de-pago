@@ -15,7 +15,7 @@ npm run preview          # Previsualizar el build
 npm run package:scorm    # build + genera imsmanifest.xml + ZIP listo para Moodle
 ```
 
-El ZIP de salida es `resistance-ciberseguridad-scorm.zip` en la raíz (el nombre quedó heredado del curso anterior; renombrarlo implica editar `OUTPUT_FILE` en `scripts/package-scorm.js`).
+El ZIP de salida es `resistance-proteccion-datos-de-pago-scorm.zip` en la raíz (definido en `OUTPUT_FILE` de `scripts/package-scorm.js`).
 
 ## Arquitectura
 
@@ -54,7 +54,7 @@ Cada módulo contiene un array de `blocks`. Tipos disponibles (ver también el c
 | `reflection` | `Reflection` | Campo de texto libre (`promptPrefix`) que se guarda en `storageKey` y se puede recuperar más adelante (modo `recall`) |
 | `pyramid` | `ValuePyramid` | Pirámide interactiva de niveles con hover |
 | `flyer` | `Flyer` | Tarjeta visual destacada (`badge`, `body`, `color`, `icon`) |
-| `downloadcard` | `DownloadCard` | Tarjeta con botón que genera un PDF client-side. `variant` mapea a un generador en `src/utils/`: `kit` → `generateEmergencyKit`, `plan` → `generatePersonalPlan`, `incidentCard` → `generateIncidentCard` |
+| `downloadcard` | `DownloadCard` | Tarjeta con botón que genera un PDF client-side. `variant` mapea a un generador en `src/utils/`: `incidentCard` → `generateIncidentCard` |
 | `closing` | `ModuleClosing` | Cierre de módulo (`moduleLabel`, `summary`, `takeaways[]`, `nextHint`) |
 | `connectionnote` | `ConnectionNote` | Nota de transición entre secciones |
 | `versus` | `Versus` | Comparativa de dos columnas |
@@ -97,7 +97,7 @@ Las rutas en los bloques son relativas al build (ej. `./Infografías/M1-DatosQue
 
 ### Certificado (`src/components/CertificateScreen.jsx`)
 
-Se muestra al finalizar el módulo 5. Antes de generarlo, aparece un modal para seleccionar la sede (Bogotá, Caldas, Cali, Ibagué, Tuluá, Villavicencio). El certificado se genera client-side con `jspdf`. La configuración del certificado (nombre del curso, alineación PCI DSS, año) está en `src/config.js` (`CERTIFICATE_CONFIG`). La URL de "volver al curso" en Moodle también está en `src/config.js` (`MOODLE_COURSE_URL`).
+Se muestra directamente al finalizar el módulo 5. El certificado se genera client-side con `jspdf`; la organización que aparece es fija (`CERTIFICATE_CONFIG.institution`, "Resistance"). La configuración del certificado (nombre del curso, alineación PCI DSS, año) está en `src/config.js` (`CERTIFICATE_CONFIG`). La URL de "volver al curso" en Moodle también está en `src/config.js` (`MOODLE_COURSE_URL`).
 
 ## Notas de desarrollo
 

@@ -1,13 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Download, Loader, FileText } from 'lucide-react'
-import { generateEmergencyKit } from '../../utils/generateEmergencyKit'
-import { generatePersonalPlan } from '../../utils/generatePersonalPlan'
 import { generateIncidentCard } from '../../utils/generateIncidentCard'
 
 const GENERATORS = {
-  kit: generateEmergencyKit,
-  plan: generatePersonalPlan,
   incidentCard: generateIncidentCard,
 }
 

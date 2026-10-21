@@ -18,7 +18,7 @@ async function loadImageAsDataURL(src) {
   })
 }
 
-export async function generateCertificate({ studentName, score, sede }) {
+export async function generateCertificate({ studentName, score }) {
   const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' })
   const W = 297
   const H = 210
@@ -43,7 +43,6 @@ export async function generateCertificate({ studentName, score, sede }) {
     day: 'numeric', month: 'long', year: 'numeric',
   })
   const displayName = formatStudentName(studentName)
-  const orgText = sede || 'Capacitación Corporativa'
 
   // ── 1. Fondo crema ──────────────────────────────────────────
   doc.setFillColor(...CREAM)
@@ -165,20 +164,11 @@ export async function generateCertificate({ studentName, score, sede }) {
     doc.text(line, W / 2, 105 + i * 8, { align: 'center' })
   })
 
-  // ── 12. Organización / Sede ──────────────────────────────────
+  // ── 12. Organización ─────────────────────────────────────────
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(7)
-  const instLabel = CERTIFICATE_CONFIG.institution.toUpperCase()
-  const orgFull = orgText ? `${instLabel}  ·  ${orgText.toUpperCase()}` : instLabel
-  const orgFullW = doc.getTextWidth(orgFull)
-  const instW = doc.getTextWidth(instLabel)
-  const startX = W / 2 - orgFullW / 2
   doc.setTextColor(...GREEN_D)
-  doc.text(instLabel, startX, 127)
-  if (orgText) {
-    doc.setTextColor(...INK_MUTE)
-    doc.text(`  ·  ${orgText.toUpperCase()}`, startX + instW, 127)
-  }
+  doc.text(CERTIFICATE_CONFIG.institution.toUpperCase(), W / 2, 127, { align: 'center' })
 
   // ── 13. Fila de pie: firma | sello | fecha+puntaje ───────────
   const footY = 170

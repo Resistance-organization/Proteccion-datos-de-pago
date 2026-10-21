@@ -56,7 +56,7 @@ export const modules = [
         type: 'text',
         content: `
           <p><strong>Cada día, en tu organización, alguien recibe un dato de tarjeta.</strong></p>
-          <p>Un cliente que dicta su número por teléfono para pagar una factura. Un correo con la foto de una tarjeta "para agilizar" un reembolso. Una captura de pantalla que alguien reenvía por WhatsApp sin pensarlo dos veces.</p>
+          <p>Alguien que dicta su número por teléfono para pagar una factura. Un correo con la foto de una tarjeta "para agilizar" un reembolso. Una captura de pantalla que alguien reenvía por WhatsApp sin pensarlo dos veces.</p>
           <p>En cada uno de esos momentos hay una decisión. Y esa decisión casi nunca la toma el área de tecnología: la toma la persona que tiene el dato enfrente.</p>
           <p>Este curso existe para que, cuando ese momento llegue, sepas exactamente qué hacer.</p>
         `,
@@ -77,7 +77,7 @@ export const modules = [
         variant: 'accent',
         title: 'Los datos de pago pasan por más áreas de las que parece',
         iconItems: [
-          { icon: 'phone', text: 'Atención al cliente y ventas — reciben pagos por teléfono, chat o en persona.' },
+          { icon: 'phone', text: 'Atención al público y ventas — reciben pagos por teléfono, chat o en persona.' },
           { icon: 'receipt', text: 'Facturación, cartera y tesorería — gestionan cobros, reembolsos y conciliaciones.' },
           { icon: 'users', text: 'Recursos humanos y administración — reciben soportes de gastos, anticipos y reembolsos.' },
           { icon: 'laptop', text: 'Tecnología y soporte — administran los sistemas donde esos datos se procesan.' },
@@ -149,7 +149,7 @@ export const modules = [
           'Las simulaciones, las actividades de ordenar, las autoevaluaciones y las reflexiones no tienen nota: son para que practiques y pienses en tu propio trabajo.',
           'Tu progreso se guarda automáticamente. Puedes salir y retomar donde quedaste.',
         ],
-        footer: 'Al terminar el módulo 5 eliges tu sede y descargas tu certificado.',
+        footer: 'Al terminar el módulo 5 descargas tu certificado.',
       },
 
       // 10. Autoevaluación de punto de partida
@@ -165,7 +165,7 @@ export const modules = [
           },
           {
             id: 'm0_que_hacer',
-            question: 'Si hoy un cliente te enviara la foto de su tarjeta por WhatsApp, ¿sabrías qué hacer?',
+            question: 'Si hoy alguien te enviara la foto de su tarjeta por WhatsApp, ¿sabrías qué hacer?',
             options: ['Sí, tengo claro el procedimiento.', 'Tengo una idea, pero no estoy seguro.', 'No sabría qué hacer.'],
           },
         ],
@@ -212,7 +212,7 @@ export const modules = [
         type: 'text',
         content: `
           <p><strong>Probablemente nadie te explicó esto cuando empezaste a trabajar aquí.</strong></p>
-          <p>Nadie te dijo qué pasa exactamente cuando un cliente te da su tarjeta, qué información queda registrada en los sistemas que usas, ni qué puede ocurrir si esa información llega a manos equivocadas.</p>
+          <p>Nadie te dijo qué pasa exactamente cuando alguien te da su tarjeta para pagar, qué información queda registrada en los sistemas que usas, ni qué puede ocurrir si esa información llega a manos equivocadas.</p>
           <p>Este módulo no es sobre tecnología. Es sobre entender qué estás protegiendo y por qué eso tiene consecuencias reales, para que puedas tomar mejores decisiones en tu trabajo de todos los días.</p>
           <p>Este curso no es un curso de ciberseguridad general: es específicamente sobre datos de tarjeta y sobre el estándar que exige protegerlos, PCI DSS. Muchas de las conductas que vas a aprender aplican a la seguridad digital en general, pero acá siempre las vas a ver conectadas a un dato de pago concreto.</p>
           <p><em>Duración: aproximadamente 15 minutos.</em></p>
@@ -224,7 +224,7 @@ export const modules = [
         type: 'text',
         title: 'Tema 1 — ¿Qué son los datos de pago?',
         content: `
-          <p>Imagina que un cliente llama a tu empresa para pagar una factura y te dice:</p>
+          <p>Imagina que una persona llama a tu empresa para pagar una factura y te dice:</p>
           <p><em>"Te doy mis datos: el número de mi tarjeta es 4532 8812 3344 5566, el nombre es Carlos Andres Mejía, vence en 09/27 y el código de seguridad es 741."</em></p>
           <p>¿Cuáles de esos datos son realmente sensibles? ¿Todos son iguales? ¿Algunos se pueden guardar y otros no?</p>
           <p>La respuesta no es obvia. Depende de qué dato es y de qué significa guardarlo. Aquí está la explicación.</p>
@@ -244,18 +244,18 @@ export const modules = [
       {
         type: 'text',
         content: `
-          <p>Volviendo a Carlos Andres: ese cliente compartió sus datos por teléfono con la mejor intención. El problema no es él. El problema es qué haces tú con esa información a partir de ese momento.</p>
+          <p>Volviendo a Carlos Andres: él compartió sus datos por teléfono con la mejor intención. El problema no es él. El problema es qué haces tú con esa información a partir de ese momento.</p>
           <p>En los próximos minutos vas a entender por qué ese dato tiene tanto valor, y qué tan fácil es que termine en el lugar equivocado.</p>
         `,
       },
 
-      // 5b. No es solo quien atiende clientes por teléfono
+      // 5b. No es solo quien recibe pagos por teléfono
       {
         type: 'box',
         variant: 'info',
-        title: 'No es solo quien atiende clientes por teléfono.',
+        title: 'No es solo quien recibe pagos por teléfono.',
         text: 'El mismo criterio aplica en cualquier área que toque un dato de tarjeta, aunque sea de forma ocasional. Por ejemplo: RRHH recibe un correo de un excolaborador pidiendo el reembolso de un gasto y adjunta una foto de su tarjeta para "agilizar" la devolución. Nombre, número completo y fecha de vencimiento, visibles en la imagen.',
-        footer: 'Las mismas dos categorías de este módulo aplican: el número y la fecha de vencimiento solo se pueden conservar con los controles adecuados, y ese correo con la foto adjunta ya es un incumplimiento por sí mismo, sin importar que el área no sea "de cara al cliente".',
+        footer: 'Las mismas dos categorías de este módulo aplican: el número y la fecha de vencimiento solo se pueden conservar con los controles adecuados, y ese correo con la foto adjunta ya es un incumplimiento por sí mismo, sin importar que el área no atienda pagos.',
       },
 
       // 6. 1.3 ¿Por qué importa? — narración
@@ -264,9 +264,9 @@ export const modules = [
         variant: 'accent',
         title: 'Esto mismo ha pasado en organizaciones como la tuya.',
         text: `
-          <p>Una empresa de servicios recibe el pago de un cliente. El colaborador que toma la llamada no tiene un sistema habilitado para registrar la transacción en ese momento, así que anota los datos en un papel. Luego los pasa a un archivo en su computador para no perderlos.</p>
+          <p>Una empresa de servicios recibe el pago de una persona por teléfono. El colaborador que toma la llamada no tiene un sistema habilitado para registrar la transacción en ese momento, así que anota los datos en un papel. Luego los pasa a un archivo en su computador para no perderlos.</p>
           <p>Ese archivo queda guardado en una carpeta compartida del equipo. Tres personas más tienen acceso a esa carpeta. Una de ellas trabaja desde su casa y descarga el archivo en su computador personal.</p>
-          <p>Meses después, ese computador tiene un programa malicioso instalado sin que nadie lo sepa. Los datos de cientos de clientes terminan publicados en un sitio ilegal en internet.</p>
+          <p>Meses después, ese computador tiene un programa malicioso instalado sin que nadie lo sepa. Los datos de cientos de tarjetahabientes terminan publicados en un sitio ilegal en internet.</p>
         `,
         footer: 'Nadie tuvo intención de causar daño. El problema no fue malicia. Fue un proceso sin controles y una decisión que pareció razonable en el momento.',
       },
@@ -288,7 +288,7 @@ export const modules = [
         text: `
           <p>Según el Verizon Data Breach Investigations Report 2024, el 68% de las brechas de seguridad a nivel global involucran un error humano o un proceso mal diseñado, no un ataque técnico sofisticado. El mismo informe señala que el costo promedio de una brecha relacionada con datos de pago es significativamente mayor cuando la causa es un proceso interno sin controles, precisamente porque nadie detecta el problema hasta que ya escaló.</p>
           <p>En Colombia, el Centro Cibernético Policial de la DIJIN reportó más de 77.000 denuncias por delitos informáticos en 2024. La mayoría de esos casos no empiezan vulnerando sistemas: empiezan por un proceso mal diseñado o una decisión que pareció inofensiva en el momento, como la de Carlos Andrés y el archivo compartido.</p>
-          <p>Esto aplica a cualquier organización que procese datos de pago: comercios, pasarelas de pago, empresas de servicios o proveedores que manejan información de clientes, sin importar su tamaño.</p>
+          <p>Esto aplica a cualquier organización que procese datos de pago: comercios, pasarelas de pago, empresas de servicios o proveedores que manejan datos de pago de terceros, sin importar su tamaño.</p>
         `,
         footer: 'La pregunta no es si esto le puede pasar a tu organización. La pregunta es qué tan preparado estás para que no te pase a ti.',
       },
@@ -305,7 +305,7 @@ export const modules = [
       {
         type: 'text',
         content: `
-          <p>No lo creó ningún gobierno. Lo crearon las principales marcas de tarjetas —Visa, Mastercard, American Express— porque necesitaban que los datos de sus clientes estuvieran protegidos en cualquier comercio del mundo: desde una gran cadena de retail hasta una pasarela de pago en línea.</p>
+          <p>No lo creó ningún gobierno. Lo crearon las principales marcas de tarjetas —Visa, Mastercard, American Express— porque necesitaban que los datos de sus tarjetahabientes estuvieran protegidos en cualquier comercio del mundo: desde una gran cadena de retail hasta una pasarela de pago en línea.</p>
           <p>La versión vigente es <strong>PCI DSS 4.0.1</strong>, publicada en junio de 2024. Refuerza los controles de autenticación, monitoreo y gestión de riesgos.</p>
           <p><em>Para este curso no necesitas memorizar los 12 requisitos del estándar. Necesitas entender cómo se traducen en decisiones concretas en tu trabajo. Eso es exactamente lo que viene a continuación.</em></p>
         `,
@@ -319,7 +319,7 @@ export const modules = [
         iconItems: [
           { icon: '🏬', text: 'Comercios y puntos de venta — aceptan pagos con tarjeta de crédito o débito, en físico o en línea.' },
           { icon: '⚙️', text: 'Pasarelas de pago — procesan o transmiten datos de pago entre el comercio y el banco.' },
-          { icon: '🔗', text: 'Proveedores de servicios — ofrecen servicios que impactan la seguridad de los datos de pago de sus clientes.' },
+          { icon: '🔗', text: 'Proveedores de servicios — ofrecen servicios que impactan la seguridad de los datos de pago de otras organizaciones.' },
         ],
         footer: 'Si trabajas en alguna de estas organizaciones, este curso aplica a ti.',
       },
@@ -328,7 +328,7 @@ export const modules = [
       {
         type: 'quiz',
         title: 'Actividad de validación — ¿Puedo guardar este dato?',
-        subtitle: 'Un cliente acaba de llamar y te dio varios datos. Clasifica cada uno: ¿se puede guardar o nunca se puede guardar? Necesitas 5 de 6 correctas para avanzar.',
+        subtitle: 'Una persona acaba de llamar para pagar y te dio varios datos. Clasifica cada uno: ¿se puede guardar o nunca se puede guardar? Necesitas 5 de 6 correctas para avanzar.',
         passingScore: 83,
         questions: [
           {
@@ -368,10 +368,10 @@ export const modules = [
           },
           {
             id: 'm1_dato_6',
-            question: 'PIN del cliente',
+            question: 'PIN del titular de la tarjeta',
             options: ['Solo se puede guardar con controles específicos', 'Nunca se puede guardar — prohibición absoluta'],
             correct: 1,
-            explanation: 'El PIN es el secreto exclusivo del cliente. Ningún sistema, proceso ni colaborador debe tener acceso a él. Si alguien te pide el PIN de un cliente por cualquier razón, es una señal de alerta inmediata.',
+            explanation: 'El PIN es el secreto exclusivo del titular de la tarjeta. Ningún sistema, proceso ni colaborador debe tener acceso a él. Si alguien te pide el PIN de una persona por cualquier razón, es una señal de alerta inmediata.',
           },
         ],
       },
@@ -470,7 +470,7 @@ export const modules = [
         title: 'Vía 1 — El mensaje que no es lo que parece',
         content: `
           <p>El phishing es cuando alguien te envía un mensaje haciéndose pasar por una persona o entidad de confianza —tu banco, la DIAN, un proveedor, tu jefe— para conseguir que hagas algo: hacer clic en un enlace, ingresar tus datos, transferir dinero o abrir un archivo.</p>
-          <p>El objetivo no siempre es robarte a ti directamente. A veces el objetivo es usar tu acceso para llegar a datos de clientes que están en los sistemas de tu organización.</p>
+          <p>El objetivo no siempre es robarte a ti directamente. A veces el objetivo es usar tu acceso para llegar a los datos de pago que están en los sistemas de tu organización.</p>
           <p>En Colombia, los mensajes de phishing más frecuentes en el entorno empresarial se hacen pasar por:</p>
           <ul>
             <li><strong>Bancolombia o Nequi:</strong> alertas de transacciones sospechosas o bloqueo de cuenta.</li>
@@ -490,7 +490,7 @@ export const modules = [
         text: `
           <div style="background:#F3F4F6; border-radius:12px; padding:14px 16px; margin-bottom:14px;">
             <p style="font-weight:700; margin:0 0 4px;">Bancolombia Seguridad &nbsp;+57 321 4567890</p>
-            <p style="margin:0;">Estimado cliente, hemos detectado un intento de acceso no autorizado a su cuenta. Por su seguridad, debe verificar su identidad en las próximas 2 horas o su cuenta será bloqueada. Haga clic aquí para verificar: http://bancolombia-seguridad-co.verify-account.net/login — Equipo de Seguridad Bancolombia</p>
+            <p style="margin:0;">Estimado usuario, hemos detectado un intento de acceso no autorizado a su cuenta. Por su seguridad, debe verificar su identidad en las próximas 2 horas o su cuenta será bloqueada. Haga clic aquí para verificar: http://bancolombia-seguridad-co.verify-account.net/login — Equipo de Seguridad Bancolombia</p>
           </div>
           <p>⚠️ <strong>Señal 1:</strong> el número no es un número oficial de Bancolombia (los canales oficiales no envían WhatsApp desde números personales).</p>
           <p>⚠️ <strong>Señal 2:</strong> urgencia artificial — "2 horas o bloqueamos su cuenta".</p>
@@ -573,7 +573,7 @@ export const modules = [
         type: 'box',
         variant: 'warning',
         title: 'Ventas',
-        text: 'Un cliente habitual llama furioso. Dice que Bancolombia le bloqueó la tarjeta y necesita que le proceses el pago directamente con los datos que te va a dictar por teléfono, "como excepción". Insiste en que es urgente y que ya habló con tu jefe.',
+        text: 'Una persona que suele pagarte llama furiosa. Dice que Bancolombia le bloqueó la tarjeta y necesita que le proceses el pago directamente con los datos que te va a dictar por teléfono, "como excepción". Insiste en que es urgente y que ya habló con tu jefe.',
         footer: 'Señal de alerta: ningún proceso autorizado de tu organización debería requerir que tomes datos de tarjeta por teléfono fuera del canal oficial. La urgencia y la presión son una técnica de manipulación.',
       },
 
@@ -610,7 +610,7 @@ export const modules = [
         variant: 'accent',
         title: 'Las cuatro situaciones que acabas de ver tienen algo en común: usan las mismas tres palancas psicológicas.',
         iconItems: [
-          { icon: '⏱️', text: 'Urgencia — "Necesito eso ahora, es para el cierre del mes." "Si no lo haces en los próximos 10 minutos perdemos el cliente."' },
+          { icon: '⏱️', text: 'Urgencia — "Necesito eso ahora, es para el cierre del mes." "Si no lo haces en los próximos 10 minutos perdemos la venta."' },
           { icon: '🧑‍💼', text: 'Autoridad — "Soy el gerente general y necesito que me pases esos datos." "Llamo de parte de auditoría interna."' },
           { icon: '🤝', text: 'Confianza — "Ya hablé con tu jefe y me dijo que estaba bien." "Somos el proveedor de siempre, solo necesitamos actualizar los datos."' },
         ],
@@ -654,7 +654,7 @@ export const modules = [
               {
                 text: 'Abro el enlace para ver si la transacción es real y cancelarla antes de que sea tarde.',
                 correct: false,
-                feedback: 'Eso es exactamente lo que el atacante espera que hagas. El enlace no es de Nequi. Lleva a una página falsa que captura tu clave o instala malware en tu dispositivo. Una vez ingresas tus datos, el atacante tiene acceso a tu cuenta y potencialmente a los sistemas de tu organización. Señal que debiste notar: el dominio del enlace no es nequi.com.co. Tres días después de un caso así, el equipo de seguridad detecta accesos inusuales al sistema de facturación: alguien entró con las credenciales robadas desde una IP desconocida, y en los registros aparecen consultas masivas a la base de datos de clientes con datos de tarjeta. El incidente se originó en el momento en que se ingresó la clave en una página que no era Nequi. Esto no es para generar miedo: es para mostrar que una sola decisión, en un momento de distracción, puede ser el inicio de una cadena que afecta a toda la organización.',
+                feedback: 'Eso es exactamente lo que el atacante espera que hagas. El enlace no es de Nequi. Lleva a una página falsa que captura tu clave o instala malware en tu dispositivo. Una vez ingresas tus datos, el atacante tiene acceso a tu cuenta y potencialmente a los sistemas de tu organización. Señal que debiste notar: el dominio del enlace no es nequi.com.co. Tres días después de un caso así, el equipo de seguridad detecta accesos inusuales al sistema de facturación: alguien entró con las credenciales robadas desde una IP desconocida, y en los registros aparecen consultas masivas a la base de datos de tarjetahabientes. El incidente se originó en el momento en que se ingresó la clave en una página que no era Nequi. Esto no es para generar miedo: es para mostrar que una sola decisión, en un momento de distracción, puede ser el inicio de una cadena que afecta a toda la organización.',
               },
               {
                 text: 'Ignoro el mensaje. Si fuera real, Nequi me lo notificaría por la aplicación oficial.',
@@ -757,7 +757,7 @@ export const modules = [
         title: 'Regla 1 — Solo los canales autorizados',
         content: `
           <p>Esta es la regla que más incumplimientos genera, no por mala intención sino porque los canales no autorizados son los más cómodos y rápidos.</p>
-          <p>Cuando un cliente quiere pagar y no tiene acceso al canal oficial, lo más natural es usar WhatsApp, el correo o incluso llamar por teléfono. El problema no es la intención del cliente. El problema es que esos canales no tienen los controles para proteger los datos que se transmiten por ahí.</p>
+          <p>Cuando una persona quiere pagar y no tiene acceso al canal oficial, lo más natural es usar WhatsApp, el correo o incluso llamar por teléfono. El problema no es la intención de quien paga. El problema es que esos canales no tienen los controles para proteger los datos que se transmiten por ahí.</p>
         `,
       },
 
@@ -765,7 +765,7 @@ export const modules = [
       {
         type: 'box',
         variant: 'accent',
-        text: '"¿El cliente confía en mí?" no es la pregunta. La pregunta es: "¿el canal garantiza que esos datos no van a ser interceptados, guardados o usados de forma indebida?"',
+        text: '"¿La persona confía en mí?" no es la pregunta. La pregunta es: "¿el canal garantiza que esos datos no van a ser interceptados, guardados o usados de forma indebida?"',
         footer: 'La respuesta para WhatsApp, correo electrónico, mensajes de texto, llamadas telefónicas y cualquier otro canal informal es siempre la misma: no.',
       },
 
@@ -778,12 +778,12 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 6. Qué decirle al cliente
+      // 6. Qué decirle a quien paga
       {
         type: 'text',
-        title: '¿Qué hago cuando el cliente ya me envió los datos por WhatsApp?',
+        title: '¿Qué hago cuando ya me enviaron los datos por WhatsApp?',
         content: `
-          <p>Primero, no uses esos datos para procesar el pago. El hecho de que el cliente los haya enviado no los hace seguros ni los autoriza dentro de los procesos de tu organización.</p>
+          <p>Primero, no uses esos datos para procesar el pago. El hecho de que el titular de la tarjeta los haya enviado no los hace seguros ni los autoriza dentro de los procesos de tu organización.</p>
           <p>Segundo, respóndele con amabilidad y claridad.</p>
         `,
       },
@@ -792,7 +792,7 @@ export const modules = [
       {
         type: 'box',
         variant: 'success',
-        title: 'Ejemplo de respuesta al cliente:',
+        title: 'Ejemplo de respuesta a quien paga:',
         text: '"Gracias por tu confianza. Por seguridad, los datos de tu tarjeta solo pueden procesarse a través de nuestro canal oficial. Te comparto el enlace seguro para que puedas hacer el pago: [enlace]. Si tienes alguna dificultad, con gusto te ayudo."',
       },
 
@@ -800,7 +800,7 @@ export const modules = [
       {
         type: 'text',
         content: `
-          <p>Tercero, reporta al área correspondiente que recibiste datos de tarjeta por un canal no autorizado. Eso no es delatar al cliente: es parte del proceso de control que protege a todos.</p>
+          <p>Tercero, reporta al área correspondiente que recibiste datos de tarjeta por un canal no autorizado. Eso no es delatar a quien paga: es parte del proceso de control que protege a todos.</p>
         `,
       },
 
@@ -836,7 +836,7 @@ export const modules = [
         title: 'Regla 3 — El entorno de trabajo también es seguridad',
         content: `
           <p>La seguridad de los datos de pago no ocurre solo en los sistemas. Ocurre también en el espacio físico donde trabajas.</p>
-          <p>Un documento con datos de clientes sobre el escritorio, una pantalla visible para quien pase, una impresión olvidada en la bandeja de la impresora: todos son riesgos reales que no requieren ningún sistema sofisticado para materializarse.</p>
+          <p>Un documento con datos de pago sobre el escritorio, una pantalla visible para quien pase, una impresión olvidada en la bandeja de la impresora: todos son riesgos reales que no requieren ningún sistema sofisticado para materializarse.</p>
           <p><strong>El trabajo remoto o híbrido amplió esta superficie de riesgo.</strong> Cuando trabajas desde casa, la red, el dispositivo y el entorno físico son diferentes, y eso crea vulnerabilidades que no existen en la oficina. Estas son las situaciones más frecuentes:</p>
         `,
       },
@@ -864,7 +864,7 @@ export const modules = [
         title: 'Checklist de autoevaluación — ¿Cómo está mi entorno hoy?',
         subtitle: 'No hay respuestas correctas o incorrectas: esto es para que identifiques en qué áreas puedes mejorar. Nadie ve tus respuestas.',
         items: [
-          'Mi escritorio no tiene documentos con datos de clientes o de pago a la vista.',
+          'Mi escritorio no tiene documentos con datos de pago o de terceros a la vista.',
           'Bloqueo mi equipo cada vez que me alejo, aunque sea por pocos minutos.',
           'No tengo mi contraseña escrita en papel, en una nota adhesiva ni guardada en el navegador de un equipo compartido.',
           'Cuando termino de usar un documento con datos sensibles, lo cierro y lo guardo en el lugar correcto.',
@@ -872,7 +872,7 @@ export const modules = [
           'Me conecto a través de la VPN corporativa cuando accedo a sistemas de la organización desde fuera de la oficina, si mi organización la utiliza para ese propósito.',
           'Mi pantalla no es visible para otras personas en mi hogar o en espacios compartidos.',
           'No imprimo documentos con datos de pago en casa.',
-          'Uso el dispositivo corporativo —no el personal— para acceder a sistemas con información de clientes.',
+          'Uso el dispositivo corporativo —no el personal— para acceder a sistemas con datos de pago.',
           'Si imprimo algo por necesidad, lo destruyo de forma segura cuando ya no lo necesito.',
         ],
         results: {
@@ -891,7 +891,7 @@ export const modules = [
         questions: [
           {
             id: 'm3_sit_1',
-            question: 'Situación: un cliente llama para pagar. No tiene acceso al portal en ese momento y te pide que le recibas el número de tarjeta por teléfono "solo esta vez". Acción: anotas el número en un papel para procesarlo después y luego lo destruyes.',
+            question: 'Situación: una persona llama para pagar. No tiene acceso al portal en ese momento y te pide que le recibas el número de tarjeta por teléfono "solo esta vez". Acción: anotas el número en un papel para procesarlo después y luego lo destruyes.',
             options: ['Correcto', 'Incorrecto'],
             correct: 1,
             explanation: 'Anotar el número —aunque sea en papel y aunque lo destruyas— es un incumplimiento. El dato existió fuera de un canal autorizado, aunque sea por pocos minutos. Si ese papel es visto por alguien más antes de destruirlo, el riesgo se materializó.',
@@ -905,17 +905,17 @@ export const modules = [
           },
           {
             id: 'm3_sit_3',
-            question: 'Situación: estás trabajando desde casa en un café. Tu pantalla muestra el sistema de facturación con información de clientes. Acción: sigues trabajando normalmente porque las personas alrededor no parecen estar mirando.',
+            question: 'Situación: estás trabajando desde casa en un café. Tu pantalla muestra el sistema de facturación con datos de pago. Acción: sigues trabajando normalmente porque las personas alrededor no parecen estar mirando.',
             options: ['Correcto', 'Incorrecto'],
             correct: 1,
             explanation: 'No es necesario que alguien esté mirando activamente para que el riesgo exista. Una foto tomada de fondo, un vistazo casual o una cámara de seguridad mal administrada pueden exponer la información. En entornos públicos, los datos sensibles no deben ser visibles.',
           },
           {
             id: 'm3_sit_4',
-            question: 'Situación: recibes un correo de un cliente con el número de su tarjeta para procesar una devolución. Acción: procesas la devolución usando los datos del correo porque el cliente ya los envió y es más rápido que pedirle que use otro canal.',
+            question: 'Situación: recibes un correo de una persona con el número de su tarjeta para procesar una devolución. Acción: procesas la devolución usando los datos del correo porque ya los envió y es más rápido que pedirle que use otro canal.',
             options: ['Correcto', 'Incorrecto'],
             correct: 1,
-            explanation: 'El hecho de que el cliente los haya enviado no hace el canal seguro. El correo electrónico no es un canal autorizado para transmitir datos de tarjeta. Al usarlos, estás procesando datos obtenidos por una vía que incumple los controles de PCI DSS.',
+            explanation: 'El hecho de que el titular de la tarjeta los haya enviado no hace el canal seguro. El correo electrónico no es un canal autorizado para transmitir datos de tarjeta. Al usarlos, estás procesando datos obtenidos por una vía que incumple los controles de PCI DSS.',
           },
           {
             id: 'm3_sit_5',
@@ -1105,7 +1105,7 @@ export const modules = [
         items: [
           'Que actuaste correctamente cuando algo salió mal.',
           'Que le diste al equipo la oportunidad de contener el daño.',
-          'Que protegiste a los clientes cuyos datos pudieron estar en riesgo.',
+          'Que protegiste a las personas cuyos datos pudieron estar en riesgo.',
           'Que cumpliste con tu responsabilidad dentro de la organización.',
         ],
       },
@@ -1135,7 +1135,7 @@ export const modules = [
       {
         type: 'scenariobuilder',
         title: '¿En qué orden actuarías?',
-        subtitle: 'Llegas a la oficina un lunes y notas que tu computador tiene la sesión iniciada con un usuario que no es el tuyo. El historial muestra accesos al sistema de facturación la noche del viernes: consultas a números de tarjeta completos de al menos 40 clientes. Nadie más debería haber entrado.',
+        subtitle: 'Llegas a la oficina un lunes y notas que tu computador tiene la sesión iniciada con un usuario que no es el tuyo. El historial muestra accesos al sistema de facturación la noche del viernes: consultas a números de tarjeta completos de al menos 40 tarjetahabientes. Nadie más debería haber entrado.',
         scenarios: [
           {
             id: 'm4_orden_1',
@@ -1206,7 +1206,7 @@ export const modules = [
           'La palabra clave es "pudieron": no necesitas certeza, basta una situación razonable de duda para reportar.',
           'Los cuatro pasos en orden: para, reporta al canal oficial, documenta sin manipular el equipo, y espera instrucciones.',
           'Nunca intentes resolverlo solo, ocultarlo, comentarlo informalmente o actuar sin coordinación: cada uno de esos errores destruye evidencia o retrasa la contención.',
-          'Reportar no es delatar: es la acción que protege a los clientes y a la organización. Un incidente reportado a tiempo suele ser controlable; uno oculto casi siempre crece.',
+          'Reportar no es delatar: es la acción que protege a los tarjetahabientes y a la organización. Un incidente reportado a tiempo suele ser controlable; uno oculto casi siempre crece.',
         ],
         nextHint: 'En el módulo 5 vas a cerrar el recorrido con una sola pregunta: ¿cómo lo aplicas tú, desde tu trabajo, desde mañana?',
       },
@@ -1260,7 +1260,7 @@ export const modules = [
         questions: [
           {
             id: 'm5_situacion_1',
-            question: 'Administración / Compras: un proveedor de servicios te contacta por correo y te adjunta un archivo de Excel con datos de tarjeta de varios clientes "para que puedas verificar las transacciones". El archivo incluye números de tarjeta completos, nombres y fechas de vencimiento. Dice que es urgente porque necesita confirmación antes del cierre del día. ¿Qué haces?',
+            question: 'Administración / Compras: un proveedor de servicios te contacta por correo y te adjunta un archivo de Excel con datos de tarjeta de varios terceros "para que puedas verificar las transacciones". El archivo incluye números de tarjeta completos, nombres y fechas de vencimiento. Dice que es urgente porque necesita confirmación antes del cierre del día. ¿Qué haces?',
             options: [
               'Abres el archivo, verificas la información que necesitas y luego la eliminas.',
               'Reenvías el archivo al área de TI para que ellos lo gestionen.',
@@ -1272,7 +1272,7 @@ export const modules = [
           },
           {
             id: 'm5_situacion_2',
-            question: 'RRHH: tu compañera te pide que uses sus credenciales para consultar el número de tarjeta de un cliente en el sistema y procesar una devolución, mientras ella atiende una llamada urgente. "Es solo un momento", dice. "Nadie va a saber." ¿Qué haces?',
+            question: 'RRHH: tu compañera te pide que uses sus credenciales para consultar el número de tarjeta de una persona en el sistema y procesar una devolución, mientras ella atiende una llamada urgente. "Es solo un momento", dice. "Nadie va a saber." ¿Qué haces?',
             options: [
               'Accedes con sus credenciales porque es una tarea rutinaria y de bajo riesgo.',
               'Le explicas que no puedes usar sus credenciales y le propones buscar una alternativa: que ella haga la consulta al salir de la llamada o que use un canal de aprobación diferente si existe.',
@@ -1280,19 +1280,19 @@ export const modules = [
               'Le dices que sí y le pides que te cambie la contraseña para que quede como si hubieras entrado con la tuya.',
             ],
             correct: 1,
-            explanation: 'Correcto: las credenciales son personales e intransferibles, y consultar el número de tarjeta de un cliente con el usuario de otra persona rompe la trazabilidad exigida por PCI DSS. Proponer una alternativa resuelve la necesidad sin comprometer la seguridad. No hay tareas de "bajo riesgo" cuando se comparten credenciales; cambiar la contraseña de otro usuario sin autorización es un incidente en sí mismo y no borra el historial de accesos previos; y pedir que te cambie la contraseña para "entrar con la tuya" es el mismo problema en dirección contraria, porque el sistema registra accesos por usuario, no por contraseña.',
+            explanation: 'Correcto: las credenciales son personales e intransferibles, y consultar el número de tarjeta de un tercero con el usuario de otra persona rompe la trazabilidad exigida por PCI DSS. Proponer una alternativa resuelve la necesidad sin comprometer la seguridad. No hay tareas de "bajo riesgo" cuando se comparten credenciales; cambiar la contraseña de otro usuario sin autorización es un incidente en sí mismo y no borra el historial de accesos previos; y pedir que te cambie la contraseña para "entrar con la tuya" es el mismo problema en dirección contraria, porque el sistema registra accesos por usuario, no por contraseña.',
           },
           {
             id: 'm5_situacion_3',
-            question: 'Ventas: un cliente insiste en enviarte los datos de su tarjeta por WhatsApp. Ya te los mandó: número, nombre y vencimiento. Dice que es la forma más rápida y que lo ha hecho antes con otras empresas sin problema. ¿Qué haces?',
+            question: 'Ventas: una persona que va a pagar insiste en enviarte los datos de su tarjeta por WhatsApp. Ya te los mandó: número, nombre y vencimiento. Dice que es la forma más rápida y que lo ha hecho antes con otras empresas sin problema. ¿Qué haces?',
             options: [
               'Usas los datos que te envió porque ya están en tu celular y sería más difícil pedirle que los ingrese de nuevo.',
               'Los usas esta vez, pero le pides que la próxima vez use el canal oficial.',
-              'No usas los datos del mensaje. Le explicas al cliente que por su seguridad no puedes procesar datos de tarjeta recibidos por WhatsApp, y le ofreces el canal oficial. Luego reportas internamente que recibiste datos por ese canal.',
-              'Eliminas los mensajes de WhatsApp para que no quede rastro y le pides al cliente que ingrese los datos por el canal oficial.',
+              'No usas los datos del mensaje. Le explicas que, por su seguridad, no puedes procesar datos de tarjeta recibidos por WhatsApp, y le ofreces el canal oficial. Luego reportas internamente que recibiste datos por ese canal.',
+              'Eliminas los mensajes de WhatsApp para que no quede rastro y le pides que ingrese los datos por el canal oficial.',
             ],
             correct: 2,
-            explanation: 'Correcto: la protección del cliente empieza por no procesar datos recibidos por canales que no garantizan su seguridad. Explicárselo con claridad genera confianza, no fricción, y el reporte interno permite registrar el caso. Usarlos porque "ya llegaron" no los hace válidos; una excepción "esta vez" sigue siendo un incumplimiento —el proceso se valida por el canal, no por la frecuencia—; y eliminar los mensajes no elimina el riesgo (los datos ya pudieron quedar en servidores o copias de seguridad) y además va en contra del protocolo de respuesta al no reportar el incidente.',
+            explanation: 'Correcto: la protección del titular de la tarjeta empieza por no procesar datos recibidos por canales que no garantizan su seguridad. Explicárselo con claridad genera confianza, no fricción, y el reporte interno permite registrar el caso. Usarlos porque "ya llegaron" no los hace válidos; una excepción "esta vez" sigue siendo un incumplimiento —el proceso se valida por el canal, no por la frecuencia—; y eliminar los mensajes no elimina el riesgo (los datos ya pudieron quedar en servidores o copias de seguridad) y además va en contra del protocolo de respuesta al no reportar el incidente.',
           },
         ],
       },
@@ -1379,7 +1379,7 @@ export const modules = [
         color: 'primary',
         icon: '🔒',
         badge: 'Para recordar',
-        body: 'Cada dato de pago representa la confianza de un cliente. Protegerlo también depende de las decisiones que tomas cada día.',
+        body: 'Cada dato de pago representa la confianza de una persona. Protegerlo también depende de las decisiones que tomas cada día.',
       },
 
       // 13. Cierre del módulo
