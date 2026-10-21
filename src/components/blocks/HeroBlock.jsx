@@ -29,7 +29,7 @@ function moduleStats(mod) {
   const count = type => mod.blocks.filter(b => (typeof type === 'string' ? b.type === type : type.has(b.type))).length
   const temas = getModuleTemas(mod).length
   const videos = count('video')
-  const activities = count(ACTIVITY_TYPES)
+  const activities = mod.blocks.filter(b => ACTIVITY_TYPES.has(b.type) && b.mode !== 'recall').length
   const quizzes = count('quiz')
   const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`
   return [

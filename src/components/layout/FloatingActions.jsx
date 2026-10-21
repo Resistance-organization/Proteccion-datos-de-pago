@@ -9,7 +9,7 @@ function scrollToId(id) {
 // Indicador de lo que falta para completar el módulo + botón "volver arriba".
 // Se ocultan mientras el cierre del módulo está a la vista, porque ahí ya se
 // muestra la misma información.
-export default function FloatingActions({ moduleKey, readingDone, readingProgress, pendingQuizBlock, isDone, offsetLeft = 0 }) {
+export default function FloatingActions({ moduleKey, readingDone, readingProgress, pendingActivity, isDone, offsetLeft = 0 }) {
   const [scrolledPastHero, setScrolledPastHero] = useState(false)
   const [farDown, setFarDown] = useState(false)
   const [footerVisible, setFooterVisible] = useState(false)
@@ -76,12 +76,12 @@ export default function FloatingActions({ moduleKey, readingDone, readingProgres
                 >
                   Módulo completado <ArrowDown size={14} />
                 </button>
-              ) : pendingQuizBlock != null && (
+              ) : pendingActivity && (
                 <button
-                  onClick={() => scrollToId(`block-${pendingQuizBlock}`)}
+                  onClick={() => scrollToId(`block-${pendingActivity.blockIndex}`)}
                   className="inline-flex items-center gap-1.5 rounded-full bg-accent text-white px-3.5 py-1.5 font-semibold hover:bg-accent-600"
                 >
-                  <Award size={14} /> Ir al quiz
+                  <Award size={14} /> {pendingActivity.label}
                 </button>
               )}
             </motion.div>

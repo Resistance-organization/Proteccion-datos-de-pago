@@ -132,6 +132,7 @@ export default function BlockRenderer(props) {
         <Reflection
           block={block}
           value={reflectionAnswers ? reflectionAnswers[block.storageKey] : undefined}
+          answers={reflectionAnswers}
           onSave={onReflectionSave}
         />,
         key

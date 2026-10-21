@@ -51,7 +51,7 @@ Cada módulo contiene un array de `blocks`. Tipos disponibles (ver también el c
 | `scenariobuilder` | `ScenarioBuilder` | Actividad de ordenar (`mode: 'order'`) o seleccionar (`mode: 'select'`) opciones, con distractores — **no bloquea** el avance |
 | `selfcheck` | `SelfCheck` | Preguntas de opción única sin calificación, cierre con `resultTitle`/`resultText` fijo |
 | `checklist` | `ChecklistCheck` | Checklist de autoevaluación sin calificación, con bandas de resultado (`results.band1/2/3`) |
-| `reflection` | `Reflection` | Campo de texto libre (`promptPrefix`) que se guarda en `storageKey` y se puede recuperar más adelante (modo `recall`) |
+| `reflection` | `Reflection` | Pregunta de texto libre (`promptPrefix`, `placeholder`), entre 15 y 300 caracteres, que se guarda en `storageKey`. **Obligatoria** salvo `optional: true`. Con `mode: 'recall'` e `items[]` (`{storageKey, label, prompt?}`) muestra las respuestas anteriores |
 | `pyramid` | `ValuePyramid` | Pirámide interactiva de niveles con hover |
 | `flyer` | `Flyer` | Tarjeta visual destacada (`badge`, `body`, `color`, `icon`) |
 | `downloadcard` | `DownloadCard` | Tarjeta con botón que genera un PDF client-side. `variant` mapea a un generador en `src/utils/`: `incidentCard` → `generateIncidentCard` |
@@ -73,8 +73,9 @@ Detecta el API SCORM 1.2 (`window.API`) escalando frames de padres. Si no lo enc
 Un módulo se considera **completado** cuando:
 1. El usuario ha hecho scroll hasta el 90% del contenido (`moduleScrollDone`).
 2. Todos los bloques `quiz` del módulo tienen score ≥ su `passingScore` (default 80) (`moduleQuizzesDone`).
+3. Todas las `reflection` obligatorias del módulo tienen respuesta guardada (`reflectionAnswers`).
 
-Los módulos se desbloquean secuencialmente: el módulo N requiere que N-1 esté completado. Los bloques `scenario`, `scenariobuilder`, `selfcheck`, `checklist` y `reflection` **no** afectan este desbloqueo — son diagnósticos o de autoevaluación. El certificado se dispara igual que cualquier módulo (scroll + quizzes del último módulo), no hay gating adicional propio del formulario de cierre.
+Los módulos se desbloquean secuencialmente: el módulo N requiere que N-1 esté completado. Los bloques `scenario`, `scenariobuilder`, `selfcheck` y `checklist` **no** afectan este desbloqueo — son diagnósticos o de autoevaluación. El certificado se dispara igual que cualquier módulo (scroll + quizzes del último módulo), no hay gating adicional propio del formulario de cierre.
 
 ### Assets estáticos (`public/`)
 

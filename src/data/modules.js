@@ -60,12 +60,20 @@ export const modules = [
         src: './videos/m0-bienvenida.mp4',
       },
 
-      // 3. Duración y certificado
+      // 3. Recorrido del curso y certificado
       {
-        type: 'text',
-        content: `
-          <p>Son cinco módulos de 7 a 15 minutos. Al final recibirás tu certificado.</p>
-        `,
+        type: 'box',
+        variant: 'info',
+        title: 'Tu recorrido',
+        text: '<p>Son cinco módulos cortos. Cada uno responde una pregunta y se desbloquea al terminar el anterior.</p>',
+        iconItems: [
+          { icon: 'credit-card', text: '¿Qué estamos protegiendo y por qué importa? · 7 min' },
+          { icon: 'fish', text: '¿Cómo empiezan los incidentes? · 12 min' },
+          { icon: 'shield', text: '¿Cómo evitamos ser parte del problema? · 15 min' },
+          { icon: 'warning', text: '¿Qué hacemos cuando ocurre un incidente? · 11 min' },
+          { icon: 'graduation', text: '¿Cómo lo aplico en mi trabajo? · 9 min' },
+        ],
+        footer: 'Algunos módulos terminan con una actividad de validación. Al completar el último recibirás tu certificado.',
       },
     ],
   },
@@ -233,10 +241,10 @@ export const modules = [
       // 13. Reflexión personal
       {
         type: 'reflection',
-        title: 'Antes de continuar, una pregunta para ti',
+        title: 'Antes de continuar',
         storageKey: 'm1_reflexion',
         promptPrefix: '¿Qué decisión de tu trabajo diario podría iniciar una cadena como la que acabas de ver?',
-        placeholder: 'Escribe aquí...',
+        placeholder: 'Ej: anotar un número de tarjeta en un papel cuando el sistema está caído.',
       },
 
       // 14. Cierre del módulo
@@ -468,10 +476,10 @@ export const modules = [
       // 21. Reflexión personal
       {
         type: 'reflection',
-        title: 'Antes de continuar, una pregunta para ti',
+        title: 'Antes de continuar',
         storageKey: 'm2_reflexion',
         promptPrefix: '¿Cuál de las situaciones que viste hoy se parece más a algo que podría pasarte en tu trabajo?',
-        placeholder: 'Escribe aquí...',
+        placeholder: 'Ej: un correo de un proveedor que pide actualizar datos bancarios con urgencia.',
       },
 
       // 22. Cierre del módulo
@@ -661,10 +669,10 @@ export const modules = [
       // 11. Reflexión personal
       {
         type: 'reflection',
-        title: 'Antes de continuar, una pregunta para ti',
+        title: 'Antes de continuar',
         storageKey: 'm3_reflexion',
-        promptPrefix: '¿Cuál de estas tres reglas es la que más te cuesta aplicar en tu trabajo diario?',
-        placeholder: 'Escribe aquí...',
+        promptPrefix: '¿Qué hábito de este módulo es el que más te cuesta aplicar en tu trabajo diario, y por qué?',
+        placeholder: 'Ej: bloquear el equipo cuando me levanto un momento, porque estoy acostumbrado a dejarlo abierto.',
       },
 
       // 12. Cierre del módulo
@@ -812,10 +820,10 @@ export const modules = [
       // 12. Reflexión personal
       {
         type: 'reflection',
-        title: 'Antes de continuar, una pregunta para ti',
+        title: 'Antes de continuar',
         storageKey: 'm4_reflexion',
-        promptPrefix: 'Si mañana detectaras algo sospechoso en tu trabajo, ¿sabes exactamente qué hacer y a quién llamar?',
-        placeholder: 'Escribe aquí...',
+        promptPrefix: 'Si mañana detectaras algo sospechoso en tu trabajo, ¿qué harías en los primeros minutos y a quién le avisarías?',
+        placeholder: 'Ej: no tocaría nada, avisaría a mi líder y al área de TI, y anotaría la hora y lo que vi.',
       },
 
       // 13. Cierre del módulo
@@ -909,16 +917,31 @@ export const modules = [
         ],
       },
 
-      // 4. Una pregunta para ti
+      // 4. Lo que escribiste en cada módulo
+      {
+        type: 'reflection',
+        mode: 'recall',
+        title: 'Lo que fuiste escribiendo en el curso',
+        intro: 'Antes de cerrar, vuelve a leer lo que respondiste en cada módulo.',
+        items: [
+          { storageKey: 'm1_reflexion', label: 'Módulo 1', prompt: '¿Qué decisión de tu trabajo diario podría iniciar una cadena de incidentes?' },
+          { storageKey: 'm2_reflexion', label: 'Módulo 2', prompt: '¿Qué situación se parece más a algo que podría pasarte?' },
+          { storageKey: 'm3_reflexion', label: 'Módulo 3', prompt: '¿Qué hábito te cuesta más aplicar?' },
+          { storageKey: 'm4_reflexion', label: 'Módulo 4', prompt: '¿Qué harías en los primeros minutos ante algo sospechoso?' },
+        ],
+      },
+
+      // 5. Una pregunta para ti
       {
         type: 'reflection',
         title: 'Una pregunta para ti',
+        savedText: 'Guardamos tu respuesta.',
         storageKey: 'm5_reflexion_2',
         promptPrefix: '¿Qué vas a hacer diferente en tu trabajo a partir de mañana?',
         placeholder: 'Ej: Voy a usar el canal oficial para recibir pagos / Voy a bloquear mi equipo cuando me levante / Voy a reportar los correos sospechosos en lugar de ignorarlos.',
       },
 
-      // 5. ¿Sabes a quién reportar? (opción múltiple, sin calificación)
+      // 6. ¿Sabes a quién reportar? (opción múltiple, sin calificación)
       {
         type: 'selfcheck',
         title: '¿Sabes a quién reportar?',
@@ -934,7 +957,7 @@ export const modules = [
         resultText: 'Si no tienes 100% claro el canal de reporte, consulta con tu líder o con el área de TI cuál es exactamente. Esa información también está en la tarjeta de referencia descargable del Módulo 4 — guárdala donde puedas encontrarla.',
       },
 
-      // 6. Cierre narrativo del curso
+      // 7. Cierre narrativo del curso
       {
         type: 'text',
         title: 'Cierre narrativo del curso',
@@ -946,7 +969,7 @@ export const modules = [
         `,
       },
 
-      // 7. Cierre del módulo
+      // 8. Cierre del módulo
       {
         type: 'closing',
         moduleLabel: 'Módulo 5 completado — curso finalizado',

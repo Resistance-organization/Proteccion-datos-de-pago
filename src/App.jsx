@@ -82,6 +82,13 @@ function quizBlocksOf(module) {
     .filter(b => b.type === 'quiz')
 }
 
+// Reflexiones obligatorias del módulo (las de modo recall u optional no cuentan)
+function reflectionBlocksOf(module) {
+  return module.blocks
+    .map((b, i) => ({ ...b, blockIndex: i }))
+    .filter(b => b.type === 'reflection' && b.mode !== 'recall' && !b.optional && b.storageKey)
+}
+
 // ─── Barra lateral ───────────────────────────────────────────────────────────
 
 const SIDEBAR_PREF_KEY = 'lo_sidebar_open'
@@ -239,8 +246,9 @@ export default function App() {
     const quizBlocks  = quizBlocksOf(mod)
     const doneSets    = moduleQuizzesDone[moduleId] || new Set()
     const allQuizDone = quizBlocks.length === 0 || quizBlocks.every(q => doneSets.has(q.blockIndex))
-    return scrollDone && allQuizDone
-  }, [moduleScrollDone, moduleQuizzesDone])
+    const allReflectionsDone = reflectionBlocksOf(mod).every(r => reflectionAnswers[r.storageKey])
+    return scrollDone && allQuizDone && allReflectionsDone
+  }, [moduleScrollDone, moduleQuizzesDone, reflectionAnswers])
 
   const isModuleUnlocked = useCallback((index) => {
     if (import.meta.env.DEV) return true // TODO: quitar antes de empaquetar a SCORM si se deja código de prueba
@@ -264,13 +272,21 @@ export default function App() {
       }
       return 'Completa y aprueba el quiz del módulo'
     }
+    if (pendingReflectionBlock != null) return 'Responde la pregunta de reflexión'
     return null
   }
-  const blockReason = nextBlockReason()
-
-  // Primer quiz que aún no se aprueba (para el indicador flotante)
+  // Primer quiz sin aprobar y primera reflexión sin responder (indicador flotante)
   const pendingQuizBlock = quizBlocksOf(currentModule)
     .find(q => !(moduleQuizzesDone[currentModule.id] || new Set()).has(q.blockIndex))?.blockIndex ?? null
+  const pendingReflectionBlock = reflectionBlocksOf(currentModule)
+    .find(r => !reflectionAnswers[r.storageKey])?.blockIndex ?? null
+  const pendingActivity = pendingQuizBlock != null
+    ? { blockIndex: pendingQuizBlock, label: 'Ir al quiz' }
+    : pendingReflectionBlock != null
+      ? { blockIndex: pendingReflectionBlock, label: 'Ir a la reflexión' }
+      : null
+
+  const blockReason = nextBlockReason()
 
   // ── Guardar progreso ─────────────────────────────────────────────────────
 
@@ -528,7 +544,7 @@ export default function App() {
       moduleKey={currentModuleIndex}
       readingDone={currentScrollDone}
       readingProgress={scrollProgress}
-      pendingQuizBlock={pendingQuizBlock}
+      pendingActivity={pendingActivity}
       isDone={currentModuleDone}
       offsetLeft={sidebarOpen && isDesktop ? 288 : 0}
     />
