@@ -1,11 +1,11 @@
-// Ícono de menú: tres líneas que se convierten en una X al abrir
+// Ícono de menú: tres líneas escalonadas que se cruzan en una X al abrir
 function MenuGlyph({ open }) {
-  const line = 'absolute left-0 h-[2px] rounded-full bg-current transition-all duration-300 ease-out'
+  const line = 'absolute left-0 h-[2px] rounded-full bg-current transition-all duration-300 ease-[cubic-bezier(.65,0,.35,1)]'
   return (
-    <span className="relative block w-[18px] h-[14px]" aria-hidden="true">
-      <span className={`${line} w-full ${open ? 'top-[6px] rotate-45' : 'top-0'}`} />
-      <span className={`${line} top-[6px] ${open ? 'w-0 opacity-0' : 'w-3/4 opacity-100'}`} />
-      <span className={`${line} w-full ${open ? 'top-[6px] -rotate-45' : 'top-[12px]'}`} />
+    <span className="relative block w-5 h-[14px]" aria-hidden="true">
+      <span className={`${line} ${open ? 'top-[6px] w-5 rotate-45' : 'top-0 w-5'}`} />
+      <span className={`${line} top-[6px] ${open ? 'w-0 opacity-0 translate-x-2' : 'w-3 opacity-100 group-hover:w-5'}`} />
+      <span className={`${line} ${open ? 'top-[6px] w-5 -rotate-45' : 'top-[12px] w-4 group-hover:w-5'}`} />
     </span>
   )
 }
@@ -46,11 +46,9 @@ export default function Header({ currentModule, totalModules, completedCount, si
         aria-controls="course-sidebar"
         aria-label={sidebarOpen ? 'Ocultar menú del curso' : 'Mostrar menú del curso'}
         title={sidebarOpen ? 'Ocultar menú' : 'Mostrar menú'}
-        className={`group flex-shrink-0 h-10 rounded-xl flex items-center gap-2.5 px-3 font-title text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary
-          ${sidebarOpen ? 'bg-primary text-white hover:bg-primary-600' : 'bg-primary-50 text-primary hover:bg-primary-100'}`}
+        className="group flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-primary-50 active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
       >
         <MenuGlyph open={sidebarOpen} />
-        <span className="hidden md:inline">Menú</span>
       </button>
 
       {/* Logo */}

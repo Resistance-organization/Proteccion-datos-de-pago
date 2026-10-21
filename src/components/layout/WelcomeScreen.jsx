@@ -46,7 +46,7 @@ export default function WelcomeScreen({ modules, studentName, currentModule, com
       <div className="absolute -top-40 -right-40 w-[36rem] h-[36rem] rounded-full -z-10 blur-3xl bg-secondary/40" />
       <div className="absolute -bottom-48 -left-32 w-[30rem] h-[30rem] rounded-full -z-10 blur-3xl bg-accent/25" />
 
-      <div className="max-w-6xl mx-auto px-6 sm:px-10 py-8 sm:py-10 min-h-screen flex flex-col">
+      <div className="max-w-[88rem] mx-auto px-5 sm:px-8 lg:px-12 py-8 sm:py-10 min-h-screen flex flex-col">
         <img src="./Logo blanco.png" alt="Resistance" className="h-9 w-auto self-start" />
 
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-16 items-center py-12">
@@ -97,14 +97,14 @@ export default function WelcomeScreen({ modules, studentName, currentModule, com
             </dl>
 
             {/* Nivel 5 — acción */}
-            <div className="mt-11 flex flex-col sm:flex-row sm:items-center gap-5">
+            <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
               <button
                 onClick={onStart}
                 autoFocus
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-white text-primary font-title font-bold text-lg shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0 transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-secondary/60"
+                className="self-start inline-flex items-center gap-2 whitespace-nowrap px-5 py-2.5 rounded-xl bg-white text-primary font-title font-semibold text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-secondary/60"
               >
                 {isReturning ? 'Continuar donde quedaste' : 'Comenzar el curso'}
-                <ArrowRight size={20} />
+                <ArrowRight size={17} />
               </button>
               {isReturning && (
                 <div className="border-l-2 border-accent pl-4 leading-snug">
