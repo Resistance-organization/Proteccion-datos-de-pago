@@ -549,12 +549,13 @@ export const modules = [
         ],
       },
 
-      // 6. Tema 2 — Tus credenciales son tu firma
+      // 6. Tema 2 — Tu entorno también es seguridad (credenciales y espacio de trabajo)
       {
         type: 'text',
-        title: 'Tema 2 — Tus credenciales son tu firma',
+        title: 'Tema 2 — Tu entorno también es seguridad',
         content: `
-          <p>Todo lo que se hace con tu usuario queda registrado a tu nombre.</p>
+          <p>Empieza por tu usuario: todo lo que se hace con él queda registrado a tu nombre.</p>
+          <p>Y no todo es digital: un papel en el escritorio o una pantalla a la vista también son riesgos.</p>
         `,
       },
 
@@ -572,16 +573,7 @@ export const modules = [
         ],
       },
 
-      // 8. Tema 3 — Tu entorno también es seguridad
-      {
-        type: 'text',
-        title: 'Tema 3 — Tu entorno también es seguridad',
-        content: `
-          <p>Un papel en el escritorio o una pantalla a la vista también son riesgos.</p>
-        `,
-      },
-
-      // 9. Infografía — trabajo remoto
+      // 8. Infografía — trabajo remoto
       {
         type: 'infographic',
         title: 'Cuando trabajas desde casa, el riesgo también va contigo',
@@ -590,7 +582,7 @@ export const modules = [
         maxWidth: 1100,
       },
 
-      // 10. Checklist de autoevaluación (sin calificación)
+      // 9. Checklist de autoevaluación (sin calificación)
       {
         type: 'checklist',
         title: 'Checklist de autoevaluación — ¿Cómo está mi entorno hoy?',
@@ -614,7 +606,7 @@ export const modules = [
         },
       },
 
-      // 11. Actividad de validación — quiz correcto/incorrecto
+      // 10. Actividad de validación — quiz correcto/incorrecto
       {
         type: 'quiz',
         title: '¿Esto está bien o está mal?',
@@ -666,7 +658,7 @@ export const modules = [
         ],
       },
 
-      // 12. Reflexión personal
+      // 11. Reflexión personal
       {
         type: 'reflection',
         title: 'Antes de continuar, una pregunta para ti',
@@ -675,7 +667,7 @@ export const modules = [
         placeholder: 'Escribe aquí...',
       },
 
-      // 13. Cierre del módulo
+      // 12. Cierre del módulo
       {
         type: 'closing',
         moduleLabel: 'Módulo 3 completado',
