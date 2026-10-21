@@ -61,17 +61,18 @@ export default function WelcomeScreen({ modules, studentName, currentModule, com
             {/* Nivel 2 — título */}
             <h1
               className="mt-6 font-title font-bold leading-[0.92] tracking-tight"
-              style={{ fontSize: 'clamp(3.5rem, 7.2vw, 7rem)' }}
+              style={{ fontSize: courseInfo.titleLines ? 'clamp(2.25rem, 5vw, 5rem)' : 'clamp(3.5rem, 7.2vw, 7rem)' }}
             >
-              {courseInfo.title.split(' ').map((word, i, words) => (
+              {/* courseInfo.titleLines fija los renglones; si no existe, una palabra por renglón */}
+              {(courseInfo.titleLines || courseInfo.title.split(' ')).map((line, i, lines) => (
                 <span
                   key={i}
-                  className={`block ${i === words.length - 1 && words.length > 1 ? 'bg-clip-text text-transparent' : ''}`}
-                  style={i === words.length - 1 && words.length > 1
+                  className={`block ${i === lines.length - 1 && lines.length > 1 ? 'bg-clip-text text-transparent' : ''}`}
+                  style={i === lines.length - 1 && lines.length > 1
                     ? { backgroundImage: 'linear-gradient(90deg, #8DBDEB 0%, #F58EB9 100%)' }
                     : undefined}
                 >
-                  {word}
+                  {line}
                 </span>
               ))}
             </h1>

@@ -27,6 +27,7 @@
 
 export const courseInfo = {
   title: 'Protección de Datos de Pago',
+  titleLines: ['Protección de Datos', 'de Pago'], // renglones del título en la bienvenida
   subtitle: 'Curso de concientización en PCI DSS 4.0.1',
   version: '1.0',
   passingScore: 80,
