@@ -710,7 +710,7 @@ export const modules = [
         accent: 'secondary',
       },
 
-      // Video — Si algo sale mal
+      // 2. Video — Si algo sale mal
       {
         type: 'video',
         title: 'Si algo sale mal',
@@ -718,20 +718,20 @@ export const modules = [
         src: './videos/m4-si-algo-sale-mal.mp4',
       },
 
-      // 3. ¿Qué cuenta como un incidente?
+      // 3. Tema 1 — Qué cuenta como un incidente
       {
         type: 'text',
-        title: '¿Qué cuenta como un incidente?',
-        content: `
-          <p>Cualquier situación en la que datos de tarjeta pudieron ser vistos, copiados, enviados o usados por alguien que no debía.</p>
-        `,
+        title: 'Tema 1 — Qué cuenta como un incidente',
       },
 
-      // 4. Callout — la palabra clave
+      // 4. Definición y la palabra clave
       {
         type: 'box',
         variant: 'accent',
-        text: 'La palabra clave es <strong>pudieron</strong>. No necesitas tener certeza de que ocurrió algo. Basta con que haya una situación razonable de duda.',
+        text: `
+          <p>Cualquier situación en la que datos de tarjeta pudieron ser vistos, copiados, enviados o usados por alguien que no debía.</p>
+          <p>La palabra clave es <strong>pudieron</strong>: no necesitas certeza, basta una duda razonable.</p>
+        `,
         footer: 'Reportar algo que resultó no ser un incidente no tiene consecuencias negativas. No reportar algo que sí era un incidente sí las tiene.',
       },
 
@@ -744,16 +744,16 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 6. 4.3 Los primeros pasos — intro
+      // 6. Tema 2 — Los primeros minutos
       {
         type: 'text',
-        title: 'Los primeros pasos: qué hacer en los primeros minutos',
+        title: 'Tema 2 — Los primeros minutos',
         content: `
           <p>Cuando detectas o sospechas un incidente, hay cuatro cosas que debes hacer. En este orden.</p>
         `,
       },
 
-      // 8. Infografía — cuatro pasos
+      // 7. Infografía — cuatro pasos
       {
         type: 'infographic',
         title: 'Cuatro pasos. En este orden.',
@@ -762,7 +762,7 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 9. Lo que nunca debes hacer
+      // 8. Lo que nunca debes hacer
       {
         type: 'box',
         variant: 'warning',
@@ -775,7 +775,7 @@ export const modules = [
         ],
       },
 
-      // 10. Reportar no es delatar
+      // 9. Reportar no es delatar
       {
         type: 'flyer',
         color: 'primary',
@@ -784,7 +784,7 @@ export const modules = [
         body: 'Reportar no es delatar: es proteger. Un incidente reportado a tiempo suele ser controlable; uno oculto casi siempre crece.',
       },
 
-      // 18. 4.6 Actividad de validación — ordenar acciones
+      // 10. Actividad de validación — ordenar acciones
       {
         type: 'scenariobuilder',
         title: '¿En qué orden actuarías?',
@@ -809,24 +809,15 @@ export const modules = [
         ],
       },
 
-      // 19. 4.7 Recurso de referencia
-      {
-        type: 'text',
-        title: 'Recurso de referencia',
-        content: `
-          <p>Descarga esta tarjeta de referencia rápida y guárdala en tu celular o imprímela para tu puesto de trabajo. Incluye qué hacer, qué no hacer, y un espacio para que tu organización complete los contactos de reporte antes de distribuirla.</p>
-        `,
-      },
-
-      // 20. Tarjeta descargable
+      // 11. Tarjeta descargable
       {
         type: 'downloadcard',
         variant: 'incidentCard',
         title: 'Tarjeta de referencia — Si detectas o sospechas un incidente',
-        description: 'PDF descargable con los 4 pasos, lo que nunca debes hacer, y un espacio editable para los contactos de tu organización.',
+        description: 'Guárdala en tu celular o imprímela. Incluye qué hacer, qué no hacer y un espacio para los contactos de reporte de tu organización.',
       },
 
-      // 21. Reflexión personal
+      // 12. Reflexión personal
       {
         type: 'reflection',
         title: 'Antes de continuar, una pregunta para ti',
@@ -835,7 +826,7 @@ export const modules = [
         placeholder: 'Escribe aquí...',
       },
 
-      // 23. Cierre del módulo
+      // 13. Cierre del módulo
       {
         type: 'closing',
         moduleLabel: 'Módulo 4 completado',
