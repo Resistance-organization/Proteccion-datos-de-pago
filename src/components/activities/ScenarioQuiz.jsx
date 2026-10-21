@@ -40,7 +40,7 @@ function EmailMockup({ content }) {
       </div>
       <div className="p-4">
         <p className="text-xs font-body text-gray-400">
-          De: <span className="text-red-500 font-semibold">{content.sender}</span>
+          De: <span className="text-gray-700 font-semibold">{content.sender}</span>
         </p>
         <p className="font-title text-sm font-semibold text-gray-800 mt-1">{content.subject}</p>
         <p className="font-body text-sm text-gray-600 mt-2 leading-relaxed">{content.message}</p>

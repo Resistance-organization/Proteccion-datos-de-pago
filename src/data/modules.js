@@ -68,7 +68,7 @@ export const modules = [
         text: '<p>Son cinco módulos cortos. Cada uno responde una pregunta y se desbloquea al terminar el anterior.</p>',
         iconItems: [
           { icon: 'credit-card', text: '¿Qué estamos protegiendo y por qué importa? · 7 min' },
-          { icon: 'fish', text: '¿Cómo empiezan los incidentes? · 10 min' },
+          { icon: 'fish', text: '¿Cómo empiezan los incidentes? · 12 min' },
           { icon: 'shield', text: '¿Cómo evitamos ser parte del problema? · 14 min' },
           { icon: 'warning', text: '¿Qué hacemos cuando ocurre un incidente? · 9 min' },
           { icon: 'graduation', text: '¿Cómo lo aplico en mi trabajo? · 6 min' },
@@ -97,7 +97,15 @@ export const modules = [
         accent: 'primary',
       },
 
-      // 2. Tema 1 — Qué datos protegemos
+      // 2. Video — Una decisión que pareció razonable
+      {
+        type: 'video',
+        title: 'Una decisión que pareció razonable',
+        description: 'Cómo un dato anotado en un papel terminó en una filtración de cientos de tarjetas.',
+        src: './videos/m1-una-decision-razonable.mp4',
+      },
+
+      // 3. Tema 1 — Qué datos protegemos
       {
         type: 'text',
         title: 'Tema 1 — Qué datos protegemos',
@@ -107,7 +115,7 @@ export const modules = [
         `,
       },
 
-      // 3. Infografía — Los datos que protegemos
+      // 4. Infografía — Los datos que protegemos
       {
         type: 'infographic',
         title: 'Los datos que protegemos',
@@ -116,7 +124,7 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 4. Aplica a cualquier área
+      // 5. Aplica a cualquier área
       {
         type: 'box',
         variant: 'info',
@@ -124,49 +132,13 @@ export const modules = [
         text: 'El problema nunca es quien comparte sus datos: es qué haces tú con ellos. Y no solo pasa en quien recibe pagos: si RRHH recibe un correo con la foto de una tarjeta para un reembolso, ese correo ya es un incumplimiento.',
       },
 
-      // 5. Infografía — de un error pequeño a un incidente real
-      {
-        type: 'infographic',
-        title: 'De un error pequeño a un incidente real',
-        src: './Infografías/M1-DeErrorAIncidente.html',
-        aspectRatio: '1080 / 1150',
-        maxWidth: 980,
-      },
-
-      // 6. Para profundizar — el caso en texto y el contexto
-      {
-        type: 'more',
-        blocks: [
-          {
-            type: 'box',
-            variant: 'accent',
-            title: 'Esto mismo ha pasado en organizaciones como la tuya.',
-            text: `
-              <p>Una empresa de servicios recibe el pago de una persona por teléfono. El colaborador que toma la llamada no tiene un sistema habilitado para registrar la transacción en ese momento, así que anota los datos en un papel. Luego los pasa a un archivo en su computador para no perderlos.</p>
-              <p>Ese archivo queda guardado en una carpeta compartida del equipo. Tres personas más tienen acceso a esa carpeta. Una de ellas trabaja desde su casa y descarga el archivo en su computador personal.</p>
-              <p>Meses después, ese computador tiene un programa malicioso instalado sin que nadie lo sepa. Los datos de cientos de tarjetahabientes terminan publicados en un sitio ilegal en internet.</p>
-            `,
-            footer: 'Nadie tuvo intención de causar daño. El problema no fue malicia. Fue un proceso sin controles y una decisión que pareció razonable en el momento.',
-          },
-          {
-            type: 'box',
-            variant: 'warning',
-            title: 'Esto no es un escenario hipotético.',
-            text: `
-              <p>Esto aplica a cualquier organización que procese datos de pago: comercios, pasarelas de pago, empresas de servicios o proveedores que manejan datos de pago de terceros, sin importar su tamaño.</p>
-            `,
-            footer: 'La pregunta no es si esto le puede pasar a tu organización. La pregunta es qué tan preparado estás para que no te pase a ti.',
-          },
-        ],
-      },
-
-      // 7. Tema 2 — Qué es PCI DSS
+      // 6. Tema 2 — Qué es PCI DSS
       {
         type: 'text',
         title: 'Tema 2 — Qué es PCI DSS',
       },
 
-      // 8. PCI DSS en una frase y a quién aplica
+      // 7. PCI DSS en una frase y a quién aplica
       {
         type: 'box',
         variant: 'accent',
@@ -258,7 +230,7 @@ export const modules = [
     title: '¿Cómo empiezan los incidentes?',
     description: 'Las señales que preceden a un incidente, antes de que escale.',
     icon: 'fish',
-    estimatedTime: '10 min',
+    estimatedTime: '12 min',
     blocks: [
       // 1. Portada
       {
@@ -436,25 +408,90 @@ export const modules = [
               },
             ],
           },
+          {
+            id: 'm2_mensaje_2',
+            mockup: 'email',
+            content: {
+              sender: 'notificaciones@pasarela-pagos-seguridad.com',
+              subject: 'Acción requerida: tu acceso al portal de pagos vence hoy',
+              message: 'Por una actualización de seguridad, todos los usuarios del portal de pagos deben confirmar su usuario y contraseña antes de las 6:00 p. m. Si no lo haces, tu acceso quedará suspendido y no podrás procesar cobros. Confirmar acceso: https://portal-pagos.verificacion-usuarios.com',
+              time: 'Recibido hoy a las 4:52 p. m. en tu correo corporativo',
+            },
+            question: '¿Qué haces?',
+            options: [
+              {
+                text: 'Entro desde el enlace del correo, pero reviso que la página tenga el candado antes de escribir mi clave.',
+                correct: false,
+                feedback: 'El candado solo indica que la conexión está cifrada, no que la página sea legítima: los sitios falsos también lo tienen. Señales que debiste notar: el remitente no es el dominio oficial de tu pasarela, el enlace lleva a "verificacion-usuarios.com" y el plazo de pocas horas busca que actúes sin pensar. Con tu usuario y contraseña, el atacante puede entrar al portal y consultar o procesar pagos a tu nombre.',
+              },
+              {
+                text: 'Respondo el correo preguntando si es legítimo antes de hacer cualquier otra cosa.',
+                correct: false,
+                feedback: 'Responder no verifica nada: quien te contesta es la misma persona que envió el correo, y te va a confirmar que todo es real. Además, le confirmas que tu cuenta está activa y que lees estos mensajes. La verificación se hace por un canal que tú buscas por tu cuenta, y el correo se reporta.',
+              },
+              {
+                text: 'Se lo reenvío a mis compañeros del área para que nadie pierda el acceso al portal.',
+                correct: false,
+                feedback: 'La intención es buena, pero reenviarlo multiplica el riesgo: basta con que una persona del equipo ingrese su clave. El aviso a los demás lo da el equipo de seguridad después de que tú reportas el correo.',
+              },
+              {
+                text: 'No uso el enlace: entro al portal como siempre lo hago y reporto el correo al canal de seguridad.',
+                correct: true,
+                feedback: 'Muy bien. Si de verdad hubiera una actualización, la verías al entrar al portal por el camino de siempre, no por un enlace del correo. Y el reporte permite bloquear el dominio y avisar al resto del equipo antes de que alguien caiga.',
+              },
+            ],
+          },
+          {
+            id: 'm2_mensaje_3',
+            mockup: 'sms',
+            content: {
+              sender: 'PSE-Confirmaciones',
+              message: 'Tu compra por $389.900 con la tarjeta terminada en 4821 quedó pendiente. Para confirmarla responde este mensaje con el número completo de la tarjeta y el código CVV. Si no confirmas en 15 minutos, la compra se cancelará.',
+              time: 'Lo recibes en tu celular corporativo; administras la tarjeta de compras del área',
+            },
+            question: '¿Qué haces?',
+            options: [
+              {
+                text: 'No respondo. Reviso la compra en el portal del banco y reporto el mensaje al canal de seguridad.',
+                correct: true,
+                feedback: 'Muy bien. Ningún proceso legítimo de pago te pide el número completo de la tarjeta y el CVV por mensaje de texto. Revisar la compra por tu cuenta en el portal del banco te dice si hay un problema real, y el reporte permite alertar a otras personas que administran tarjetas.',
+              },
+              {
+                text: 'Respondo solo con el número de la tarjeta, sin el CVV, para que puedan confirmar la compra.',
+                correct: false,
+                feedback: 'Retener el CVV no te protege: con el número completo, el atacante ya tiene la mitad de lo que necesita y va a insistir para obtener el resto. La señal era la solicitud misma: nadie legítimo pide datos de tarjeta por SMS. Además, "PSE-Confirmaciones" imita el nombre de un servicio real, pero no es un canal oficial.',
+              },
+              {
+                text: 'No respondo y espero los 15 minutos: si la compra se cancela, el problema se resuelve solo.',
+                correct: false,
+                feedback: 'No responder está bien, pero el problema no se resuelve solo: si el mensaje sabe los últimos dígitos de la tarjeta, puede haber una filtración que hay que revisar, y el mismo intento puede estar llegando a otras personas. Revisa la compra en el portal del banco y reporta el mensaje.',
+              },
+              {
+                text: 'Respondo con los datos, porque la compra sí la hice yo y no quiero que se cancele.',
+                correct: false,
+                feedback: 'Aunque la compra sea real, el mensaje no lo es: los atacantes envían estos SMS justo cuando es probable que hayas comprado algo. La regla no cambia: ningún proceso legítimo te pide el número completo y el CVV por mensaje de texto. Si la compra quedó pendiente, lo vas a ver en el portal del banco.',
+              },
+            ],
+          },
         ],
         results: {
           band3: {
-            min: 1,
+            min: 3,
             icon: 'shield',
-            title: 'Reconociste la señal.',
-            text: 'Verificar por el canal oficial —nunca por el enlace del mensaje— es la respuesta correcta ante cualquier intento de phishing. Recuerda: repórtalo siempre, aunque no hayas caído en la trampa.',
+            title: 'Reconociste las tres señales.',
+            text: 'Verificaste por tu cuenta y reportaste en cada caso. Ese es el hábito: ante cualquier mensaje que pida actuar con urgencia, ingresar una clave o entregar datos de tarjeta, pausa, verifica por un canal oficial y reporta.',
           },
           band2: {
-            min: 1,
+            min: 2,
             icon: 'search',
-            title: 'Reconociste la señal.',
-            text: 'Verificar por el canal oficial —nunca por el enlace del mensaje— es la respuesta correcta ante cualquier intento de phishing. Recuerda: repórtalo siempre, aunque no hayas caído en la trampa.',
+            title: 'Vas bien, pero una señal se te pasó.',
+            text: 'Revisa la situación que fallaste: la trampa casi siempre está en el remitente, el enlace o la urgencia. Recuerda que verificar por tu cuenta no basta: también hay que reportar.',
           },
           band1: {
             min: 0,
             icon: 'compass',
             title: 'Revisa las señales que viste.',
-            text: 'El dominio del enlace no era el oficial y la urgencia extrema era la trampa. La próxima vez, verifica siempre desde la aplicación oficial y reporta cualquier mensaje sospechoso al canal que tu organización tenga definido.',
+            text: 'En las tres situaciones había señales: dominios que no eran oficiales, plazos de minutos y solicitudes de claves o datos de tarjeta. La próxima vez, verifica siempre por un canal que tú buscas y reporta cualquier mensaje sospechoso al canal de tu organización.',
           },
           commonNote: 'Este ejercicio no bloquea tu avance: lo importante es que hayas visto las consecuencias de cada decisión posible.',
         },
