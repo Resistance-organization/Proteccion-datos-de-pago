@@ -53,7 +53,7 @@ export default function WelcomeScreen({ modules, studentName, currentModule, com
           {/* Columna principal */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             {/* Nivel 1 — saludo */}
-            <p className="flex items-center gap-3 text-[13px] font-title font-semibold uppercase tracking-[0.28em] text-secondary-200">
+            <p className="flex items-center gap-3 text-[13px] font-title font-semibold uppercase tracking-[0.28em] text-secondary-100">
               <span className="w-8 h-[2px] rounded-full bg-accent" aria-hidden="true" />
               {isReturning ? `Qué bueno verte de nuevo${name ? `, ${name}` : ''}` : `Te damos la bienvenida${name ? `, ${name}` : ''}`}
             </p>
@@ -67,7 +67,7 @@ export default function WelcomeScreen({ modules, studentName, currentModule, com
               {(courseInfo.titleLines || courseInfo.title.split(' ')).map((line, i, lines) => (
                 <span
                   key={i}
-                  className={`block ${i === lines.length - 1 && lines.length > 1 ? 'bg-clip-text text-transparent' : ''}`}
+                  className={`block ${i === lines.length - 1 && lines.length > 1 ? 'bg-clip-text text-transparent pb-[0.2em] -mb-[0.2em]' : ''}`}
                   style={i === lines.length - 1 && lines.length > 1
                     ? { backgroundImage: 'linear-gradient(90deg, #8DBDEB 0%, #F58EB9 100%)' }
                     : undefined}
