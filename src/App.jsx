@@ -173,8 +173,16 @@ export default function App() {
     // La pantalla de bienvenida no cuenta como lectura del módulo
     if (showWelcome) return
     const onScroll = () => {
-      const scrollTop    = window.scrollY || document.documentElement.scrollTop
-      const scrollable   = document.documentElement.scrollHeight - document.documentElement.clientHeight
+      let scrollTop      = window.scrollY || document.documentElement.scrollTop
+      let scrollable     = document.documentElement.scrollHeight - document.documentElement.clientHeight
+      // Los bloques "Para profundizar" abiertos no cuentan: el progreso se mide
+      // como si estuvieran cerrados.
+      document.querySelectorAll('[data-more-content]').forEach(el => {
+        const height = el.offsetHeight
+        const top    = el.getBoundingClientRect().top + window.scrollY
+        scrollable  -= height
+        scrollTop   -= Math.min(Math.max(window.scrollY - top, 0), height)
+      })
       const progress     = scrollable > 0 ? Math.min(100, (scrollTop / scrollable) * 100) : 100
       setScrollProgress(progress)
 

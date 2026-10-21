@@ -22,6 +22,7 @@
 //   pyramid     → Pirámide interactiva de niveles (title, hint?, levels[], footer?)
 //   flyer       → Tarjeta visual destacada (title?, body, color?, icon?, badge?)
 //   closing     → Cierre de módulo (moduleLabel, title, summary, takeaways[], nextHint?)
+//   more        → Plegable "Para profundizar", cerrado por defecto (title?, blocks[]). No cuenta para el 90 % de scroll.
 // ─────────────────────────────────────
 
 export const courseInfo = {

@@ -32,6 +32,7 @@ import ConnectionNote from './ConnectionNote'
 import ModuleClosing from './ModuleClosing'
 import ValuePyramid from '../activities/ValuePyramid'
 import QuickCheck from '../activities/QuickCheck'
+import MoreBlock from './MoreBlock'
 
 const wrapMotion = (children, key) => (
   <motion.div
@@ -45,7 +46,8 @@ const wrapMotion = (children, key) => (
   </motion.div>
 )
 
-export default function BlockRenderer({ block, index, module, moduleNumber, estimatedTime, onQuizComplete, onScenarioFinish, onReflectionSave, reflectionAnswers, bookmarkedTema, onToggleBookmark }) {
+export default function BlockRenderer(props) {
+  const { block, index, module, moduleNumber, estimatedTime, onQuizComplete, onScenarioFinish, onReflectionSave, reflectionAnswers, bookmarkedTema, onToggleBookmark } = props
   const key = `block-${index}`
 
   switch (block.type) {
@@ -173,6 +175,15 @@ export default function BlockRenderer({ block, index, module, moduleNumber, esti
 
     case 'quickcheck':
       return wrapMotion(<QuickCheck block={block} />, key)
+
+    case 'more':
+      return wrapMotion(
+        <MoreBlock
+          block={block}
+          renderBlock={(child, i) => <BlockRenderer {...props} block={child} index={`${index}-${i}`} />}
+        />,
+        key
+      )
 
     case 'pyramid':
       return wrapMotion(<ValuePyramid block={block} />, key)

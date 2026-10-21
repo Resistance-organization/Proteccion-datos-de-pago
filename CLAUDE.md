@@ -56,6 +56,7 @@ Cada módulo contiene un array de `blocks`. Tipos disponibles (ver también el c
 | `flyer` | `Flyer` | Tarjeta visual destacada (`badge`, `body`, `color`, `icon`) |
 | `downloadcard` | `DownloadCard` | Tarjeta con botón que genera un PDF client-side. `variant` mapea a un generador en `src/utils/`: `incidentCard` → `generateIncidentCard` |
 | `closing` | `ModuleClosing` | Cierre de módulo (`moduleLabel`, `summary`, `takeaways[]`, `nextHint`) |
+| `more` | `MoreBlock` | Plegable "Para profundizar", cerrado por defecto (`title?`, `blocks[]`). Material de consulta fuera del recorrido principal; no cuenta para el 90 % de scroll |
 | `connectionnote` | `ConnectionNote` | Nota de transición entre secciones |
 | `versus` | `Versus` | Comparativa de dos columnas |
 | `riskmatrix` | `RiskMatrix` | Matriz probabilidad × impacto (componente interactivo hardcodeado) |
