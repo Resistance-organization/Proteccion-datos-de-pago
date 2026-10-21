@@ -60,7 +60,7 @@ export default function Header({ currentModule, totalModules, completedCount, si
           Módulo {currentModule.id}
           {showTema && <span className="text-gray-400"> · Tema {temaIndex + 1} de {temaTotal}</span>}
         </p>
-        <h1 className="text-sm sm:text-base font-title font-semibold text-gray-800 truncate leading-tight">
+        <h1 className="text-sm font-title font-normal text-gray-700 truncate leading-tight">
           {currentModule.title}
         </h1>
       </div>
