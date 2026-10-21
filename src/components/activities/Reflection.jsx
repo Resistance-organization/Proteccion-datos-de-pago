@@ -18,10 +18,10 @@ export default function Reflection({ block, value, answers, onSave }) {
       ? <RecallList block={block} answers={answers || {}} />
       : <RecallSingle block={block} value={value} />
   }
-  return <ReflectionPrompt block={block} value={value} onSave={onSave} />
+  return <ReflectionPrompt block={block} value={value} answers={answers || {}} onSave={onSave} />
 }
 
-function ReflectionPrompt({ block, value, onSave }) {
+function ReflectionPrompt({ block, value, answers, onSave }) {
   const [text, setText] = useState(value || '')
   const [editing, setEditing] = useState(!value)
 
@@ -68,6 +68,9 @@ function ReflectionPrompt({ block, value, onSave }) {
         </div>
 
         <div className="px-6 sm:px-10 py-7">
+          {/* Respuestas anteriores como contexto (block.recallItems) */}
+          <RecallCompact items={block.recallItems} answers={answers} title={block.recallTitle} />
+
           {editing ? (
             <>
               <label htmlFor={`reflexion-${block.storageKey}`} className="block font-body text-sm text-gray-500 mb-2">
@@ -124,6 +127,28 @@ function ReflectionPrompt({ block, value, onSave }) {
           )}
         </div>
       </div>
+    </div>
+  )
+}
+
+// Versión compacta dentro de la tarjeta de reflexión: una línea por respuesta
+function RecallCompact({ items, answers, title }) {
+  const shown = (items || []).filter(it => answers[it.storageKey])
+  if (shown.length === 0) return null
+
+  return (
+    <div className="mb-6 rounded-xl bg-secondary-50 border border-secondary-100 px-4 sm:px-5 py-4">
+      <p className="flex items-center gap-2 text-xs font-title font-bold uppercase tracking-wider text-secondary mb-3">
+        <MessageSquareQuote size={14} /> {title || 'Lo que escribiste en el curso'}
+      </p>
+      <ul className="space-y-2">
+        {shown.map(it => (
+          <li key={it.storageKey} className="flex gap-3 text-sm sm:text-base font-body leading-snug">
+            <span className="flex-shrink-0 w-10 font-title font-semibold text-secondary">{it.label}</span>
+            <span className="text-gray-700 italic">“{answers[it.storageKey]}”</span>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

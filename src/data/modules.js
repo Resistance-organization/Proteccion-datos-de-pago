@@ -714,10 +714,10 @@ export const modules = [
         src: './videos/m4-si-algo-sale-mal.mp4',
       },
 
-      // 3. Tema 1 — Qué cuenta como un incidente (definición y la palabra clave)
+      // 3. Tema 1 — Qué es un incidente y qué hacer primero (definición y la palabra clave)
       {
         type: 'text',
-        title: 'Tema 1 — Qué cuenta como un incidente',
+        title: 'Tema 1 — Qué es un incidente y qué hacer primero',
         content: `
           <p>Cualquier situación en la que datos de tarjeta pudieron ser vistos, copiados, enviados o usados por alguien que no debía.</p>
           <p>La palabra clave es <strong>pudieron</strong>: no necesitas certeza, basta una duda razonable.</p>
@@ -734,13 +734,13 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 5. Tema 2 — Los primeros minutos
+      // 5. Reportar no es delatar
       {
-        type: 'text',
-        title: 'Tema 2 — Los primeros minutos',
-        content: `
-          <p>Cuando detectas o sospechas un incidente, hay cuatro cosas que debes hacer. En este orden.</p>
-        `,
+        type: 'flyer',
+        color: 'primary',
+        icon: 'megaphone',
+        badge: 'Recuerda',
+        body: 'Reportar no es delatar: es proteger. Un incidente reportado a tiempo suele ser controlable; uno oculto casi siempre crece.',
       },
 
       // 6. Infografía — cuatro pasos
@@ -763,15 +763,6 @@ export const modules = [
           'Actuar sin avisar: puedes interferir con la investigación.',
           'Comentarlo antes de reportarlo: puede llegar a quien no debe.',
         ],
-      },
-
-      // 9. Reportar no es delatar
-      {
-        type: 'flyer',
-        color: 'primary',
-        icon: 'megaphone',
-        badge: 'Recuerda',
-        body: 'Reportar no es delatar: es proteger. Un incidente reportado a tiempo suele ser controlable; uno oculto casi siempre crece.',
       },
 
       // 10. Actividad de validación — ordenar acciones
@@ -841,7 +832,7 @@ export const modules = [
     title: '¿Cómo lo aplico en mi trabajo?',
     description: 'Tres situaciones reales para cerrar el recorrido.',
     icon: 'graduation',
-    estimatedTime: '9 min',
+    estimatedTime: '7 min',
     blocks: [
       // 1. Portada
       {
@@ -907,47 +898,24 @@ export const modules = [
         ],
       },
 
-      // 4. Lo que escribiste en cada módulo
-      {
-        type: 'reflection',
-        mode: 'recall',
-        title: 'Lo que fuiste escribiendo en el curso',
-        intro: 'Antes de cerrar, vuelve a leer lo que respondiste en cada módulo.',
-        items: [
-          { storageKey: 'm1_reflexion', label: 'Módulo 1', prompt: '¿Qué decisión de tu trabajo diario podría iniciar una cadena de incidentes?' },
-          { storageKey: 'm2_reflexion', label: 'Módulo 2', prompt: '¿Qué situación se parece más a algo que podría pasarte?' },
-          { storageKey: 'm3_reflexion', label: 'Módulo 3', prompt: '¿Qué hábito te cuesta más aplicar?' },
-          { storageKey: 'm4_reflexion', label: 'Módulo 4', prompt: '¿Qué harías en los primeros minutos ante algo sospechoso?' },
-        ],
-      },
-
-      // 5. Una pregunta para ti
+      // 4. Una pregunta para ti (con las respuestas de M1 a M4)
       {
         type: 'reflection',
         title: 'Una pregunta para ti',
+        intro: 'Antes de responder, relee lo que escribiste en cada módulo.',
         savedText: 'Guardamos tu respuesta.',
+        recallItems: [
+          { storageKey: 'm1_reflexion', label: 'M1' },
+          { storageKey: 'm2_reflexion', label: 'M2' },
+          { storageKey: 'm3_reflexion', label: 'M3' },
+          { storageKey: 'm4_reflexion', label: 'M4' },
+        ],
         storageKey: 'm5_reflexion_2',
         promptPrefix: '¿Qué vas a hacer diferente en tu trabajo a partir de mañana?',
         placeholder: 'Ej: Voy a usar el canal oficial para recibir pagos / Voy a bloquear mi equipo cuando me levante / Voy a reportar los correos sospechosos en lugar de ignorarlos.',
       },
 
-      // 6. ¿Sabes a quién reportar? (opción múltiple, sin calificación)
-      {
-        type: 'selfcheck',
-        title: '¿Sabes a quién reportar?',
-        subtitle: 'Si detectaras un posible incidente mañana, ¿sabes a quién reportarlo?',
-        questions: [
-          {
-            id: 'm5_canal_reporte',
-            question: 'Si detectaras un posible incidente mañana, ¿sabes a quién reportarlo?',
-            options: ['Sí, conozco el canal y el contacto.', 'Sí, pero necesitaría verificar el contacto exacto.', 'No estoy seguro de a quién contactar.'],
-          },
-        ],
-        resultTitle: 'Antes de cerrar el curso, confírmalo.',
-        resultText: 'Si no tienes 100% claro el canal de reporte, consulta con tu líder o con el área de TI cuál es exactamente. Esa información también está en la tarjeta de referencia descargable del Módulo 4 — guárdala donde puedas encontrarla.',
-      },
-
-      // 7. Cierre narrativo del curso
+      // 5. Cierre narrativo del curso
       {
         type: 'text',
         title: 'Cierre narrativo del curso',
@@ -959,7 +927,7 @@ export const modules = [
         `,
       },
 
-      // 8. Cierre del módulo
+      // 6. Cierre del módulo
       {
         type: 'closing',
         moduleLabel: 'Módulo 5 completado — curso finalizado',
@@ -968,7 +936,7 @@ export const modules = [
         takeaways: [
           'La seguridad de los datos de pago depende de decisiones cotidianas, no solo de los sistemas.',
           'Ante cualquier duda sobre un canal, una credencial o un posible incidente: pausa, verifica y reporta.',
-          'Guarda la tarjeta de referencia del Módulo 4 — tiene el canal de reporte de tu organización.',
+          'Guarda la tarjeta de referencia del Módulo 4 — tiene el canal de reporte de tu organización. Si no lo tienes claro, confírmalo con tu líder o con el área de TI.',
           'Este certificado tiene vigencia de 12 meses. Recibirás un recordatorio antes de que venza.',
         ],
         nextHint: 'Tu certificado está disponible a continuación.',

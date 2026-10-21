@@ -51,7 +51,7 @@ Cada módulo contiene un array de `blocks`. Tipos disponibles (ver también el c
 | `scenariobuilder` | `ScenarioBuilder` | Actividad de ordenar (`mode: 'order'`) o seleccionar (`mode: 'select'`) opciones, con distractores — **no bloquea** el avance |
 | `selfcheck` | `SelfCheck` | Preguntas de opción única sin calificación, cierre con `resultTitle`/`resultText` fijo |
 | `checklist` | `ChecklistCheck` | Checklist de autoevaluación sin calificación, con bandas de resultado (`results.band1/2/3`) |
-| `reflection` | `Reflection` | Pregunta de texto libre (`promptPrefix`, `placeholder`), entre 15 y 300 caracteres, que se guarda en `storageKey`. **Obligatoria** salvo `optional: true`. Con `mode: 'recall'` e `items[]` (`{storageKey, label, prompt?}`) muestra las respuestas anteriores |
+| `reflection` | `Reflection` | Pregunta de texto libre (`promptPrefix`, `placeholder`), entre 15 y 300 caracteres, que se guarda en `storageKey`. **Obligatoria** salvo `optional: true`. Con `recallItems[]` (`{storageKey, label}`) muestra arriba de la pregunta las respuestas anteriores, en formato compacto. Con `mode: 'recall'` e `items[]` las muestra como bloque aparte |
 | `pyramid` | `ValuePyramid` | Pirámide interactiva de niveles con hover |
 | `flyer` | `Flyer` | Tarjeta visual destacada (`badge`, `body`, `color`, `icon`) |
 | `downloadcard` | `DownloadCard` | Tarjeta con botón que genera un PDF client-side. `variant` mapea a un generador en `src/utils/`: `incidentCard` → `generateIncidentCard` |
@@ -96,7 +96,7 @@ Las rutas en los bloques son relativas al build (ej. `./Infografías/M1-DatosQue
 | 2 | ¿Cómo empiezan los incidentes? | 12 min | Simulación de phishing (`scenario`) | Diagnóstico, no bloquea |
 | 3 | ¿Cómo evitamos ser parte del problema? | 15 min | Pares correcto/incorrecto (`quiz`) | 5/6 correctas |
 | 4 | ¿Qué hacemos cuando ocurre un incidente? | 11 min | Ordenamiento de acciones (`scenariobuilder`) | Orden correcto D→B→E: para, reporta, documenta y espera (no bloquea técnicamente) |
-| 5 | ¿Cómo lo aplico en mi trabajo? | 9 min | 3 situaciones integradoras (`quiz`, passingScore 100) | Las 3 correctas |
+| 5 | ¿Cómo lo aplico en mi trabajo? | 7 min | 3 situaciones integradoras (`quiz`, passingScore 100) | Las 3 correctas |
 
 ### Certificado (`src/components/CertificateScreen.jsx`)
 
