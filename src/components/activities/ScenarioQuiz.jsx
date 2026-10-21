@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle, XCircle, ChevronRight, Compass, Search, Star, ShieldCheck, Gamepad2, Signal } from 'lucide-react'
+import { CheckCircle, XCircle, ChevronRight, Compass, Search, Star, ShieldCheck, Gamepad2, Signal, RotateCcw } from 'lucide-react'
 import ActivityRibbon from './ActivityRibbon'
 
 // ─── Mockups por tipo de escenario ───────────────────────────────────────────
@@ -241,6 +241,13 @@ export default function ScenarioQuiz({ block, onFinish }) {
     }
   }
 
+  // Vuelve al inicio para probar otras decisiones (el juego no califica)
+  const handleRestart = () => {
+    setCurrent(0)
+    setCorrectCount(0)
+    setFinished(false)
+  }
+
   const band = finished ? getBand(correctCount, total, block.results) : null
   const BandIcon = band ? RESULT_ICONS[band.icon] || Compass : Compass
 
@@ -281,6 +288,12 @@ export default function ScenarioQuiz({ block, onFinish }) {
                   {block.results.commonNote}
                 </p>
               )}
+              <button
+                onClick={handleRestart}
+                className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-secondary text-secondary font-title font-semibold text-sm hover:bg-secondary-50 transition-colors"
+              >
+                <RotateCcw size={16} /> Volver a jugar
+              </button>
             </motion.div>
           )}
         </AnimatePresence>

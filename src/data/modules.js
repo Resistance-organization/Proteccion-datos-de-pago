@@ -5,7 +5,7 @@
 // TIPOS DE BLOQUES DISPONIBLES:
 //   hero        → Portada del módulo (title, subtitle, image?, accent?)
 //   text        → Texto enriquecido con HTML (title?, content)
-//   box         → Caja destacada (variant: accent|info|warning|success|purple, title?, text?, iconItems[]?, items[]?, footer?)
+//   box         → Caja destacada (variant: accent|info|warning|success|purple, title?, text?, iconItems[]?, iconItemsColumns? (1 = uno por renglón), items[]?, footer?)
 //   datatable   → Selector + panel de detalle (title, columns[], rows[] con {icon, highlight, cells[]})
 //   reading     → Lectura larga con tabla de contenido (title, sections[])
 //   flipcard    → Tarjetas con frente y reverso (title, instruction?, cards[])
@@ -172,10 +172,11 @@ export const modules = [
         variant: 'accent',
         title: 'PCI DSS en una frase',
         text: 'El estándar internacional que define cómo proteger los datos de pago en cualquier organización que los procese, almacene o transmita. Lo crearon Visa, Mastercard y American Express. La versión vigente es la 4.0.1 (junio de 2024).',
+        iconItemsColumns: 1,
         iconItems: [
-          { icon: '🏬', text: 'Comercios y puntos de venta — aceptan pagos con tarjeta de crédito o débito, en físico o en línea.' },
-          { icon: '⚙️', text: 'Pasarelas de pago — procesan o transmiten datos de pago entre el comercio y el banco.' },
-          { icon: '🔗', text: 'Proveedores de servicios — ofrecen servicios que impactan la seguridad de los datos de pago de otras organizaciones.' },
+          { icon: 'shopping-cart', text: 'Comercios y puntos de venta — aceptan pagos con tarjeta de crédito o débito, en físico o en línea.' },
+          { icon: 'credit-card', text: 'Pasarelas de pago — procesan o transmiten datos de pago entre el comercio y el banco.' },
+          { icon: 'briefcase', text: 'Proveedores de servicios — ofrecen servicios que impactan la seguridad de los datos de pago de otras organizaciones.' },
         ],
         footer: 'Si trabajas en alguna de estas organizaciones, este curso aplica a ti.',
       },
@@ -333,7 +334,7 @@ export const modules = [
       {
         type: 'flyer',
         color: 'primary',
-        icon: '💳',
+        icon: 'credit-card',
         badge: 'La regla',
         body: 'Ningún proceso legítimo de pago te va a pedir el número completo de la tarjeta y el CVV juntos por mensaje de texto, correo o WhatsApp después de que la compra ya se hizo. Si te lo piden así, es phishing.',
       },
@@ -388,10 +389,11 @@ export const modules = [
         type: 'box',
         variant: 'accent',
         title: 'Lo que tienen en común',
+        iconItemsColumns: 1,
         iconItems: [
-          { icon: '⏱️', text: 'Urgencia — "Necesito eso ahora, es para el cierre del mes." "Si no lo haces en los próximos 10 minutos perdemos la venta."' },
-          { icon: '🧑‍💼', text: 'Autoridad — "Soy el gerente general y necesito que me pases esos datos." "Llamo de parte de auditoría interna."' },
-          { icon: '🤝', text: 'Confianza — "Ya hablé con tu jefe y me dijo que estaba bien." "Somos el proveedor de siempre, solo necesitamos actualizar los datos."' },
+          { icon: 'clock', text: 'Urgencia — "Necesito eso ahora, es para el cierre del mes." "Si no lo haces en los próximos 10 minutos perdemos la venta."' },
+          { icon: 'briefcase', text: 'Autoridad — "Soy el gerente general y necesito que me pases esos datos." "Llamo de parte de auditoría interna."' },
+          { icon: 'handshake', text: 'Confianza — "Ya hablé con tu jefe y me dijo que estaba bien." "Somos el proveedor de siempre, solo necesitamos actualizar los datos."' },
         ],
         items: [
           'Urgencia extrema — te presionan para actuar de inmediato sin tiempo para verificar.',
@@ -424,22 +426,22 @@ export const modules = [
               {
                 text: 'Llamo al número que envió el mensaje para confirmar con Nequi si el movimiento es real.',
                 correct: false,
-                feedback: 'Verificar está bien, pero no por el canal que te dio el mensaje: ese número lo controla la misma persona que lo envió, y al llamar te va a pedir la clave "para cancelar la transacción". La verificación siempre se hace por un canal que tú buscas por tu cuenta, como la aplicación oficial o el número del respaldo de la tarjeta. Y después, reporta el intento al canal de tu organización.',
+                feedback: 'Verificar está bien, pero no por el canal que te dio el mensaje: ese número lo controla el atacante y te pedirá la clave "para cancelar". Verifica en la aplicación oficial y reporta el intento.',
               },
               {
                 text: 'No abro el enlace: reviso la aplicación oficial de Nequi y reporto el mensaje al canal de seguridad.',
                 correct: true,
-                feedback: 'Muy bien. Verificar directamente desde la aplicación oficial —no desde el enlace del mensaje— es la forma segura de confirmar si hay un problema real. Si en la aplicación no aparece ningún movimiento sospechoso, el mensaje era falso. Y el reporte es parte de la respuesta: permite alertar al equipo, bloquear el número o el dominio y proteger a otros compañeros que puedan recibir el mismo mensaje.',
+                feedback: 'Muy bien. La aplicación oficial te dice si el movimiento es real, y el reporte permite bloquear el número y alertar a quienes recibieron el mismo mensaje.',
               },
               {
                 text: 'Abro el enlace solo para revisar si el movimiento aparece, sin ingresar mi clave.',
                 correct: false,
-                feedback: 'Abrir el enlace ya es el riesgo: la página puede instalar malware en tu dispositivo o estar diseñada para que ingreses la clave "solo para ver". Señal que debiste notar: el dominio del enlace no es nequi.com.co. Tres días después de un caso así, el equipo de seguridad detecta accesos inusuales al sistema de facturación: alguien entró con las credenciales robadas desde una IP desconocida, y en los registros aparecen consultas masivas a la base de datos de tarjetahabientes. Esto no es para generar miedo: es para mostrar que una sola decisión, en un momento de distracción, puede ser el inicio de una cadena que afecta a toda la organización.',
+                feedback: 'Abrir el enlace ya es el riesgo: la página puede instalar malware o robar tu clave. El dominio no era nequi.com.co. Con esas credenciales, alguien podría llegar a los datos de tarjetahabientes de tu organización.',
               },
               {
                 text: 'No abro el enlace y borro el mensaje: si fuera real, Nequi me avisaría por la aplicación.',
                 correct: false,
-                feedback: 'No abrir el enlace está bien, pero borrar el mensaje no es suficiente, y puede ser riesgoso si llegó a más personas del equipo. La acción correcta es reportar el intento al equipo de seguridad o al responsable designado en tu organización. Esto permite bloquear el mensaje si llegó a otras personas y documentar el intento. Tampoco conviene reenviarlo a un compañero para preguntarle: ese no es el canal de reporte.',
+                feedback: 'No abrir el enlace está bien, pero borrarlo no basta. Repórtalo al equipo de seguridad: así pueden bloquearlo si llegó a más personas.',
               },
             ],
           },
@@ -712,24 +714,18 @@ export const modules = [
         src: './videos/m4-si-algo-sale-mal.mp4',
       },
 
-      // 3. Tema 1 — Qué cuenta como un incidente
+      // 3. Tema 1 — Qué cuenta como un incidente (definición y la palabra clave)
       {
         type: 'text',
         title: 'Tema 1 — Qué cuenta como un incidente',
-      },
-
-      // 4. Definición y la palabra clave
-      {
-        type: 'box',
-        variant: 'accent',
-        text: `
+        content: `
           <p>Cualquier situación en la que datos de tarjeta pudieron ser vistos, copiados, enviados o usados por alguien que no debía.</p>
           <p>La palabra clave es <strong>pudieron</strong>: no necesitas certeza, basta una duda razonable.</p>
+          <p><strong>Reportar algo que resultó no ser un incidente no tiene consecuencias negativas. No reportar algo que sí era un incidente sí las tiene.</strong></p>
         `,
-        footer: 'Reportar algo que resultó no ser un incidente no tiene consecuencias negativas. No reportar algo que sí era un incidente sí las tiene.',
       },
 
-      // 5. Infografía — ¿es un incidente?
+      // 4. Infografía — ¿es un incidente?
       {
         type: 'infographic',
         title: '¿Esto es un incidente que debo reportar?',
@@ -738,7 +734,7 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 6. Tema 2 — Los primeros minutos
+      // 5. Tema 2 — Los primeros minutos
       {
         type: 'text',
         title: 'Tema 2 — Los primeros minutos',
@@ -747,7 +743,7 @@ export const modules = [
         `,
       },
 
-      // 7. Infografía — cuatro pasos
+      // 6. Infografía — cuatro pasos
       {
         type: 'infographic',
         title: 'Cuatro pasos. En este orden.',
@@ -756,7 +752,7 @@ export const modules = [
         maxWidth: 980,
       },
 
-      // 8. Lo que nunca debes hacer
+      // 7. Lo que nunca debes hacer
       {
         type: 'box',
         variant: 'warning',
@@ -773,7 +769,7 @@ export const modules = [
       {
         type: 'flyer',
         color: 'primary',
-        icon: '📣',
+        icon: 'megaphone',
         badge: 'Recuerda',
         body: 'Reportar no es delatar: es proteger. Un incidente reportado a tiempo suele ser controlable; uno oculto casi siempre crece.',
       },

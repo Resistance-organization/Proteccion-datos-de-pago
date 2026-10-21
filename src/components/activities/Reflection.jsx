@@ -59,11 +59,11 @@ function ReflectionPrompt({ block, value, onSave }) {
               {block.title}
             </p>
           )}
-          <h2 className="relative font-title text-2xl sm:text-[1.7rem] font-semibold text-white leading-snug text-balance max-w-2xl">
+          <h2 className="relative font-title text-2xl sm:text-[1.7rem] font-semibold text-white leading-snug text-pretty pr-10 sm:pr-16">
             {block.promptPrefix}
           </h2>
           {block.intro && (
-            <p className="relative mt-3 font-body text-base text-white/80 leading-relaxed max-w-2xl">{block.intro}</p>
+            <p className="relative mt-3 font-body text-base text-white/80 leading-relaxed text-pretty">{block.intro}</p>
           )}
         </div>
 

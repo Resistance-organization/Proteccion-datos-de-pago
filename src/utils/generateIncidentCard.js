@@ -1,191 +1,246 @@
 import { jsPDF } from 'jspdf'
 
-const NAVY = [58, 59, 116]
-const GREEN_BG = [236, 253, 245]
-const GREEN = [22, 163, 74]
-const RED_BG = [254, 242, 242]
-const RED = [220, 38, 38]
-const BLUE_BG = [232, 242, 251]
-const BLUE = [49, 120, 189]
+// ── Paleta (colores del curso) ────────────────────────────────
+const NAVY_D = [33, 34, 82]      // #212252
+const NAVY = [58, 59, 116]       // #3A3B74
+const BLUE = [49, 120, 189]      // #3178BD
+const PINK = [231, 55, 128]      // #E73780
+const PURPLE = [162, 62, 161]    // #A23EA1
+const PINK_BG = [253, 238, 245]
+const NAVY_BG = [238, 239, 248]
+const BORDER = [222, 224, 238]
 const INK = [31, 41, 51]
-const INK_M = [107, 122, 132]
+const INK_M = [100, 112, 124]
 const WHITE = [255, 255, 255]
 
-function stepsZone(doc, { x, y, w, bg, accent, title, steps }) {
-  const lineH = 10
-  const padTop = 12
-  const padSide = 6
-  const h = padTop + steps.length * lineH + 4
+const W = 210
+const H = 297
+const M = 16            // margen lateral
+const CW = W - 2 * M    // ancho útil
 
-  doc.setFillColor(...bg)
-  doc.roundedRect(x, y, w, h, 2, 2, 'F')
-  doc.setFillColor(...accent)
-  doc.roundedRect(x, y, 3, h, 1.5, 1.5, 'F')
+const STEPS = [
+  { title: 'Para.', detail: 'No sigas operando con esa información o ese sistema.' },
+  { title: 'Reporta.', detail: 'Usa el canal oficial de tu organización. Nunca WhatsApp ni correo personal.' },
+  { title: 'Documenta.', detail: 'Anota la hora y lo que viste, sin usar el equipo involucrado si es posible.' },
+  { title: 'Espera instrucciones.', detail: 'No actúes técnicamente sin autorización del equipo de respuesta.' },
+]
 
-  doc.setFont('helvetica', 'bold')
-  doc.setFontSize(10)
-  doc.setTextColor(...accent)
-  doc.text(title, x + padSide, y + 8)
+const DONTS = [
+  'No borres archivos, mensajes ni registros.',
+  'No apagues, reinicies ni manipules el equipo involucrado, salvo que te lo indiquen.',
+  'No lo comentes informalmente antes de reportarlo.',
+  'No intentes resolverlo por tu cuenta.',
+  'No lo ignores pensando que no fue para tanto.',
+]
 
-  steps.forEach((step, i) => {
-    const ly = y + padTop + i * lineH
-    doc.setFillColor(...accent)
-    doc.circle(x + padSide + 3, ly + 2, 3, 'F')
-    doc.setFont('helvetica', 'bold')
-    doc.setFontSize(8)
-    doc.setTextColor(...WHITE)
-    doc.text(String(i + 1), x + padSide + 3, ly + 3.2, { align: 'center' })
+const CONTACT_FIELDS = [
+  'Canal o persona para reportar',
+  'Correo electrónico',
+  'Teléfono o extensión',
+  'Fuera de horario',
+]
 
-    doc.setFont('helvetica', 'bold')
-    doc.setFontSize(8.5)
-    doc.setTextColor(...INK)
-    doc.text(step.title, x + padSide + 9, ly + 1.5)
-    doc.setFont('helvetica', 'normal')
-    doc.setFontSize(7.5)
-    doc.setTextColor(...INK_M)
-    doc.text(step.detail, x + padSide + 9, ly + 6, { maxWidth: w - padSide - 13 })
+async function loadImageAsDataURL(src) {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = img.naturalWidth
+      canvas.height = img.naturalHeight
+      canvas.getContext('2d').drawImage(img, 0, 0)
+      resolve({ data: canvas.toDataURL('image/png'), ratio: img.naturalWidth / img.naturalHeight })
+    }
+    img.onerror = () => resolve(null)
+    img.src = src
   })
-
-  return y + h
 }
 
-function bulletZone(doc, { x, y, w, bg, accent, title, items }) {
-  const lineH = 5.6
-  const padTop = 11
-  const padSide = 6
-  const h = padTop + items.length * lineH + 4
-
-  doc.setFillColor(...bg)
-  doc.roundedRect(x, y, w, h, 2, 2, 'F')
-  doc.setFillColor(...accent)
-  doc.roundedRect(x, y, 3, h, 1.5, 1.5, 'F')
-
+// Etiqueta de sección: barrita de color + texto en mayúsculas espaciadas
+function sectionLabel(doc, { y, text, color }) {
+  doc.setFillColor(...color)
+  doc.roundedRect(M, y - 3.6, 1.6, 4.6, 0.8, 0.8, 'F')
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(9.5)
-  doc.setTextColor(...accent)
-  doc.text(title, x + padSide, y + 7.5)
+  doc.setTextColor(...color)
+  doc.setCharSpace(0.6)
+  doc.text(text, M + 5, y)
+  doc.setCharSpace(0)
+}
+
+function header(doc, logo) {
+  doc.setFillColor(...NAVY_D)
+  doc.rect(0, 0, W, 50, 'F')
+
+  // Franja de acento rosa → morado → azul
+  const third = W / 3
+  doc.setFillColor(...PINK)
+  doc.rect(0, 50, third, 2, 'F')
+  doc.setFillColor(...PURPLE)
+  doc.rect(third, 50, third, 2, 'F')
+  doc.setFillColor(...BLUE)
+  doc.rect(third * 2, 50, third + 1, 2, 'F')
+
+  if (logo) {
+    const h = 8
+    doc.addImage(logo.data, 'PNG', M, 10, h * logo.ratio, h)
+  }
+
+  doc.setFont('helvetica', 'bold')
+  doc.setFontSize(8)
+  doc.setTextColor(245, 160, 196)
+  doc.setCharSpace(0.8)
+  doc.text('TARJETA DE REFERENCIA RÁPIDA', M, 27)
+  doc.setCharSpace(0)
+
+  doc.setFontSize(23)
+  doc.setTextColor(...WHITE)
+  doc.text('Si detectas o sospechas un incidente', M, 37.5)
 
   doc.setFont('helvetica', 'normal')
-  doc.setFontSize(8)
-  doc.setTextColor(...INK)
-  items.forEach((item, i) => {
-    doc.text(`✗  ${item}`, x + padSide, y + padTop + i * lineH + 3.5)
+  doc.setFontSize(10)
+  doc.setTextColor(196, 198, 228)
+  doc.text('Protección de Datos de Pago  ·  PCI DSS 4.0.1', M, 44.5)
+}
+
+function stepsGrid(doc, y) {
+  const gap = 6
+  const cw = (CW - gap) / 2
+  const ch = 29
+
+  STEPS.forEach((step, i) => {
+    const cx = M + (i % 2) * (cw + gap)
+    const cy = y + Math.floor(i / 2) * (ch + gap)
+
+    doc.setFillColor(...WHITE)
+    doc.setDrawColor(...BORDER)
+    doc.setLineWidth(0.35)
+    doc.roundedRect(cx, cy, cw, ch, 3, 3, 'FD')
+
+    // Número grande
+    doc.setFillColor(...NAVY)
+    doc.circle(cx + 11, cy + 10.5, 5.5, 'F')
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(13)
+    doc.setTextColor(...WHITE)
+    doc.text(String(i + 1), cx + 11, cy + 12.8, { align: 'center' })
+
+    doc.setFontSize(13)
+    doc.setTextColor(...INK)
+    doc.text(step.title, cx + 20, cy + 12.5)
+
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(9.5)
+    doc.setTextColor(...INK_M)
+    const lines = doc.splitTextToSize(step.detail, cw - 14)
+    doc.text(lines, cx + 7, cy + 21, { lineHeightFactor: 1.35 })
+  })
+
+  return y + 2 * ch + gap
+}
+
+// Una "x" dibujada con líneas (la fuente estándar del PDF no tiene el símbolo ✗)
+function crossMark(doc, cx, cy) {
+  doc.setFillColor(...PINK)
+  doc.circle(cx, cy, 2.6, 'F')
+  doc.setDrawColor(...WHITE)
+  doc.setLineWidth(0.6)
+  const d = 1.05
+  doc.line(cx - d, cy - d, cx + d, cy + d)
+  doc.line(cx - d, cy + d, cx + d, cy - d)
+}
+
+function dontsPanel(doc, y) {
+  doc.setFont('helvetica', 'normal')
+  doc.setFontSize(10)
+  const textW = CW - 22
+  const rows = DONTS.map((t) => doc.splitTextToSize(t, textW))
+  const lineH = 5
+  const rowGap = 3.2
+  const pad = 7
+  const h = pad * 2 + rows.reduce((s, r) => s + r.length * lineH, 0) + rowGap * (rows.length - 1)
+
+  doc.setFillColor(...PINK_BG)
+  doc.roundedRect(M, y, CW, h, 3, 3, 'F')
+  doc.setFillColor(...PINK)
+  doc.rect(M, y + 3, 1.4, h - 6, 'F')
+
+  let ry = y + pad + 3.6
+  rows.forEach((lines) => {
+    crossMark(doc, M + 10, ry - 1.3)
+    doc.setTextColor(...INK)
+    doc.text(lines, M + 16, ry, { lineHeightFactor: 1.4 })
+    ry += lines.length * lineH + rowGap
   })
 
   return y + h
 }
 
-function fieldZone(doc, { x, y, w, bg, accent, title, fields }) {
-  const lineH = 9
-  const padTop = 11
-  const padSide = 6
-  const h = padTop + fields.length * lineH + 4
-
-  doc.setFillColor(...bg)
-  doc.roundedRect(x, y, w, h, 2, 2, 'F')
-  doc.setFillColor(...accent)
-  doc.roundedRect(x, y, 3, h, 1.5, 1.5, 'F')
-
-  doc.setFont('helvetica', 'bold')
+function contactFields(doc, y) {
+  doc.setFont('helvetica', 'normal')
   doc.setFontSize(9.5)
-  doc.setTextColor(...accent)
-  doc.text(title, x + padSide, y + 7.5)
+  doc.setTextColor(...INK_M)
+  doc.text('Pídele estos datos a tu líder o al área de seguridad y complétalos. Así no tendrás que buscarlos en el momento.', M, y, { maxWidth: CW })
 
-  fields.forEach((field, i) => {
-    const ly = y + padTop + i * lineH + 3
+  const gap = 10
+  const fw = (CW - gap) / 2
+  const fy = y + 11
+  CONTACT_FIELDS.forEach((label, i) => {
+    const fx = M + (i % 2) * (fw + gap)
+    const ly = fy + Math.floor(i / 2) * 14
     doc.setFont('helvetica', 'bold')
     doc.setFontSize(7.5)
-    doc.setTextColor(...INK)
-    doc.text(field, x + padSide, ly)
-    doc.setDrawColor(...INK_M)
-    doc.setLineWidth(0.3)
-    doc.line(x + padSide + 45, ly, x + w - padSide, ly)
+    doc.setTextColor(...NAVY)
+    doc.setCharSpace(0.3)
+    doc.text(label.toUpperCase(), fx, ly)
+    doc.setCharSpace(0)
+    doc.setDrawColor(...BORDER)
+    doc.setLineWidth(0.4)
+    doc.line(fx, ly + 7, fx + fw, ly + 7)
   })
 
-  return y + h
+  return fy + 14 + 7
+}
+
+function footer(doc) {
+  const by = 264
+  doc.setFillColor(...NAVY_BG)
+  doc.roundedRect(M, by, CW, 17, 3, 3, 'F')
+  doc.setFont('helvetica', 'bold')
+  doc.setFontSize(12)
+  doc.setTextColor(...NAVY)
+  doc.text('Ante la duda, reporta.', W / 2, by + 7.5, { align: 'center' })
+  doc.setFont('helvetica', 'normal')
+  doc.setFontSize(9)
+  doc.setTextColor(...INK_M)
+  doc.text('Reportar algo que no era un incidente nunca tiene consecuencias negativas.', W / 2, by + 12.8, { align: 'center' })
+
+  doc.setFontSize(8)
+  doc.setTextColor(...INK_M)
+  doc.text('Guárdala en tu celular o imprímela para tu puesto de trabajo.', M, H - 9)
+  doc.setFont('helvetica', 'bold')
+  doc.text('Protección de Datos de Pago', W - M, H - 9, { align: 'right' })
 }
 
 export async function generateIncidentCard() {
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
-  const W = 210
+  const logo = await loadImageAsDataURL('./Logo blanco.png')
 
-  doc.setFillColor(...NAVY)
-  doc.rect(0, 0, W, 26, 'F')
-  doc.setFont('helvetica', 'bold')
-  doc.setFontSize(15)
-  doc.setTextColor(...WHITE)
-  doc.text('SI DETECTAS O SOSPECHAS UN INCIDENTE', W / 2, 11, { align: 'center' })
-  doc.setFont('helvetica', 'normal')
-  doc.setFontSize(9.5)
-  doc.text('Tarjeta de referencia rápida — Protección de Datos de Pago', W / 2, 18, { align: 'center' })
+  header(doc, logo)
 
-  let y = 34
-  const x = 12
-  const w = W - 24
+  let y = 64
+  sectionLabel(doc, { y, text: 'QUÉ HACER, EN ESTE ORDEN', color: NAVY })
+  y = stepsGrid(doc, y + 6)
 
-  y = stepsZone(doc, {
-    x, y, w,
-    bg: BLUE_BG, accent: NAVY,
-    title: 'QUÉ HACER — EN ESTE ORDEN',
-    steps: [
-      { title: '1. Para.', detail: 'No sigas operando con esa información o sistema.' },
-      { title: '2. Reporta.', detail: 'Contacta al canal oficial de tu organización. No por WhatsApp ni correo personal.' },
-      { title: '3. Documenta.', detail: 'Registra la hora y lo que observaste, sin usar el equipo involucrado si es posible.' },
-      { title: '4. Espera instrucciones.', detail: 'No actúes técnicamente sin autorización del equipo de respuesta.' },
-    ],
-  })
-  y += 6
+  y += 10
+  sectionLabel(doc, { y, text: 'QUÉ NO HACER', color: PINK })
+  y = dontsPanel(doc, y + 6)
 
-  y = bulletZone(doc, {
-    x, y, w,
-    bg: RED_BG, accent: RED,
-    title: 'QUÉ NO HACER',
-    items: [
-      'No borres archivos, mensajes ni registros.',
-      'No apagues, reinicies ni manipules el equipo involucrado, salvo instrucción expresa.',
-      'No lo comentes informalmente antes de reportarlo.',
-      'No intentes resolverlo por tu cuenta.',
-      'No lo ignores pensando que no fue para tanto.',
-    ],
-  })
-  y += 6
+  y += 10
+  sectionLabel(doc, { y, text: '¿A QUIÉN LE REPORTO?', color: NAVY })
+  contactFields(doc, y + 7)
 
-  y = fieldZone(doc, {
-    x, y, w,
-    bg: GREEN_BG, accent: GREEN,
-    title: 'CONTACTOS DE LA ORGANIZACIÓN (completar antes de distribuir)',
-    fields: [
-      'Canal de reporte (nombre)',
-      'Correo electrónico',
-      'Teléfono / extensión',
-      'Horario de atención',
-      'Canal alterno (fuera de horario)',
-      'Instrucción específica adicional',
-    ],
-  })
-  y += 4
-
-  doc.setFillColor(...RED_BG)
-  doc.roundedRect(x, y, w, 14, 2, 2, 'F')
-  doc.setFont('helvetica', 'bold')
-  doc.setFontSize(8)
-  doc.setTextColor(...RED)
-  doc.text('⚠ No distribuir esta tarjeta sin completar la sección de contactos.', x + 6, y + 6)
-  doc.setFont('helvetica', 'normal')
-  doc.setFontSize(7.5)
-  doc.setTextColor(...INK_M)
-  doc.text('Un canal de reporte en blanco la vuelve inútil en el momento en que más se necesita.', x + 6, y + 11, { maxWidth: w - 12 })
-
-  doc.setDrawColor(...NAVY)
-  doc.setLineWidth(0.3)
-  doc.line(12, 280, W - 12, 280)
-  doc.setFont('helvetica', 'italic')
-  doc.setFontSize(8.5)
-  doc.setTextColor(...INK_M)
-  doc.text('Guárdala en tu celular o imprímela para tu puesto de trabajo.', W / 2, 286, { align: 'center', maxWidth: W - 30 })
-  doc.setFont('helvetica', 'bold')
-  doc.setFontSize(7.5)
-  doc.text('Protección de Datos de Pago — PCI DSS', W / 2, 292, { align: 'center' })
+  footer(doc)
 
   doc.save('tarjeta-referencia-incidentes-pci.pdf')
 }

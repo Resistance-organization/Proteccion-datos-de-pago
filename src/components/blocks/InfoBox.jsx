@@ -95,7 +95,7 @@ export default function InfoBox({ block }) {
             />
           )}
           {block.iconItems?.length > 0 && (
-            <div className="mt-4 grid sm:grid-cols-2 gap-2.5">
+            <div className={`mt-4 grid gap-2.5 ${block.iconItemsColumns === 1 ? '' : 'sm:grid-cols-2'}`}>
               {block.iconItems.map((it, i) => (
                 <motion.div
                   key={i}
