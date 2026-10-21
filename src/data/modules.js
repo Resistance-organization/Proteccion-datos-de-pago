@@ -233,15 +233,6 @@ export const modules = [
         ],
       },
 
-      // 13. Reflexión personal
-      {
-        type: 'reflection',
-        title: 'Antes de continuar',
-        storageKey: 'm1_reflexion',
-        promptPrefix: '¿Qué decisión de tu trabajo diario podría iniciar una cadena como la que acabas de ver?',
-        placeholder: 'Ej: anotar un número de tarjeta en un papel cuando el sistema está caído.',
-      },
-
       // 14. Cierre del módulo
       {
         type: 'closing',
@@ -469,15 +460,6 @@ export const modules = [
         },
       },
 
-      // 21. Reflexión personal
-      {
-        type: 'reflection',
-        title: 'Antes de continuar',
-        storageKey: 'm2_reflexion',
-        promptPrefix: '¿Cuál de las situaciones que viste hoy se parece más a algo que podría pasarte en tu trabajo?',
-        placeholder: 'Ej: un correo de un proveedor que pide actualizar datos bancarios con urgencia.',
-      },
-
       // 22. Cierre del módulo
       {
         type: 'closing',
@@ -662,15 +644,6 @@ export const modules = [
         ],
       },
 
-      // 11. Reflexión personal
-      {
-        type: 'reflection',
-        title: 'Antes de continuar',
-        storageKey: 'm3_reflexion',
-        promptPrefix: '¿Qué hábito de este módulo es el que más te cuesta aplicar en tu trabajo diario, y por qué?',
-        placeholder: 'Ej: bloquear el equipo cuando me levanto un momento, porque estoy acostumbrado a dejarlo abierto.',
-      },
-
       // 12. Cierre del módulo
       {
         type: 'closing',
@@ -798,15 +771,6 @@ export const modules = [
         description: 'Guárdala en tu celular o imprímela. Incluye qué hacer, qué no hacer y un espacio para los contactos de reporte de tu organización.',
       },
 
-      // 12. Reflexión personal
-      {
-        type: 'reflection',
-        title: 'Antes de continuar',
-        storageKey: 'm4_reflexion',
-        promptPrefix: 'Si mañana detectaras algo sospechoso en tu trabajo, ¿qué harías en los primeros minutos y a quién le avisarías?',
-        placeholder: 'Ej: no tocaría nada, avisaría a mi líder y al área de TI, y anotaría la hora y lo que vi.',
-      },
-
       // 13. Cierre del módulo
       {
         type: 'closing',
@@ -896,23 +860,6 @@ export const modules = [
             explanation: 'Correcto: la protección del titular de la tarjeta empieza por no procesar datos recibidos por canales que no garantizan su seguridad. Explicárselo con claridad genera confianza, no fricción, y el reporte interno permite registrar el caso. Una excepción "esta vez" sigue siendo un incumplimiento; borrar los mensajes no elimina el riesgo (los datos pueden haber quedado en servidores o copias de seguridad) y, sin reporte, nadie puede gestionar el caso; e ingresarlos tú en el canal oficial sigue siendo usar datos que llegaron por un canal no autorizado.',
           },
         ],
-      },
-
-      // 4. Una pregunta para ti (con las respuestas de M1 a M4)
-      {
-        type: 'reflection',
-        title: 'Una pregunta para ti',
-        intro: 'Antes de responder, relee lo que escribiste en cada módulo.',
-        savedText: 'Guardamos tu respuesta.',
-        recallItems: [
-          { storageKey: 'm1_reflexion', label: 'M1' },
-          { storageKey: 'm2_reflexion', label: 'M2' },
-          { storageKey: 'm3_reflexion', label: 'M3' },
-          { storageKey: 'm4_reflexion', label: 'M4' },
-        ],
-        storageKey: 'm5_reflexion_2',
-        promptPrefix: '¿Qué vas a hacer diferente en tu trabajo a partir de mañana?',
-        placeholder: 'Ej: Voy a usar el canal oficial para recibir pagos / Voy a bloquear mi equipo cuando me levante / Voy a reportar los correos sospechosos en lugar de ignorarlos.',
       },
 
       // 5. Cierre narrativo del curso
